@@ -41,8 +41,7 @@ public class Company {
 	@ToString.Exclude
 	private Collection<Department> department;
 
-	public Company(String name,Collection<Department> department) {
+	public Company(String name) {
 		this.name=name;
-		this.department = department;
 	}
 }
