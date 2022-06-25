@@ -1,5 +1,6 @@
 package lv.venta.demo.models;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -37,12 +39,19 @@ public class EmployeeCourse {
 	@JoinColumn(name="IdCou")
 	private Course course;
 	
-	// TODO Date
-	private String date;
+	//TODO Date on hold |Don't know what to do with this yet|
+	//@Column(name="Date")
+	//private Date date;
 	
 	@Column(name="ValuePr")
+	@Pattern(regexp="[0-9]{2}$")
 	private float valuePr;
 	
+	public EmployeeCourse(Employee employee, Course course, float valuePr) {
+		this.employee = employee;
+		this.course = course;
+		this.valuePr = valuePr;
+	}
 	
 	
 	
