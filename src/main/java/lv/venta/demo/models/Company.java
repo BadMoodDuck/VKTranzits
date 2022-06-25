@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -32,11 +34,14 @@ public class Company {
 	
 	//TODO Validacijas
 	@Column(name="Name")
+	@Size(min=4, max=20)
+	@Pattern(regexp="[A-Z]{1}[a-z]+")
 	private String name;
 	
 	@OneToMany(mappedBy = "company")
 	@ToString.Exclude
 	private Collection<Department> department;
+	
 	
 	
 }
