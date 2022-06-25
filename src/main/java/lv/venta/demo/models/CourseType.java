@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -31,11 +33,21 @@ public class CourseType {
 	private int idTy;
 	
 	@Column(name="IsObligatory")
+	@Pattern(regexp="[0-1]{1}$")
 	private boolean isObligatory;
-	//TODO Parejie mainigie
+	
+	@Column(name="Description")
+	@Size(min=3,max=256,message="Title must be between 3 and 256 characters")
+	@Pattern(regexp="[a-zA-Z]+(.|\\s)*")
+	private String description;
 	
 	@OneToMany(mappedBy = "coType")
 	@ToString.Exclude
 	private Collection<Course> courses;
 	
+	public CourseType(boolean isObligatory, String description, Collection<Course> courses) {
+		this.isObligatory = isObligatory;
+		this.description = description;
+		this.courses = courses;
+	}
 }
