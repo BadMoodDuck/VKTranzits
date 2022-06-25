@@ -36,10 +36,15 @@ public class CourseImplementer {
 	@ManyToOne
 	@JoinColumn(name = "IdImpl")
 	private Implementer implementer;
+	
+	@ManyToOne
+	@JoinColumn(name = "IdCal")
+	private CourseCalendar courseCalendar;
 
-	public CourseImplementer(Implementer implementer, String notes) {
+	public CourseImplementer(Implementer implementer, CourseCalendar courseCalendar, String notes) {
 		
 		this.implementer = implementer;
+		this.courseCalendar =courseCalendar;
 		this.notes = notes;
 
 	}
