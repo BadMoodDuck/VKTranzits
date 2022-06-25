@@ -27,39 +27,37 @@ import lombok.ToString;
 @Table
 @Entity
 public class Employee {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="IdEm")
+	@Column(name = "IdEm")
 	@Setter(value = AccessLevel.NONE)
 	private int idEm;
-	
-	//TODO Validacijas
-	@Column(name="Name")
-	@Size(min=1, max=40)
-	@Pattern(regexp="[a-zA-Z]+(.|\\s)*")
+
+	// TODO Validacijas
+	@Column(name = "Name")
+	@Size(min = 1, max = 40)
+	@Pattern(regexp = "[a-zA-Z]+(.|\\s)*")
 	private String name;
 
-	//TODO parejie mainigie
+	// TODO parejie mainigie
 	@ManyToOne
-	@JoinColumn(name="IdDe")
+	@JoinColumn(name = "IdDe")
 	private Department department;
-	
+
 	@OneToMany(mappedBy = "employee")
 	@ToString.Exclude
 	private Collection<EmployeeCourse> emCourse;
-	
 
 	@ManyToOne
-	@JoinColumn(name="IdPos")
+	@JoinColumn(name = "IdPos")
 	private Position position;
 
-	public Employee(String name,Department department,Collection<EmployeeCourse> emCourse,Position position) {
-		this.name=name;
-		this.department=department;
-		this.emCourse=emCourse;
-		this.position=position;
+	public Employee(String name, Department department, Position position) {
+		this.name = name;
+		this.department = department;
+		this.position = position;
+
 	}
 
-		
 }

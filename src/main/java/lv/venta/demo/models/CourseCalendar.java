@@ -1,12 +1,16 @@
 package lv.venta.demo.models;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -15,6 +19,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
@@ -41,11 +46,23 @@ public class CourseCalendar {
 	@Column(name = "EndDate")
 	private Date endDate;
 
+	@OneToMany(mappedBy = "courseCalendar")
+	@ToString.Exclude
+	private Collection<CourseImplementer> courseImplementers;
+
+	@ManyToMany(mappedBy = "calendars")
+	@ToString.Exclude
+	private Collection<Position> positions = new ArrayList<Position>();
+
 	public CourseCalendar(int year, Date startDate, Date endDate) {
 
 		this.year = year;
 		this.startDate = startDate;
 		this.endDate = endDate;
+	}
+
+	public void addPosition(Position position) {
+		positions.add(position);
 	}
 
 }
