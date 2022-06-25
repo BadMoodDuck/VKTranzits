@@ -1,4 +1,5 @@
 package lv.venta.demo.models;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import lombok.AccessLevel;
@@ -15,6 +16,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Getter
@@ -42,6 +46,10 @@ public class Position {
 	@OneToMany(mappedBy = "position")
 	@ToString.Exclude
 	private Collection<Employee> employees;
+	
+	@ManyToMany
+	@JoinTable(joinColumns = @JoinColumn(name = "IdPos"), inverseJoinColumns = @JoinColumn(name = "IdCal"))
+	private Collection<CourseCalendar> calendars = new ArrayList<>();
 
 	public Position(String title, String description) {
 		
