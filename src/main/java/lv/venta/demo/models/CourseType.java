@@ -32,7 +32,9 @@ public class CourseType {
 	
 	@Column(name="IsObligatory")
 	private boolean isObligatory;
-	//TODO Parejie mainigie
+	
+	@Column(name="Description")
+	private String description;
 	
 	@OneToMany(mappedBy = "coType")
 	@ToString.Exclude
