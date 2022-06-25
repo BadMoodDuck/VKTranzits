@@ -31,11 +31,14 @@ public class CourseCalendar {
 
 	@Min(value = 2022)
 	@Max(value = 2050)
+	@Column(name = "Year")
 	private int year;
 
-	// validacijas
+	// TODO validacijas
+	@Column(name = "StartDate")
 	private Date startDate;
 
+	@Column(name = "EndDate")
 	private Date endDate;
 
 	public CourseCalendar(int year, Date startDate, Date endDate) {

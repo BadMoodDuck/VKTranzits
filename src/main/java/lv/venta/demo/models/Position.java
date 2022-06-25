@@ -5,6 +5,8 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -13,6 +15,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Getter
 @Setter
@@ -35,6 +38,10 @@ public class Position {
 	@Size(min = 4, max = 500)
 	@Column(name = "Description")
 	private String description;
+	
+	@OneToMany(mappedBy = "position")
+	@ToString.Exclude
+	private Collection<Employee> employees;
 
 	public Position(String title, String description) {
 		

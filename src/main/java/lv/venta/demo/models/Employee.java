@@ -49,11 +49,17 @@ public class Employee {
 	@ToString.Exclude
 	private Collection<EmployeeCourse> emCourse;
 	
-	public Employee(String name,Department department,Collection<EmployeeCourse> emCourse) {
+
+	@ManyToOne
+	@JoinColumn(name="IdPos")
+	private Position position;
+
+	public Employee(String name,Department department,Collection<EmployeeCourse> emCourse,Position position) {
 		this.name=name;
 		this.department=department;
 		this.emCourse=emCourse;
-		
+		this.position=position;
 	}
+
 		
 }
