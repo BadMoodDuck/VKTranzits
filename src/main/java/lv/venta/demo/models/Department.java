@@ -14,6 +14,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -37,6 +39,8 @@ public class Department {
 	
 	//TODO Validacijas
 	@Column(name="Name")
+	@Size(min=1, max=40)
+	@Pattern(regexp="[a-zA-Z]+(.|\\s)*")
 	private String name;
 	
 	@ManyToOne
@@ -57,4 +61,11 @@ public class Department {
 	{
 		courses.add(course);
 	}
+	
+	public Department(String name,Company company,Collection<Employee> employees) {
+		this.name = name;
+		this.company = company;
+		this.employees = employees;
+	}
+	
 }

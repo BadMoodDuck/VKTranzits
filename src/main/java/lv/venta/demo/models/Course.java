@@ -13,6 +13,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -34,10 +36,6 @@ public class Course {
 	@Setter(value = AccessLevel.NONE)
 	private int idCou;
 
-	//TODO Validacijas
-	@Column(name="Title")
-	private String title;
-	
 	@ManyToOne
 	@JoinColumn(name="IdTy")
 	private CourseType coType;
@@ -46,9 +44,25 @@ public class Course {
 	@ToString.Exclude
 	private Collection<Department> departments = new ArrayList<Department>();
 	
-	//TODO caur konstr pievienot atbilstosos departments objektus
+	@Column(name="Title")
+	@Size(min=3,max=100,message="Title must be between 3 and 100 characters")
+	@Pattern(regexp="[a-zA-Z]+(.|\\s)*")
+	private String title;
+	
+	@Column(name="Description")
+	@Size(min=3,max=256,message="Title must be between 3 and 256 characters")
+	@Pattern(regexp="[a-zA-Z]+(.|\\s)*")
+	private String description;
 	
 	@OneToMany(mappedBy = "course")
 	@ToString.Exclude
 	private Collection<EmployeeCourse> emCourse;
+	
+	public Course(CourseType coType, Collection<Department> departments, String title, String description) {
+		this.coType = coType;
+		this.departments = departments;
+		this.title = title;
+		this.description = description;
+	}
+	
 }

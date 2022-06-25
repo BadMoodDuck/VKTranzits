@@ -32,16 +32,17 @@ public class Company {
 	@Setter(value = AccessLevel.NONE)
 	private int idCo;
 	
-	//TODO Validacijas
 	@Column(name="Name")
-	@Size(min=4, max=20)
-	@Pattern(regexp="[A-Z]{1}[a-z]+")
+	@Size(min=1, max=40)
+	@Pattern(regexp="[a-zA-Z]+(.|\\s)*")
 	private String name;
 	
 	@OneToMany(mappedBy = "company")
 	@ToString.Exclude
 	private Collection<Department> department;
-	
-	
-	
+
+	public Company(String name,Collection<Department> department) {
+		this.name=name;
+		this.department = department;
+	}
 }
