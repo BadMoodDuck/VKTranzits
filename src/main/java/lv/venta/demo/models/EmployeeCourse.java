@@ -29,9 +29,6 @@ public class EmployeeCourse {
 	@Setter(value = AccessLevel.NONE)
 	private int idEmCo;
 	
-	@Column(name="ValuePr")
-	private float valuePr;
-	
 	@ManyToOne
 	@JoinColumn(name="IdEm")
 	private Employee employee;
@@ -39,4 +36,14 @@ public class EmployeeCourse {
 	@ManyToOne
 	@JoinColumn(name="IdCou")
 	private Course course;
+	
+	// TODO Date
+	private String date;
+	
+	@Column(name="ValuePr")
+	private float valuePr;
+	
+	
+	
+	
 }
