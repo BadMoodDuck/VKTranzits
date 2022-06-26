@@ -62,7 +62,9 @@ public class Department {
 		courses.add(course);
 	}
 	
+
 	public Department(Company company,String name) {
+    
 		this.name = name;
 		this.company = company;
 	}
