@@ -32,37 +32,37 @@ public class Course {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "IdCou")
+	@Column(name="IdCou")
 	@Setter(value = AccessLevel.NONE)
 	private int idCou;
 
 	@ManyToOne
-	@JoinColumn(name = "IdTy")
+	@JoinColumn(name="IdTy")
 	private CourseType coType;
-
+	
 	@ManyToMany(mappedBy = "courses")
 	@ToString.Exclude
 	private Collection<Department> departments = new ArrayList<Department>();
-
-	@Column(name = "Title")
-	@Size(min = 3, max = 100, message = "Title must be between 3 and 100 characters")
-	@Pattern(regexp = "[a-zA-Z]+(.|\\s)*")
+	
+	@Column(name="Title")
+	@Size(min=3,max=100,message="Title must be between 3 and 100 characters")
+	@Pattern(regexp="[a-zA-Z]+(.|\\s)*")
 	private String title;
-
-	@Column(name = "Description")
-	@Size(min = 3, max = 256, message = "Title must be between 3 and 256 characters")
-	@Pattern(regexp = "[a-zA-Z]+(.|\\s)*")
+	
+	@Column(name="Description")
+	@Size(min=3,max=256,message="Title must be between 3 and 256 characters")
+	@Pattern(regexp="[a-zA-Z]+(.|\\s)*")
 	private String description;
-
+	
 	@OneToMany(mappedBy = "course")
 	@ToString.Exclude
 	private Collection<EmployeeCourse> emCourse;
-
-	public Course(CourseType coType, String title, String description) {
+	
+	public Course(CourseType coType, Collection<Department> departments, String title, String description) {
 		this.coType = coType;
+		this.departments = departments;
 		this.title = title;
 		this.description = description;
 	}
 	
-
 }
