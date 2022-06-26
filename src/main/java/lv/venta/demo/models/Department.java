@@ -62,10 +62,9 @@ public class Department {
 		courses.add(course);
 	}
 	
-	public Department(String name,Company company,Collection<Employee> employees) {
+	public Department(String name,Company company) {
 		this.name = name;
 		this.company = company;
-		this.employees = employees;
 	}
 	
 }
