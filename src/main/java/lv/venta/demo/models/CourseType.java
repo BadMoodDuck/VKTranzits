@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -33,7 +34,7 @@ public class CourseType {
 	private int idTy;
 	
 	@Column(name="IsObligatory")
-	@Pattern(regexp="[0-1]{1}$")
+	@NotNull
 	private boolean isObligatory;
 	
 	@Column(name="Description")
@@ -45,9 +46,9 @@ public class CourseType {
 	@ToString.Exclude
 	private Collection<Course> courses;
 	
-	public CourseType(boolean isObligatory, String description, Collection<Course> courses) {
+	public CourseType(boolean isObligatory, String description/*, Collection<Course> courses*/) {
 		this.isObligatory = isObligatory;
 		this.description = description;
-		this.courses = courses;
+		//this.courses = courses;
 	}
 }

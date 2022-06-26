@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 
 import lombok.AccessLevel;
@@ -44,7 +46,8 @@ public class EmployeeCourse {
 	//private Date date;
 	
 	@Column(name="ValuePr")
-	@Pattern(regexp="[0-9]{2}$")
+	@Max(100)
+	@Min(0)
 	private float valuePr;
 	
 	public EmployeeCourse(Employee employee, Course course, float valuePr) {

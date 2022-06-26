@@ -68,13 +68,13 @@ public class Employee {
 	@JoinColumn(name = "IdPos")
 	private Position position;
 
-	public Employee(String name,String surname,int phone,String email,Department department/*, Position position*/) {
+	public Employee(String name,String surname,int phone,String email,Department department, Position position) {
 		this.name = name;
 		this.surname =surname;
 		this.phone =phone;
 		this.email =email;
 		this.department = department;
-		//this.position = position;
+		this.position = position;
 
 	}
 
