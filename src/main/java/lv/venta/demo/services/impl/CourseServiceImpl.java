@@ -54,4 +54,16 @@ public class CourseServiceImpl implements ICourseService{
 		return null;
 	}
 
+	@Override
+	public Course updateExistingCourseById(int courseId, CourseType coType, String title, String description) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Course> deleteCourseById(int courseId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
