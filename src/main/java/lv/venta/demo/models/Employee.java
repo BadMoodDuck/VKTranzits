@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -39,6 +40,20 @@ public class Employee {
 	@Size(min = 1, max = 40)
 	@Pattern(regexp = "[a-zA-Z]+(.|\\s)*")
 	private String name;
+	
+	@Column(name = "Surname")
+	@Size(min = 1, max = 40)
+	@Pattern(regexp = "[a-zA-Z]+(.|\\s)*")
+	private String surname;
+	
+	@Column(name = "Phone")
+	@Digits(fraction = 0, integer = 8)
+	private int phone;
+	
+	@Column(name = "Email")
+	@Size(min = 1, max = 40)
+	@Pattern(regexp = "[\\w-]+@[\\w-]+.+[\\w-]{2,4}$")
+	private String email;
 
 	// TODO parejie mainigie
 	@ManyToOne
@@ -53,10 +68,13 @@ public class Employee {
 	@JoinColumn(name = "IdPos")
 	private Position position;
 
-	public Employee(String name, Department department, Position position) {
+	public Employee(String name,String surname,int phone,String email,Department department/*, Position position*/) {
 		this.name = name;
+		this.surname =surname;
+		this.phone =phone;
+		this.email =email;
 		this.department = department;
-		this.position = position;
+		//this.position = position;
 
 	}
 
