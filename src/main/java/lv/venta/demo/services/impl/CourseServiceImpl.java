@@ -12,6 +12,7 @@ import lv.venta.demo.services.ICourseService;
 @Service
 public class CourseServiceImpl implements ICourseService{
 
+	//TODO pabeigt funkcijas ar visam parbaudem
 	@Override
 	public Course getCourseById(int courseId) {
 		// TODO Auto-generated method stub
