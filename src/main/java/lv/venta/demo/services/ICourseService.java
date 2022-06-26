@@ -29,4 +29,10 @@ public interface ICourseService {
 	// Struktūrvienības visu kursu attēlošanas funkcija
 	public abstract ArrayList<Course> getAllCoursesFromDepartmentByID(int departmentId);
 
+	// Kursa atjaunošanas pēc ID funkcija
+	public abstract Course updateExistingCourseById(int courseId, CourseType coType, String title, String description);
+
+	// Kursa dzēšanas pēc ID funkcija
+	public abstract ArrayList<Course> deleteCourseById(int courseId);
+
 }
