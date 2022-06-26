@@ -60,9 +60,7 @@ public class VkTranzitsApplication {
 				employeeRepo.save(emp7);
 				
 				
-				
 
-				
 
 
 
