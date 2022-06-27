@@ -1,18 +1,17 @@
 package lv.venta.demo.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import lv.venta.demo.services.ICourseService;
+
 @Controller
 public class HomeController {
-
 	
-	@GetMapping("")
-	public String login() {
-		System.out.println("login");
-		return "login-form";
-	}
+	@Autowired
+	private ICourseService courseService;
 	
 	@GetMapping("/home")
 	public String getHomePage() {
@@ -20,10 +19,10 @@ public class HomeController {
 		return "home";
 	}
 	
-	@GetMapping("/employees")
+	@GetMapping("/course")
 	public String getAllEmployees(Model model) {
-		
-		System.out.println("employees");
-		return "employees";
+		model.addAttribute("course", courseService.selectAllCourses());
+		System.out.println("course");
+		return "course-all";
 	}
 }
