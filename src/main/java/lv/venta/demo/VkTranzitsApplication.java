@@ -38,7 +38,7 @@ public class VkTranzitsApplication {
 		SpringApplication.run(VkTranzitsApplication.class, args);
 	}
 
-	//@Bean
+	@Bean
 	public CommandLineRunner runner(IEmployeeRepo employeeRepo, IDepartmentRepo departmentRepo, 
 										ICompanyRepo companyRepo,ICourseTypeRepo courseTypeRepo, 
 										ICourseRepo courseRepo, IEmployeeCourseRepo employeeCourseRepo, 
