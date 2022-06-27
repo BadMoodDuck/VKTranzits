@@ -94,8 +94,8 @@ public class VkTranzitsApplication {
 				courseTypeRepo.save(cty);
 				courseTypeRepo.save(cty1);
 				
-				Course co = new Course(cty,"Ugunsdrosiba","Viss galvenais par uguni",new ArrayList<>(Arrays.asList(dep,dep1)));
-				Course co1 = new Course(cty1,"Darba drosiba","Viss galvenais par darbu",new ArrayList<>(Arrays.asList(dep2)));
+				Course co = new Course(cty,"Ugunsdrosiba","Viss galvenais par uguni");
+				Course co1 = new Course(cty1,"Darba drosiba","Viss galvenais par darbu");
 				courseRepo.save(co);
 				courseRepo.save(co1);
 				
