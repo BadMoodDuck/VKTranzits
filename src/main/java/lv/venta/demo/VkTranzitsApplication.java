@@ -38,7 +38,7 @@ public class VkTranzitsApplication {
 		SpringApplication.run(VkTranzitsApplication.class, args);
 	}
 
-	@Bean
+	//@Bean
 	public CommandLineRunner runner(IEmployeeRepo employeeRepo, IDepartmentRepo departmentRepo, 
 										ICompanyRepo companyRepo,ICourseTypeRepo courseTypeRepo, 
 										ICourseRepo courseRepo, IEmployeeCourseRepo employeeCourseRepo, 
@@ -94,10 +94,19 @@ public class VkTranzitsApplication {
 				courseTypeRepo.save(cty);
 				courseTypeRepo.save(cty1);
 				
-				Course co = new Course(cty,new ArrayList<>(Arrays.asList(dep,dep1)),"Ugunsdrosiba","Viss galvenais par uguni");
-				Course co1 = new Course(cty1,new ArrayList<>(Arrays.asList(dep2)),"Darba drosiba","Viss galvenais par darbu");
+				Course co = new Course(cty,"Ugunsdrosiba","Viss galvenais par uguni",new ArrayList<>(Arrays.asList(dep,dep1)));
+				Course co1 = new Course(cty1,"Darba drosiba","Viss galvenais par darbu",new ArrayList<>(Arrays.asList(dep2)));
 				courseRepo.save(co);
 				courseRepo.save(co1);
+				
+				
+				dep.addNewCourse(co);
+				dep1.addNewCourse(co);
+				dep2.addNewCourse(co1);
+				departmentRepo.save(dep);
+				departmentRepo.save(dep1);
+				departmentRepo.save(dep2);
+
 				
 				EmployeeCourse emc = new EmployeeCourse(emp7, co1, 4);
 				EmployeeCourse emc1 = new EmployeeCourse(emp2, co, 10);

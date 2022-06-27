@@ -57,16 +57,16 @@ public class Department {
 	@ToString.Exclude
 	private Collection<Course> courses = new ArrayList<Course>();
 
-	public void addNewCourse(Course course)
-	{
-		courses.add(course);
-	}
-	
-
 	public Department(Company company,String name) {
     
 		this.name = name;
 		this.company = company;
 	}
+	
+	public void addNewCourse(Course course)
+	{
+		courses.add(course);
+	}
+	
 	
 }
