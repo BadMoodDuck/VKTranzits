@@ -13,7 +13,7 @@ import lv.venta.demo.repos.ICourseRepo;
 import lv.venta.demo.services.ICourseService;
 
 @Service
-public class CourseServiceImpl implements ICourseService{
+public class CourseServiceImpl implements ICourseService {
 
 	@Autowired
 	private ICourseRepo courseRepo;
@@ -53,6 +53,11 @@ public class CourseServiceImpl implements ICourseService{
 
 	@Override
 	public Course insertNewCourse(CourseType coType, String title, String description) {
+		Course result = new Course(coType, title, description);
+		if (!courseRepo.existsByTitleIgnoreCase(title)) {
+			courseRepo.save(result);
+			return result;
+		}
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -66,13 +71,22 @@ public class CourseServiceImpl implements ICourseService{
 	@Override
 	public Course updateExistingCourseById(int courseId, CourseType coType, String title, String description) {
 		// TODO Auto-generated method stub
-		return null;
+		Course result = new Course();
+		if (courseRepo.existsByIdCou(courseId)) {
+			result = courseRepo.findByIdCou(courseId);
+		}
+		result = new Course(coType, title, description);
+		return result;
 	}
 
 	@Override
 	public ArrayList<Course> deleteCourseById(int courseId) {
 		// TODO Auto-generated method stub
-		return null;
+		if (courseRepo.existsByIdCou(courseId)) {
+			courseRepo.deleteByIdCou(courseId);
+		}
+		ArrayList<Course> result = selectAllCourses();
+		return result;
 	}
 
 }

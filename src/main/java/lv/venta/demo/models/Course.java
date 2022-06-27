@@ -57,11 +57,12 @@ public class Course {
 	@ToString.Exclude
 	private Collection<EmployeeCourse> emCourse;
 	
-	public Course(CourseType coType, String title, String description, Collection<Department> departments) {
+	public Course(CourseType coType, String title, String description) {
 		this.coType = coType;
+		// this.departments = departments; sito nevajag, jo veidojot kursu nav janorada strukturvieniba
 		this.title = title;
 		this.description = description;
-		this.departments = departments;
+		
 	}
 	
 }
