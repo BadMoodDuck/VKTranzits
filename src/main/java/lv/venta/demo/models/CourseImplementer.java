@@ -29,7 +29,7 @@ public class CourseImplementer {
 	private int idCouImpl;
 
 	@Size(min = 4, max = 300)
-	@Pattern(regexp = "[A-Z]{1}[[:ascii:]]+")
+	@Pattern(regexp = "[a-zA-Z]+(.|\\s)*")
 	@Column(name = "Notes")
 	private String notes;
 

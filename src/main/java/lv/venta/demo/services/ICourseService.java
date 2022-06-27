@@ -15,7 +15,7 @@ public interface ICourseService {
 	public abstract Course getCourseByTitle(String title);
 
 	// Darbinieka kursi pēc darbinieka ID
-	public abstract ArrayList<EmployeeCourse> getAllEmployeeCoursesbyEmployeeId(int employeeId);
+	public abstract ArrayList<EmployeeCourse> getAllEmployeeCoursesByEmployeeId(int employeeId);
 
 	// visi kursi pēc tipa ID
 	public abstract ArrayList<Course> getAllCoursesByTypeId(int coTypeId);

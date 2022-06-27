@@ -36,14 +36,6 @@ public class Course {
 	@Setter(value = AccessLevel.NONE)
 	private int idCou;
 
-	@ManyToOne
-	@JoinColumn(name="IdTy")
-	private CourseType coType;
-	
-	@ManyToMany(mappedBy = "courses")
-	@ToString.Exclude
-	private Collection<Department> departments = new ArrayList<Department>();
-	
 	@Column(name="Title")
 	@Size(min=3,max=100,message="Title must be between 3 and 100 characters")
 	@Pattern(regexp="[a-zA-Z]+(.|\\s)*")
@@ -54,6 +46,13 @@ public class Course {
 	@Pattern(regexp="[a-zA-Z]+(.|\\s)*")
 	private String description;
 	
+	@ManyToOne
+	@JoinColumn(name="IdTy")
+	private CourseType coType;
+	
+	@ManyToMany(mappedBy = "courses")
+	private Collection<Department> departments = new ArrayList<Department>();
+	
 	@OneToMany(mappedBy = "course")
 	@ToString.Exclude
 	private Collection<EmployeeCourse> emCourse;
@@ -63,6 +62,7 @@ public class Course {
 		// this.departments = departments; sito nevajag, jo veidojot kursu nav janorada strukturvieniba
 		this.title = title;
 		this.description = description;
+		
 	}
 	
 }
