@@ -21,5 +21,8 @@ public interface IEmployeeCRUDservice {
 
 	// Parādīt visus struktūrvienības darbiniekus
 	public abstract ArrayList<Employee> selectAllEmployeesFromDepartmentById(int departmentId);
+	
+	//paradit visus darbiniekus
+	public abstract ArrayList<Employee> selectAllEmployees();
 
 }

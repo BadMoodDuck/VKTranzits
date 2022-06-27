@@ -51,8 +51,8 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 		if (employeeRepo.existsByIdEm(employeeId)) {
 			employeeRepo.deleteByIdEm(employeeId);
 		}
-		ArrayList<Employee> result = (ArrayList<Employee>) employeeRepo.findAll();
-		return result;
+
+		return selectAllEmployees();
 	}
 
 	@Override
@@ -63,6 +63,12 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 			return result;
 		}
 		return null;
+	}
+
+	@Override
+	public ArrayList<Employee> selectAllEmployees() {
+		// TODO Auto-generated method stub
+		return (ArrayList<Employee>) employeeRepo.findAll();
 	}
 
 }
