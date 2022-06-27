@@ -47,7 +47,7 @@ public class HomeController {
 	public String getAddEmployee(Employee employee) {
 		return "employee-add";
 	}
-	@PostMapping("/employee/addNew") // Papildinat ar Department un Position
+	@PostMapping("/employee/addNew") // Papildinat ar Department 
 	public String postAddEmployee(@Valid Employee employee, BindingResult result) {
 		if (result.hasErrors()) { return "error";}
 		if (employeeService.insertNewEmployee(employee)) {
