@@ -35,7 +35,6 @@ public class Employee {
 	@Setter(value = AccessLevel.NONE)
 	private int idEm;
 
-	// TODO Validacijas
 	@Column(name = "Name")
 	@Size(min = 1, max = 40)
 	@Pattern(regexp = "[a-zA-Z]+(.|\\s)*")
@@ -55,7 +54,6 @@ public class Employee {
 	@Pattern(regexp = "[\\w-]+@[\\w-]+.+[\\w-]{2,4}$")
 	private String email;
 
-	// TODO parejie mainigie
 	@ManyToOne
 	@JoinColumn(name = "IdDe")
 	private Department department;
