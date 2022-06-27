@@ -29,7 +29,7 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 
 		return false;
 	}
-
+	
 	@Override 
 	public boolean updateEmployeeById(int employeeId, Employee employee) {
 		if (employeeRepo.existsById(employeeId)) {
@@ -44,7 +44,7 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 		}
 		return false;
 	}
-
+	
 	@Override
 	public boolean deleteEmployeeById(int employeeId) {
 		if (employeeRepo.existsById(employeeId)) {
@@ -53,15 +53,13 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 		}
 		return false;
 	}
-	//Pārskatīt
+	
 	@Override
 	public ArrayList<Employee> selectAllEmployeesFromDepartmentById(int departmentId) {
-		// TODO Auto-generated method stub
-		if (employeeRepo.existsByDepartmentIdDe(departmentId)) {
-			ArrayList<Employee> result = employeeRepo.findAllByDepartmentIdDe(departmentId);
-			return result;
+		if (departmentRepo.existsById(departmentId)) {
+			return (ArrayList<Employee>) employeeRepo.findAllByDepartmentIdDe(departmentId);
 		}
-		return selectAllEmployees();
+		return null;
 	}
 
 	@Override
