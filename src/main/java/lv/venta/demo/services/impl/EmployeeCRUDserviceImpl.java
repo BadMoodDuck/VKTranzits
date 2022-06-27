@@ -68,9 +68,5 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 		// TODO Auto-generated method stub
 		return (ArrayList<Employee>) employeeRepo.findAll();
 	}
-	
-	public ArrayList<Employee> selectAllEmployees(){
-		return (ArrayList<Employee>) employeeRepo.findAll();
-	}
 
 }

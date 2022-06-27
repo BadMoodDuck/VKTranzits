@@ -1,11 +1,20 @@
 package lv.venta.demo.controller;
 
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import lv.venta.demo.services.impl.CourseServiceImpl;
 
 @Controller
 public class HomeController {
 
+	@Autowired
+	private CourseServiceImpl courseService;
 	
 	@GetMapping("")
 	public String getDefault() {
@@ -17,7 +26,6 @@ public class HomeController {
 		return "home";
 	}
 	
-<<<<<<< HEAD
 	@GetMapping("/course") // All Courses
 	public String getAllCourses(Model model) {
 		model.addAttribute("course", courseService.selectAllCourses());
@@ -25,26 +33,5 @@ public class HomeController {
 	}
 	
 	
-	@GetMapping("/employee") // All Employees
-	public String getAllEmployees(Model model) {
-		model.addAttribute("employee", employeeService.selectAllEmployees());
-		return "employee-all";
-	}
-	@GetMapping("/employee/addNew") // Add Employee
-	public String getAddEmployee(Employee employee) {
-		return "employee-add";
-	}
-	@PostMapping("/employee/addNew") // Papildinat ar Department 
-	public String postAddEmployee(@Valid Employee employee, BindingResult result) {
-		if (result.hasErrors()) { return "error";}
-		if (employeeService.insertNewEmployee(employee)) {
-			return "redirect:/employee";
-		}
-			return "redirect:/employee";
-	}
-	
-	
-	
-=======
->>>>>>> cf911d0a82199a81e6ee4ff96fd2adde38ad9ff5
+
 }
