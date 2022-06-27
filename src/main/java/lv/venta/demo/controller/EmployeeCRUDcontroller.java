@@ -45,8 +45,7 @@ public class EmployeeCRUDcontroller {
 	public String postAddEmployee(@Valid Employee employee, BindingResult result) {
 		// TODO nepabeigts
 		if (!result.hasErrors()) {
-			Employee newEmployee = employeeService.insertNewEmployee(employee.getName(), employee.getSurname(),
-					employee.getPhone(), employee.getEmail(), employee.getDepartment(), employee.getPosition());
+			Employee newEmployee = new Employee();
 			return "redirect:/employee/showAll";
 		} else {
 			return "";

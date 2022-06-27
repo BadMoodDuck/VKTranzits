@@ -7,15 +7,15 @@ import lv.venta.demo.models.Implementer;
 public interface IImplementerCRUDservice {
 
 	// izveidot jaunu istenotaju
-	public abstract Implementer insertNewImplementer(String name);
+	boolean insertNewImplementer(Implementer implementer);
 
 	// atjaunot esoso istenotaju
-	public abstract Implementer updateImplementerById(int implementerId, String name);
+	boolean updateImplementerById(int implementerId, Implementer implementer);
 
 	// izdzest istenotaju
-	public abstract ArrayList<Implementer> deleteImplementerById(int implementerId);
+	boolean deleteImplementerById(int implementerId);
 
 	// radit visus istenotajus
-	public abstract ArrayList<Implementer> selectAllImplementers();
+	ArrayList<Implementer> selectAllImplementers();
 
 }

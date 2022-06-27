@@ -24,4 +24,5 @@ public interface IEmployeeCRUDservice {
 	//paradit visus darbiniekus
 	public abstract ArrayList<Employee> selectAllEmployees();
 
+
 }

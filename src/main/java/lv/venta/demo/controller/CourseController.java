@@ -21,13 +21,6 @@ public class CourseController {
 		return "course-all";
 	}
 
-	// localhost:8080/course/showAll
-	@GetMapping("/course/showAll")
-	public String getAllCourses(Model model) {
-		model.addAttribute("Course", courseService.selectAllCourses());
-		return "course-all";
-	}
-
 	// localhost:8080/department/{id}/showAllCourses
 	@GetMapping("/department/{id}/showAllCourses")
 	public String getAllDepartmentCourses(Model model, @PathVariable(name = "id") int id) {

@@ -15,43 +15,38 @@ public class ImplementerCRUDserviceImpl implements IImplementerCRUDservice {
 	@Autowired
 	private IImplementerRepo implementerRepo;
 
-	// TODO pabeigt funkcijas ar visam parbaudem
 	@Override
-	public Implementer insertNewImplementer(String name) {
-		// TODO Auto-generated method stub
-		Implementer result = new Implementer(name);
-		if (!implementerRepo.existsByNameIgnoreCase(name)) {
-			return result;
+	public boolean insertNewImplementer(Implementer implementer) {
+		if (implementerRepo.existsById(implementer.getIdImpl())) {
+			return false;
 		}
-		return null;
+		implementerRepo.save(implementer);
+		return true;
 	}
 
 	@Override
-	public Implementer updateImplementerById(int implementerId, String name) {
-		// TODO Auto-generated method stub
-		if (implementerRepo.existsByIdImpl(implementerId)) {
-			Implementer result = implementerRepo.findByIdImpl(implementerId);
-			result = new Implementer(name);
+	public boolean updateImplementerById(int implementerId, Implementer implementer) {
+		if (implementerRepo.existsById(implementerId)) {
+			Implementer result = implementerRepo.findById(implementerId).get();
+			result.setName(implementer.getName());;
+			implementerRepo.save(result);
 		}
-		return new Implementer(name);
+		return false;
 	}
 
 	@Override
-	public ArrayList<Implementer> deleteImplementerById(int implementerId) {
-		// TODO Auto-generated method stub
-		if (implementerRepo.existsByIdImpl(implementerId)) {
+	public boolean deleteImplementerById(int implementerId) {
+		if (implementerRepo.existsByIdImpl(implementerId)) 
+		{
 			implementerRepo.deleteByIdImpl(implementerId);
+			return true;
 		}
-		ArrayList<Implementer> result = selectAllImplementers();
-
-		return result;
+		return false;
 	}
 
 	@Override
 	public ArrayList<Implementer> selectAllImplementers() {
-		// TODO Auto-generated method stub
-		ArrayList<Implementer> result = (ArrayList<Implementer>) implementerRepo.findAll();
-		return result;
+		return (ArrayList<Implementer>) implementerRepo.findAll();
 	}
 
 }
