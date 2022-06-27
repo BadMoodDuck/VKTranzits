@@ -109,7 +109,7 @@ public class VkTranzitsApplication {
 				implementerRepo.save(imp);
 				implementerRepo.save(imp1);
 				
-				CourseCalendar cal = new CourseCalendar(2023, new Date(05112033),new Date(06122031));
+				CourseCalendar cal = new CourseCalendar(2023, new Date(System.currentTimeMillis()),new Date(System.currentTimeMillis()));
 				courseCalendarRepo.save(cal);
 				
 				
