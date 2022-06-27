@@ -2,13 +2,13 @@
 <html>
 
 <body>
-	<div th:fragment="header">
+	<div th:fragment="header" style="background-color: rgba(0, 0, 0, 0.1);">
 	<ul class="nav justify-content-center">
 		  <li class="nav-item">
-		    <a class="nav-link active" aria-current="page" href="#">Active</a>
+		    <a class="nav-link active" th:href="@{/home}">Home</a>
 		  </li>
 		  <li class="nav-item">
-		    <a class="nav-link" href="#">Link</a>
+		    <a class="nav-link" th:href="@{/course}">All Courses</a>
 		  </li>
 		  <li class="nav-item">
 		    <a class="nav-link" href="#">Link</a>
