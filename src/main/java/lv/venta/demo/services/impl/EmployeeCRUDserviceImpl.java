@@ -62,7 +62,7 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 			ArrayList<Employee> result = employeeRepo.findAllByDepartmentIdDe(departmentId);
 			return result;
 		}
-		return null;
+		return selectAllEmployees();
 	}
 
 	@Override
