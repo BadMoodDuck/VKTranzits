@@ -51,19 +51,17 @@ public class Course {
 	private CourseType coType;
 	
 	@ManyToMany(mappedBy = "courses")
-	@ToString.Exclude
 	private Collection<Department> departments = new ArrayList<Department>();
-	
 	
 	@OneToMany(mappedBy = "course")
 	@ToString.Exclude
 	private Collection<EmployeeCourse> emCourse;
 	
-	public Course(CourseType coType, Collection<Department> departments, String title, String description) {
+	public Course(CourseType coType, String title, String description, Collection<Department> departments) {
 		this.coType = coType;
-		this.departments = departments;
 		this.title = title;
 		this.description = description;
+		this.departments = departments;
 	}
 	
 }
