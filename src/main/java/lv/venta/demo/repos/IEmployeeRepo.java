@@ -14,10 +14,6 @@ public interface IEmployeeRepo extends CrudRepository<Employee, Integer> {
 
 	boolean existsByDepartmentIdDe(int departmentId);
 
-	boolean existsByIdEm(int employeeId);
-
-	void deleteByIdEm(int employeeId);
-
 	boolean existsByEmailOrPhone(String email, int phone);
 
 	Employee findByEmailOrPhone(String email, int phone);
