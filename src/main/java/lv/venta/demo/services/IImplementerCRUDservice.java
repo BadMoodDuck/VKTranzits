@@ -10,7 +10,7 @@ public interface IImplementerCRUDservice {
 	public abstract Implementer insertNewImplementer(String name);
 
 	// atjaunot esoso istenotaju
-	public abstract Implementer updateImplementerById(int implementerId);
+	public abstract Implementer updateImplementerById(int implementerId, String name);
 
 	// izdzest istenotaju
 	public abstract ArrayList<Implementer> deleteImplementerById(int implementerId);

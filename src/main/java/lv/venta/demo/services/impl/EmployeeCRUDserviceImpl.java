@@ -25,10 +25,11 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 	public Employee insertNewEmployee(String name, String surname, int phone, String email, Department department,
 			Position position) {
 		Employee result = new Employee(name, surname, phone, email, department, position);
-		if (!employeeRepo.equals(result)) {
+		if (!employeeRepo.existsByEmailOrPhone(email, phone)) {
 			employeeRepo.save(result);
 			return result;
 		}
+
 		return null;
 	}
 
@@ -40,18 +41,17 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 			result = new Employee(name, surname, phone, email, department, position);
 			return result;
 		}
-		return null;
+		return new Employee(name, surname, phone, email, department, position);
 	}
 
 	@Override
 	public ArrayList<Employee> deleteEmployeeById(int employeeId) {
 		// TODO Auto-generated method stub
-		/*if (employeeRepo.existsByIdEm(employeeId)) {
+		if (employeeRepo.existsByIdEm(employeeId)) {
 			employeeRepo.deleteByIdEm(employeeId);
-			ArrayList<Employee> result = departmentRepo.findAllByEmployeesIdEm(employeeId);
-			return result;
-		}*/
-		return null;
+		}
+		ArrayList<Employee> result = (ArrayList<Employee>) employeeRepo.findAll();
+		return result;
 	}
 
 	@Override
