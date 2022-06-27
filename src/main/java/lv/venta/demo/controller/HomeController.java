@@ -6,12 +6,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import lv.venta.demo.services.ICourseService;
+import lv.venta.demo.services.IEmployeeCRUDservice;
 
 @Controller
 public class HomeController {
 	
 	@Autowired
 	private ICourseService courseService;
+	@Autowired
+	private IEmployeeCRUDservice employeeService;
+	
+	@GetMapping("")
+	public String getDefault() {
+		return "redirect:/home";
+	}
 	
 	@GetMapping("/home")
 	public String getHomePage() {
@@ -23,5 +31,11 @@ public class HomeController {
 	public String getAllCourses(Model model) {
 		model.addAttribute("course", courseService.selectAllCourses());
 		return "course-all";
+	}
+	
+	@GetMapping("/employees")
+	public String getAllEmployees(Model model) {
+		model.addAttribute("employee", employeeService.selectAllEmployees());
+		return "employee-all";
 	}
 }

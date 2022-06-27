@@ -63,5 +63,9 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 		}
 		return null;
 	}
+	
+	public ArrayList<Employee> selectAllEmployees(){
+		return (ArrayList<Employee>) employeeRepo.findAll();
+	}
 
 }
