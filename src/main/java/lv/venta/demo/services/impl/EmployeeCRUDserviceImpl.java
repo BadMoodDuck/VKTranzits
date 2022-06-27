@@ -22,18 +22,16 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 
 	// TODO pabeigt funkcijas ar visam parbaudem
 	@Override
-	public Employee insertNewEmployee(String name, String surname, int phone, String email, Department department,
-			Position position) {
-		Employee result = new Employee(name, surname, phone, email, department, position);
-		if (!employeeRepo.existsByEmailOrPhone(email, phone)) {
-			employeeRepo.save(result);
-			return result;
+	public boolean insertNewEmployee(Employee employee) {
+		if (!employeeRepo.existsByEmailOrPhone(employee.getEmail(), employee.getPhone())) {
+			employeeRepo.save(employee);
+			return true;
 		}
 
-		return null;
+		return false;
 	}
 
-	@Override
+	@Override // TODO Remove most variables add Employee employee
 	public Employee updateEmployeeById(int employeeId, String name, String surname, int phone, String email,
 			Department department, Position position) {
 		if (employeeRepo.existsByIdEm(employeeId)) {
