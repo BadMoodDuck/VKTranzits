@@ -33,8 +33,8 @@ public class Implementer {
 	private int idImpl;
 
 	@Size(min = 4, max = 20)
-	@Pattern(regexp = "[A-Z]{1}[a-z]+")
 	@Column(name = "Name")
+	@Pattern(regexp = "[a-zA-Z]+(.|\\s)*")
 	private String name;
 
 	@OneToMany(mappedBy = "implementer")

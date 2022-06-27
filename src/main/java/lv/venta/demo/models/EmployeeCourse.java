@@ -9,7 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -44,6 +45,11 @@ public class EmployeeCourse {
 	//private Date date;
 	
 	@Column(name="ValuePr")
+<<<<<<< HEAD
+=======
+	@Max(100)
+	@Min(0)
+>>>>>>> 9292ed583eb013104fd47acb675b38f3bb5948e5
 	private float valuePr;
 	
 	public EmployeeCourse(Employee employee, Course course, float valuePr) {
