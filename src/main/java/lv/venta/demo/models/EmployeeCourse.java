@@ -44,7 +44,6 @@ public class EmployeeCourse {
 	//private Date date;
 	
 	@Column(name="ValuePr")
-	@Pattern(regexp="[0-9]{2}$")
 	private float valuePr;
 	
 	public EmployeeCourse(Employee employee, Course course, float valuePr) {
