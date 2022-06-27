@@ -1,6 +1,7 @@
 package lv.venta.demo.services.impl;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,9 @@ public class CourseServiceImpl implements ICourseService{
 	//TODO pabeigt funkcijas ar visam parbaudem
 	@Override
 	public Course getCourseById(int courseId) {
-		// TODO Auto-generated method stub
+		if (courseRepo.existsById(courseId)) {
+			return courseRepo.findById(courseId).get();
+		}
 		return null;
 	}
 
@@ -31,7 +34,7 @@ public class CourseServiceImpl implements ICourseService{
 	}
 
 	@Override
-	public ArrayList<EmployeeCourse> getAllEmployeeCoursesbyEmployeeId(int employeeId) {
+	public ArrayList<EmployeeCourse> getAllEmployeeCoursesByEmployeeId(int employeeId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
