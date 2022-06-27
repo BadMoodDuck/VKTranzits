@@ -45,11 +45,8 @@ public class EmployeeCourse {
 	//private Date date;
 	
 	@Column(name="ValuePr")
-<<<<<<< HEAD
-=======
 	@Max(100)
 	@Min(0)
->>>>>>> 9292ed583eb013104fd47acb675b38f3bb5948e5
 	private float valuePr;
 	
 	public EmployeeCourse(Employee employee, Course course, float valuePr) {
