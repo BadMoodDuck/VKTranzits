@@ -10,7 +10,7 @@ public interface IImplementerRepo extends CrudRepository<Implementer, Integer>{
 
 	void deleteByIdImpl(int implementerId);
 
-	boolean existsByNameIgnoreCase();
+	boolean existsByNameIgnoreCase(String name);
 
 	Implementer findByIdImpl(int implementerId);
 

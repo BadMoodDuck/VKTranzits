@@ -1,6 +1,7 @@
 package lv.venta.demo;
 
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -11,10 +12,13 @@ import org.springframework.context.annotation.Bean;
 
 import lv.venta.demo.models.Company;
 import lv.venta.demo.models.Course;
+import lv.venta.demo.models.CourseCalendar;
+import lv.venta.demo.models.CourseImplementer;
 import lv.venta.demo.models.CourseType;
 import lv.venta.demo.models.Department;
 import lv.venta.demo.models.Employee;
 import lv.venta.demo.models.EmployeeCourse;
+import lv.venta.demo.models.Implementer;
 import lv.venta.demo.models.Position;
 import lv.venta.demo.repos.ICompanyRepo;
 import lv.venta.demo.repos.ICourseCalendarRepo;
@@ -34,7 +38,7 @@ public class VkTranzitsApplication {
 		SpringApplication.run(VkTranzitsApplication.class, args);
 	}
 
-	@Bean
+	//@Bean
 	public CommandLineRunner runner(IEmployeeRepo employeeRepo, IDepartmentRepo departmentRepo, 
 										ICompanyRepo companyRepo,ICourseTypeRepo courseTypeRepo, 
 										ICourseRepo courseRepo, IEmployeeCourseRepo employeeCourseRepo, 
@@ -90,17 +94,38 @@ public class VkTranzitsApplication {
 				courseTypeRepo.save(cty);
 				courseTypeRepo.save(cty1);
 				
-				Course co = new Course(cty,new ArrayList<>(Arrays.asList(dep,dep1)),"Ugunsdrosiba","Viss galvenais par uguni");
-				Course co1 = new Course(cty1,new ArrayList<>(Arrays.asList(dep2)),"Darba drosiba","Viss galvenais par darbu");
+				Course co = new Course(cty,"Ugunsdrosiba","Viss galvenais par uguni",new ArrayList<>(Arrays.asList(dep,dep1)));
+				Course co1 = new Course(cty1,"Darba drosiba","Viss galvenais par darbu",new ArrayList<>(Arrays.asList(dep2)));
 				courseRepo.save(co);
 				courseRepo.save(co1);
+				
+				
+				dep.addNewCourse(co);
+				dep1.addNewCourse(co);
+				dep2.addNewCourse(co1);
+				departmentRepo.save(dep);
+				departmentRepo.save(dep1);
+				departmentRepo.save(dep2);
+
 				
 				EmployeeCourse emc = new EmployeeCourse(emp7, co1, 4);
 				EmployeeCourse emc1 = new EmployeeCourse(emp2, co, 10);
 				employeeCourseRepo.save(emc);
 				employeeCourseRepo.save(emc1);
 				
+				Implementer imp = new Implementer("Viktors Vikis");
+				Implementer imp1 = new Implementer("Janis Vikis");
+				implementerRepo.save(imp);
+				implementerRepo.save(imp1);
 				
+				CourseCalendar cal = new CourseCalendar(2023, new Date(System.currentTimeMillis()),new Date(System.currentTimeMillis()));
+				courseCalendarRepo.save(cal);
+				
+				
+				CourseImplementer cim = new CourseImplementer(imp,  cal, "Not important");
+				CourseImplementer cim1 = new CourseImplementer(imp1, cal, "Damn this hard");
+				courseImplementerRepo.save(cim);
+				courseImplementerRepo.save(cim1);
 				
 				
 				
