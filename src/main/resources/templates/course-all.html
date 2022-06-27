@@ -36,24 +36,6 @@
 				</tr>
 			</thbody>
 
-			<thead>
-				<tr>
-					<th scope="col">#</th>
-					<th scope="col">Type</th>
-					<th scope="col">Depart</th>
-					<th scope="col">Title</th>
-					<th scope="col">Description</th>
-				</tr>
-			</thead>
-			<thbody>
-				<tr th:each="course: ${course}">
-					<td th:text="${course.idCou}">#</td>
-					<td th:text="${course.coType}">#</td>
-					<td th:text="${course.title}">#</td>
-					<td th:text="${course.description}">#</td>
-				</tr>
-			</thbody>
-
 		</table>
 
 	</div>

@@ -65,11 +65,6 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 
 	@Override
 	public ArrayList<Employee> selectAllEmployees() {
-		// TODO Auto-generated method stub
-		return (ArrayList<Employee>) employeeRepo.findAll();
-	}
-	
-	public ArrayList<Employee> selectAllEmployees(){
 		return (ArrayList<Employee>) employeeRepo.findAll();
 	}
 

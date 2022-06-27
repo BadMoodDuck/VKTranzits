@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
-
 	
 	@GetMapping("")
 	public String getDefault() {
@@ -16,5 +15,4 @@ public class HomeController {
 		System.out.println("homepage");
 		return "home";
 	}
-	
 }
