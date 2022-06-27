@@ -20,9 +20,8 @@ public class HomeController {
 	}
 	
 	@GetMapping("/course")
-	public String getAllEmployees(Model model) {
+	public String getAllCourses(Model model) {
 		model.addAttribute("course", courseService.selectAllCourses());
-		System.out.println("course");
 		return "course-all";
 	}
 }
