@@ -20,7 +20,7 @@ public class ImplementerCRUDserviceImpl implements IImplementerCRUDservice {
 	public Implementer insertNewImplementer(String name) {
 		// TODO Auto-generated method stub
 		Implementer result = new Implementer(name);
-		if (!implementerRepo.existsByNameIgnoreCase()) {
+		if (!implementerRepo.existsByNameIgnoreCase(name)) {
 			return result;
 		}
 		return null;
