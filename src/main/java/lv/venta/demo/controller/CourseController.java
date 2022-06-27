@@ -14,6 +14,13 @@ public class CourseController {
 	@Autowired
 	private ICourseService courseService;
 
+	
+	@GetMapping("/course") // All Courses
+	public String getAllCourses(Model model) {
+		model.addAttribute("course", courseService.selectAllCourses());
+		return "course-all";
+	}
+
 	// localhost:8080/course/showAll
 	@GetMapping("/course/showAll")
 	public String getAllCourses(Model model) {
@@ -34,5 +41,4 @@ public class CourseController {
 		model.addAttribute("Course", courseService.deleteCourseById(id));
 		return "course-all";
 	}
-
 }
