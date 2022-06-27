@@ -36,16 +36,17 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 	@Override
 	public Employee updateEmployeeById(int employeeId, String name, String surname, int phone, String email,
 			Department department, Position position) {
+		Employee result = new Employee();
 		if (employeeRepo.existsByIdEm(employeeId)) {
-			Employee result = employeeRepo.findByIdEm(employeeId);
-			result = new Employee(name, surname, phone, email, department, position);
-			return result;
+			result = employeeRepo.findByIdEm(employeeId);
 		}
-		return new Employee(name, surname, phone, email, department, position);
+		result = new Employee(name, surname, phone, email, department, position);
+		return result;
 	}
 
 	@Override
 	public ArrayList<Employee> deleteEmployeeById(int employeeId) {
+		// TODO jaizlabo
 		// TODO Auto-generated method stub
 		if (employeeRepo.existsByIdEm(employeeId)) {
 			employeeRepo.deleteByIdEm(employeeId);
