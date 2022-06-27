@@ -1,6 +1,7 @@
 package lv.venta.demo;
 
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -11,10 +12,13 @@ import org.springframework.context.annotation.Bean;
 
 import lv.venta.demo.models.Company;
 import lv.venta.demo.models.Course;
+import lv.venta.demo.models.CourseCalendar;
+import lv.venta.demo.models.CourseImplementer;
 import lv.venta.demo.models.CourseType;
 import lv.venta.demo.models.Department;
 import lv.venta.demo.models.Employee;
 import lv.venta.demo.models.EmployeeCourse;
+import lv.venta.demo.models.Implementer;
 import lv.venta.demo.models.Position;
 import lv.venta.demo.repos.ICompanyRepo;
 import lv.venta.demo.repos.ICourseCalendarRepo;
@@ -100,7 +104,19 @@ public class VkTranzitsApplication {
 				employeeCourseRepo.save(emc);
 				employeeCourseRepo.save(emc1);
 				
+				Implementer imp = new Implementer("Viktors Vikis");
+				Implementer imp1 = new Implementer("Janis Vikis");
+				implementerRepo.save(imp);
+				implementerRepo.save(imp1);
 				
+				CourseCalendar cal = new CourseCalendar(2023, new Date(05112033),new Date(06122031));
+				courseCalendarRepo.save(cal);
+				
+				
+				CourseImplementer cim = new CourseImplementer(imp,  cal, "Not important");
+				CourseImplementer cim1 = new CourseImplementer(imp1, cal, "Damn this hard");
+				courseImplementerRepo.save(cim);
+				courseImplementerRepo.save(cim1);
 				
 				
 				
