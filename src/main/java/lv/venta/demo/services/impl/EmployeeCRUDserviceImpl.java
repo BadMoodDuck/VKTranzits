@@ -4,31 +4,31 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import lv.venta.demo.models.Department;
 import lv.venta.demo.models.Employee;
-import lv.venta.demo.models.Position;
 import lv.venta.demo.repos.IDepartmentRepo;
 import lv.venta.demo.repos.IEmployeeRepo;
 import lv.venta.demo.services.IEmployeeCRUDservice;
 
 @Service
 public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
-
+	
+	
 	@Autowired
 	private IEmployeeRepo employeeRepo;
 	@Autowired
 	private IDepartmentRepo departmentRepo;
-
+	
+	
 	@Override
 	public boolean insertNewEmployee(Employee employee) {
 		if (!employeeRepo.existsByEmailOrPhone(employee.getEmail(), employee.getPhone())) {
 			employeeRepo.save(employee);
 			return true;
 		}
+
 		return false;
 	}
-	
+
 	@Override 
 	public boolean updateEmployeeById(int employeeId, Employee employee) {
 		if (employeeRepo.existsById(employeeId)) {
@@ -60,10 +60,8 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 		}
 		return null;
 	}
-
 	@Override
 	public ArrayList<Employee> selectAllEmployees() {
 		return (ArrayList<Employee>) employeeRepo.findAll();
 	}
-
 }

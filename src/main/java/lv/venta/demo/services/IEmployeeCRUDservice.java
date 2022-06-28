@@ -2,9 +2,7 @@ package lv.venta.demo.services;
 
 import java.util.ArrayList;
 
-import lv.venta.demo.models.Department;
 import lv.venta.demo.models.Employee;
-import lv.venta.demo.models.Position;
 
 public interface IEmployeeCRUDservice {
 
