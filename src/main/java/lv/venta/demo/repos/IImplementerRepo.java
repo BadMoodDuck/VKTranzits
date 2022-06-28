@@ -6,12 +6,6 @@ import lv.venta.demo.models.Implementer;
 
 public interface IImplementerRepo extends CrudRepository<Implementer, Integer>{
 
-	boolean existsByIdImpl(int implementerId);
-
-	void deleteByIdImpl(int implementerId);
-
-	boolean existsByNameIgnoreCase(String name);
-
-	Implementer findByIdImpl(int implementerId);
+	boolean existsByName(String name);
 
 }
