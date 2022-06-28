@@ -17,7 +17,7 @@ public class ImplementerCRUDserviceImpl implements IImplementerCRUDservice {
 
 	@Override
 	public boolean insertNewImplementer(Implementer implementer) {
-		if (implementerRepo.existsById(implementer.getIdImpl())) {
+		if (implementerRepo.existsByName(implementer.getName())) {
 			return false;
 		}
 		implementerRepo.save(implementer);
@@ -36,9 +36,9 @@ public class ImplementerCRUDserviceImpl implements IImplementerCRUDservice {
 
 	@Override
 	public boolean deleteImplementerById(int implementerId) {
-		if (implementerRepo.existsByIdImpl(implementerId)) 
+		if (implementerRepo.existsById(implementerId)) 
 		{
-			implementerRepo.deleteByIdImpl(implementerId);
+			implementerRepo.deleteById(implementerId);
 			return true;
 		}
 		return false;
