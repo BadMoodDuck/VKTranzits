@@ -30,6 +30,13 @@ public class EmployeeController {
 	public String getAddEmployee(Employee employee) {
 		return "employee-add";
 	}
+	
+	@GetMapping("/employee/{id}")
+	public String getOneEmployee(Model model, @PathVariable(name = "id") int id) {
+		model.addAttribute("employee", employeeService.getEmployeeById(id));
+		return "employee-one";
+	}
+	
 	@PostMapping("/employee/addNew") // Papildinat ar Department 
 	public String postAddEmployee(@Valid Employee employee, BindingResult result) {
 		if (result.hasErrors()) { return "error"; }

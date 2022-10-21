@@ -23,4 +23,6 @@ public interface IEmployeeCRUDservice {
 	//paradit visus darbiniekus
 	ArrayList<Employee> selectAllEmployees();
 
+	Employee getEmployeeById(int employeId);
+
 }
