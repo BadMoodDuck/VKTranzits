@@ -1,8 +1,10 @@
 package lv.venta.demo.repos;
 
+import org.springframework.data.repository.CrudRepository;
+
 import lv.venta.demo.models.MyUser;
 
-public interface IMyUserRepo {
+public interface IMyUserRepo extends CrudRepository<MyUser, Integer>{
 
 	MyUser findByUsername(String username);
 
