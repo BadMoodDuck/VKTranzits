@@ -44,11 +44,6 @@ public class MyUser {
 
 	@ManyToMany(mappedBy = "allUsers")
 	private Collection<MyUserAuthority> allAuthorities = new ArrayList<>();
-	
-	public MyUser(String username, String password) {
-		this.username = username;
-		this.password = password;
-	}
 
 	public void addAuthority(MyUserAuthority authority) {
 		allAuthorities.add(authority);

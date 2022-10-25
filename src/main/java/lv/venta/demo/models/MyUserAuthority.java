@@ -38,10 +38,6 @@ public class MyUserAuthority {
 		@ManyToMany
 		@JoinTable(name = "users_authorities", joinColumns = @JoinColumn(name = "IdA"), inverseJoinColumns = @JoinColumn(name = "IdU"))
 		private Collection<MyUser> myUsers = new ArrayList<>();
-		
-		public MyUserAuthority(String title) {
-			this.title = title;
-		}
 
 		public void addUser(MyUser user) {
 			myUsers.add(user);
