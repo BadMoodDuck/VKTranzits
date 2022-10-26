@@ -5,9 +5,9 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 
 public class MyMessageReceiver {
 
-	@RabbitListener(queues = MyMessage.queue)
-	public void receiveMessage(Message message) throws Exception {
-		throw new Exception();
+	@RabbitListener(queues = MQConfig.queue)
+	public void receiver(MyMessage message) {
+		System.out.println(message);
 	}
 
 }

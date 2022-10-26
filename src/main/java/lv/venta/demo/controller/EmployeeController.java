@@ -2,6 +2,7 @@ package lv.venta.demo.controller;
 
 import javax.validation.Valid;
 
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import lv.venta.demo.models.Employee;
+import lv.venta.demo.msg.MQConfig;
+import lv.venta.demo.msg.MyMessage;
 import lv.venta.demo.services.IEmployeeCRUDservice;
 
 @Controller
@@ -18,6 +21,9 @@ public class EmployeeController {
 
 	@Autowired
 	private IEmployeeCRUDservice employeeService;
+	
+	@Autowired
+	private RabbitTemplate template;
 	
 
 	@GetMapping("/employee") // All Employees
@@ -45,4 +51,13 @@ public class EmployeeController {
 		model.addAttribute("employee", employeeService.selectAllEmployeesFromDepartmentById(id));
 		return "employee-all";
 	}
+	
+	// localhost:8080/employee/delete/{id}
+		@GetMapping("/employee/delete/{id}")
+		public String getDeleteEmployeeById(Model model, @PathVariable(name = "id") int id) {
+			MyMessage message = new MyMessage("Employee deleted successfully");
+			template.convertAndSend(MQConfig.exchange, MQConfig.routingKey, message);
+			model.addAttribute("Employee", employeeService.deleteEmployeeById(id));
+			return "employee-all";
+		}
 }

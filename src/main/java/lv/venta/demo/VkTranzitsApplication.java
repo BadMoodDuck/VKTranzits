@@ -151,6 +151,11 @@ public class VkTranzitsApplication {
 				
 				userRepo.save(user1);
 				
+				user1.addAuthority(auth1);
+				userRepo.save(user1);
+				auth1.addUser(user1);
+				authorityRepo.save(auth1);
+				
 			}
 		};
 	}

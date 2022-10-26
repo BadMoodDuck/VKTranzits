@@ -6,6 +6,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -42,7 +43,7 @@ public class MyUser {
 	@Pattern(regexp = "[a-zA-Z0-9\\W]+")
 	private String password;
 
-	@ManyToMany(mappedBy = "allUsers")
+	@ManyToMany(mappedBy = "myUsers", fetch = FetchType.EAGER)
 	private Collection<MyUserAuthority> allAuthorities = new ArrayList<>();
 	
 	public MyUser(String username, String password) {
