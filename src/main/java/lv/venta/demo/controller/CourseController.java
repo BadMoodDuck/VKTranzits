@@ -7,8 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-//import lv.venta.demo.msg.MQConfig;
-//import lv.venta.demo.msg.MyMessage;
+import lv.venta.demo.msg.MQConfig;
+import lv.venta.demo.msg.MyMessage;
 import lv.venta.demo.services.ICourseService;
 
 @Controller
@@ -17,8 +17,8 @@ public class CourseController {
 	@Autowired
 	private ICourseService courseService;
 	
-	//@Autowired
-	//private RabbitTemplate template;
+	@Autowired
+	private RabbitTemplate template;
 
 	
 	@GetMapping("/course") // All Courses
@@ -44,9 +44,9 @@ public class CourseController {
 	// localhost:8080/course/delete/{id}
 	@GetMapping("/course/delete/{id}")
 	public String getDeleteCourseById(Model model, @PathVariable(name = "id") int id) {
-		//MyMessage message = new MyMessage("Course deleted successfully");
-		//template.convertAndSend(MQConfig.exchange, MQConfig.routingKey, message);
 		model.addAttribute("Course", courseService.deleteCourseById(id));
+		MyMessage message = new MyMessage("Course deleted successfully");
+		template.convertAndSend(MQConfig.exchange, MQConfig.routingKey, message);
 		return "course-all";
 	}
 }

@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import lv.venta.demo.models.Employee;
-//import lv.venta.demo.msg.MQConfig;
-//import lv.venta.demo.msg.MyMessage;
+import lv.venta.demo.msg.MQConfig;
+import lv.venta.demo.msg.MyMessage;
 import lv.venta.demo.services.IEmployeeCRUDservice;
 
 @Controller
@@ -22,8 +22,8 @@ public class EmployeeController {
 	@Autowired
 	private IEmployeeCRUDservice employeeService;
 	
-	//@Autowired
-	//private RabbitTemplate template;
+	@Autowired
+	private RabbitTemplate template;
 	
 
 	@GetMapping("/employee") // All Employees
@@ -55,8 +55,8 @@ public class EmployeeController {
 	// localhost:8080/employee/delete/{id}
 		@GetMapping("/employee/delete/{id}")
 		public String getDeleteEmployeeById(Model model, @PathVariable(name = "id") int id) {
-			//MyMessage message = new MyMessage("Employee deleted successfully");
-			//template.convertAndSend(MQConfig.exchange, MQConfig.routingKey, message);
+			MyMessage message = new MyMessage("Employee deleted successfully");
+			template.convertAndSend(MQConfig.exchange, MQConfig.routingKey, message);
 			model.addAttribute("Employee", employeeService.deleteEmployeeById(id));
 			return "employee-all";
 		}
