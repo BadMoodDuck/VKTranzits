@@ -42,14 +42,12 @@ public class EmployeeController {
 	
 	@PostMapping("/employee/addNew") // Papildinat ar Department 
 	public String postAddEmployee(@Valid Employee employee, BindingResult result) {
-		System.out.println("Post employee "+ employee);
+
 		if (result.hasErrors()) { 
 			System.out.println(result); 
-			System.out.println("ERROR : "+ employee);
 			return "emplyee-add";
 		} else {
 			employeeService.insertNewEmployee(employee);
-			System.out.println("SUCSESS  employee "+ employee);
 			return "redirect:/employee";
 		}
 	}

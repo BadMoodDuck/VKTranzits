@@ -24,7 +24,7 @@ public interface ICourseService {
 	public abstract ArrayList<Course> selectAllCourses();
 
 	// Izveidot jaunu kursu
-	public abstract Course insertNewCourse(CourseType coType, String title, String description);
+	public abstract boolean insertNewCourse(Course course);
 
 	// Struktūrvienības visu kursu attēlošanas funkcija
 	public abstract ArrayList<Course> getAllCoursesFromDepartmentByID(int departmentId);

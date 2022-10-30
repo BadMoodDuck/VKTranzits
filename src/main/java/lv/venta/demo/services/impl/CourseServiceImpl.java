@@ -52,14 +52,12 @@ public class CourseServiceImpl implements ICourseService {
 	}
 
 	@Override
-	public Course insertNewCourse(CourseType coType, String title, String description) {
-		Course result = new Course(coType, title, description);
-		if (!courseRepo.existsByTitleIgnoreCase(title)) {
-			courseRepo.save(result);
-			return result;
-		}
-		// TODO Auto-generated method stub
-		return null;
+	public boolean insertNewCourse(Course course) {
+		//if (!courseRepo.existsByTitleIgnoreCase(title)) { TODO MAKE VALIDATION THAT COURSE ALREADY DOESNT EXIST
+			courseRepo.save(course);
+		//	return result;
+		//}
+		return true;
 	}
 
 	@Override

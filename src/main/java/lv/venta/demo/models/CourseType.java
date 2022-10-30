@@ -33,6 +33,9 @@ public class CourseType {
 	@Setter(value = AccessLevel.NONE)
 	private int idTy;
 	
+	@Column(name="title")
+	private String title;
+	
 	@Column(name="IsObligatory")
 	@NotNull
 	private boolean isObligatory;
@@ -47,7 +50,8 @@ public class CourseType {
 	private Collection<Course> courses;
 	
 	
-	public CourseType(boolean isObligatory, String description/*, Collection<Course> courses*/) {
+	public CourseType(String title,boolean isObligatory, String description/*, Collection<Course> courses*/) {
+		this.title = title;
 		this.isObligatory = isObligatory;
 		this.description = description;
 		//this.courses = courses;

@@ -89,13 +89,13 @@ public class VkTranzitsApplication {
 				employeeRepo.save(emp7);
 				
 				
-				CourseType cty = new CourseType(false, "Ugunsdrosiba");
-				CourseType cty1 = new CourseType(true, "Darba drosiba");
+				CourseType cty = new CourseType("Ugunsdrosiba", false, "Viss vajadzigais par ugunsdrosiba");
+				CourseType cty1 = new CourseType("Darba drosiba", true, "Viss vajadzigais par darba drosiba");
 				courseTypeRepo.save(cty);
 				courseTypeRepo.save(cty1);
 				
-				Course co = new Course(cty,"Ugunsdrosiba","Viss galvenais par uguni");
-				Course co1 = new Course(cty1,"Darba drosiba","Viss galvenais par darbu");
+				Course co = new Course(cty,"1.Ugunsdrosibas ievads","Viss galvenais par uguni");
+				Course co1 = new Course(cty1,"1.Darba drosibas ievads","Viss galvenais par darbu");
 				courseRepo.save(co);
 				courseRepo.save(co1);
 				
