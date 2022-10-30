@@ -24,14 +24,20 @@ public class CourseController {
 	// localhost:8080/course/showAll
 	@GetMapping("/course/showAll")
 	public String getAllCourses(Model model) {
-		model.addAttribute("Course", courseService.selectAllCourses());
+		model.addAttribute("course", courseService.selectAllCourses());
 		return "course-all";
+	}
+	
+	@GetMapping("/course/{id}")
+	public String getOneCourse(Model model, @PathVariable(name = "id") int id) {
+			model.addAttribute("course", courseService.getCourseById(id));
+		return "course-one";
 	}
 
 	// localhost:8080/department/{id}/showAllCourses
 	@GetMapping("/department/{id}/showAllCourses")
 	public String getAllDepartmentCourses(Model model, @PathVariable(name = "id") int id) {
-		model.addAttribute("Course", courseService.getAllCoursesFromDepartmentByID(id));
+		model.addAttribute("course", courseService.getAllCoursesFromDepartmentByID(id));
 		return "course-all";
 	}
 

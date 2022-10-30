@@ -64,4 +64,15 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 	public ArrayList<Employee> selectAllEmployees() {
 		return (ArrayList<Employee>) employeeRepo.findAll();
 	}
+
+	
+	@Override
+	public Employee getEmployeeById(int employeId) {
+		if (employeeRepo.existsById(employeId)) {
+			return employeeRepo.findById(employeId).get();
+		}
+		return null;
+	}
+
 }
+

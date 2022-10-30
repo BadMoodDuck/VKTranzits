@@ -46,6 +46,7 @@ public class CourseType {
 	@ToString.Exclude
 	private Collection<Course> courses;
 	
+	
 	public CourseType(boolean isObligatory, String description/*, Collection<Course> courses*/) {
 		this.isObligatory = isObligatory;
 		this.description = description;
