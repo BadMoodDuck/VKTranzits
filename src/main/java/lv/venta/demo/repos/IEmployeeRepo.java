@@ -15,7 +15,7 @@ public interface IEmployeeRepo extends CrudRepository<Employee, Integer> {
 
 	
 	//TODO Needs testing 
-	@Query(value = "SELECT * FROM vktranzits.employee WHERE email=?1 OR phone=?2", nativeQuery = true)
+	@Query(value = "SELECT * FROM employee WHERE email=?1 OR phone=?2", nativeQuery = true)
 	boolean existsByEmailOrPhone(String email, int phone);
 
 	Employee findByEmailOrPhone(String email, int phone);

@@ -18,13 +18,12 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 	@Autowired
 	private IDepartmentRepo departmentRepo;
 	
-	
 	@Override
 	public boolean insertNewEmployee(Employee employee) {
-		if (!employeeRepo.existsByEmailOrPhone(employee.getEmail(), employee.getPhone())) {
+		//if (!employeeRepo.existsByEmailOrPhone(employee.getEmail(), employee.getPhone())) {  TODO VALIDATION FIX
 			employeeRepo.save(employee);
-			return true;
-		}
+		//	return true;
+		//}
 
 		return false;
 	}

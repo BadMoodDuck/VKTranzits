@@ -2,6 +2,7 @@ package lv.venta.demo.models;
 
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -54,7 +55,7 @@ public class Employee {
 	@Pattern(regexp = "[\\w-]+@[\\w-]+.+[\\w-]{2,4}$")
 	private String email;
 
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name = "IdDe")
 	private Department department;
 

@@ -11,13 +11,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import lv.venta.demo.models.Employee;
+import lv.venta.demo.services.IDepartmentCRUDService;
 import lv.venta.demo.services.IEmployeeCRUDservice;
+import lv.venta.demo.services.IOtherServices;
 
 @Controller
 public class EmployeeController {
 
 	@Autowired
 	private IEmployeeCRUDservice employeeService;
+	
+	@Autowired 
+	private IDepartmentCRUDService departmentsService;
+	@Autowired
+	private IOtherServices otherService;
 	
 
 	@GetMapping("/employee") // All Employees
@@ -27,8 +34,24 @@ public class EmployeeController {
 	}
 
 	@GetMapping("/employee/addNew") // Add Employee
-	public String getAddEmployee(Employee employee) {
+	public String getAddEmployee(Model model, Employee employee) {
+		model.addAttribute("departments", departmentsService.getAllDepartments());
+		model.addAttribute("positions", otherService.getAllPositions());
 		return "employee-add";
+	}
+	
+	@PostMapping("/employee/addNew") // Papildinat ar Department 
+	public String postAddEmployee(@Valid Employee employee, BindingResult result) {
+		System.out.println("Post employee "+ employee);
+		if (result.hasErrors()) { 
+			System.out.println(result); 
+			System.out.println("ERROR : "+ employee);
+			return "emplyee-add";
+		} else {
+			employeeService.insertNewEmployee(employee);
+			System.out.println("SUCSESS  employee "+ employee);
+			return "redirect:/employee";
+		}
 	}
 	
 	@GetMapping("/employee/{id}")
@@ -37,14 +60,7 @@ public class EmployeeController {
 		return "employee-one";
 	}
 	
-	@PostMapping("/employee/addNew") // Papildinat ar Department 
-	public String postAddEmployee(@Valid Employee employee, BindingResult result) {
-		if (result.hasErrors()) { return "error"; }
-		if (employeeService.insertNewEmployee(employee)) {
-			return "redirect:/employee";
-		}
-			return "redirect:/employee";
-	}
+	
 
 	// localhost:8080/department/{id}/showAllEmployees
 	@GetMapping("/department/{id}/showAllEmployees")
