@@ -1,7 +1,6 @@
 package lv.venta.demo.services.impl;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -70,21 +69,22 @@ public class CourseServiceImpl implements ICourseService {
 	public Course updateExistingCourseById(int courseId, CourseType coType, String title, String description) {
 		// TODO Auto-generated method stub
 		Course result = new Course();
-		if (courseRepo.existsByIdCou(courseId)) {
+		if (courseRepo.existsById(courseId)) {
 			result = courseRepo.findByIdCou(courseId);
 		}
 		result = new Course(coType, title, description);
 		return result;
 	}
 
+	
 	@Override
-	public ArrayList<Course> deleteCourseById(int courseId) {
-		// TODO Auto-generated method stub
-		if (courseRepo.existsByIdCou(courseId)) {
-			courseRepo.deleteByIdCou(courseId);
+	public boolean deleteCourseById(int courseId) {
+		if (courseRepo.existsById(courseId)) {
+			courseRepo.deleteById(courseId);
+			return true;
 		}
-		ArrayList<Course> result = selectAllCourses();
-		return result;
+		return false;
 	}
+
 
 }

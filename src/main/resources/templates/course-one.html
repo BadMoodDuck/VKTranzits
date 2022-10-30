@@ -25,6 +25,7 @@
 					<th scope="col">Type/isObligatory</th>
 					<th scope="col">Title</th>
 					<th scope="col">Description</th>
+					<th scope="col">s</th>
 				</tr>
 			</thead>
 			<thbody>
@@ -33,6 +34,10 @@
 					<td th:text="${course.getCoType().isObligatory}">#</td>
 					<td th:text="${course.getTitle()}">#</td>
 					<td th:text="${course.getDescription()}">#</td>
+					<td>
+					<a class="btn btn-primary" href="#" role="button">Edit</a>
+					<a class="btn btn-danger" th:href="@{/course/delete/{id} (id=${course.getIdCou()}) }" role="button">delete</a>
+					</td>
 				</tr>
 			</thbody>
 	

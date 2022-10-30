@@ -59,7 +59,7 @@ public class Employee {
 	@JoinColumn(name = "IdDe")
 	private Department department;
 
-	@OneToMany(mappedBy = "employee")
+	@OneToMany(mappedBy = "employee", cascade = CascadeType.REMOVE)
 	@ToString.Exclude
 	private Collection<EmployeeCourse> emCourse;
 

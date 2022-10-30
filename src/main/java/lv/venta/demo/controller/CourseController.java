@@ -1,5 +1,6 @@
 package lv.venta.demo.controller;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,17 +42,13 @@ public class CourseController {
 		model.addAttribute("courseTypes", otherService.getAllCourseTypes());
 		return "course-add";
 	}
-	
 	@PostMapping("/course/addNew")
 	public String postAddCourses(@Valid Course course, BindingResult result) {
-		System.out.println("Post "+ course);
 		if (result.hasErrors()) { 
 			System.out.println(result); 
-			System.out.println("ERROR : "+ course);
 			return "error";
 		} else {
 			courseService.insertNewCourse(course);
-			System.out.println("SUCSESS "+ course);
 			return "redirect:/course";
 		}
 	}
@@ -70,9 +67,10 @@ public class CourseController {
 	}
 
 	// localhost:8080/course/delete/{id}
+	@Transactional
 	@GetMapping("/course/delete/{id}")
-	public String getDeleteCourseById(Model model, @PathVariable(name = "id") int id) {
-		model.addAttribute("Course", courseService.deleteCourseById(id));
-		return "course-all";
+	public String getDeleteCourseById(@PathVariable(name = "id") int id) {
+		courseService.deleteCourseById(id);
+		return "redirect:/course";
 	}
 }
