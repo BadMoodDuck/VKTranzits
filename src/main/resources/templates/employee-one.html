@@ -27,6 +27,7 @@
 			      <th scope="col">Phone nr.</th>
 			      <th scope="col">email</th>
 			      <th scope="col">department</th>
+			      <th scope="col">position</th>
 			    </tr>
 	  	 	</thead>
 	  	  	<thbody>
@@ -37,6 +38,7 @@
 			      <td th:text="${employee.getPhone()}">#</td>
 			      <td th:text="${employee.getEmail()}">#</td>
 			      <td th:text="${employee.getDepartment().getName()}">#</td>
+			      <td th:text="${employee.getPosition().getTitle()}">#</td>
 			    </tr>
 	  	 	</thbody>	
 
