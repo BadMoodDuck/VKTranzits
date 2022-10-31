@@ -42,23 +42,15 @@
 		    </tr>
 	  	 </thbody>
 		</table>
-		<div>
-			Total items [[${totalElements}]] : Page [[${currentPage}]] of [[${totalPages}]] 
-			<nav aria-label="Page navigation example">
-				<ul class="pagination justify-content-end">
-					<li class="page-item">
-				      <a th:if="${currentPage != 1}" class="page-link" th:href="@{'/employees/' + ${currentPage - 1}}">Previous</a>
-				      <a th:unless="${currentPage != 1} " class="page-link disabled">Previous</a>
-				    </li>
-				    <li class="page-item">
-				      <a th:if="${currentPage != totalPages}" class="page-link" th:href="@{'/employees/' + ${currentPage + 1}}">Next</a>
-				      <a th:unless="${currentPage != totalPages} " class="page-link disabled">Next</a>
-				    </li>
-						
-				</ul>
-			</nav>
-		</div>
 		
+		<!-- cool as heck nav bar-->
+		<div th:replace="fragments/pageination-navbar.html :: pageination-navbar(
+			 pageName = 'employees',
+			 currentPage = ${currentPage},
+			 totalPages = ${totalPages},
+			 totalElements = ${totalElements}
+			 )">
+		</div>
 	
 	</div>
 	

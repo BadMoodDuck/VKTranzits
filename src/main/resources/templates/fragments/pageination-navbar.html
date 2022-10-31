@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+	<div th:fragment="pageination-navbar (pageName, currentPage, totalPages, totalElements)">
+		
+		<nav aria-label="Page navigation example">
+			Total items [[${totalElements}]] : Page [[${currentPage}]] of [[${totalPages}]]
+			<ul class="pagination justify-content-end">
+			
+				<li class="page-item">
+			      <a th:if="${ currentPage != 1}" class="page-link" th:href="@{'/' + ${pageName} + '/' + ${currentPage - 1}   }">Previous</a>
+			      <a th:unless="${ currentPage != 1} " class="page-link disabled">Previous</a>
+			    </li>
+			    
+			   <li class="page-item">
+			      <a th:if="${ currentPage != totalPages}" class="page-link" th:href="@{'/' + ${pageName} + '/' + ${currentPage + 1}   }">Next</a>
+			      <a th:unless="${ currentPage != totalPages} " class="page-link disabled">Next</a>
+			    </li>
+					
+			</ul>
+		</nav>
+		
+	</div>
+</body>
+</html>
