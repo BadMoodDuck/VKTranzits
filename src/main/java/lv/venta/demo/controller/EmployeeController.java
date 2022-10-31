@@ -3,6 +3,7 @@ package lv.venta.demo.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -27,11 +28,22 @@ public class EmployeeController {
 	private IOtherServices otherService;
 	
 
-	@GetMapping("/employee") // All Employees
+	@GetMapping("/employees") // All Employees
 	public String getAllEmployees(Model model) {
 		model.addAttribute("employee", employeeService.selectAllEmployees());
+		return getPageEmployees(model, 1);
+	}
+	
+	@GetMapping("/employees/{pageNr}") // All Employees
+	public String getPageEmployees(Model model, @PathVariable("pageNr") int currentPage) {
+		Page<Employee> page = employeeService.getPageList(currentPage);
+		model.addAttribute("employee", page);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("totalElements", page.getTotalElements());
+		model.addAttribute("totalPages", page.getTotalPages());
 		return "employee-all";
 	}
+	
 
 	@GetMapping("/employee/addNew") // Add Employee
 	public String getAddEmployee(Model model, Employee employee) {

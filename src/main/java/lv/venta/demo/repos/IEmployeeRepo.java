@@ -1,10 +1,11 @@
 package lv.venta.demo.repos;
 import java.util.ArrayList;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
+
 import lv.venta.demo.models.Employee;
 
-public interface IEmployeeRepo extends CrudRepository<Employee, Integer> {
+public interface IEmployeeRepo extends PagingAndSortingRepository<Employee, Integer> {
 
 	Employee findByIdEm(int employeeId);
 

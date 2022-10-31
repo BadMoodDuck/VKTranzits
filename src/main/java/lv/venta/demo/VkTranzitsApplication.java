@@ -79,7 +79,7 @@ public class VkTranzitsApplication {
 				Employee emp3 = new Employee("Kristaps","Slieka",22134560,"rtyh@gmail.com",dep2,pos);
 				Employee emp4 = new Employee("Maris","Smiekls",22555660,"zxcv@gmail.com",dep2,pos2);
 				Employee emp5 = new Employee("Lone","Man",22512310,"abece@gmail.com",dep,pos2);
-				Employee emp7 = new Employee("Dude","Mane",22525250,"abolds123@gmail.com",dep1,pos);
+				Employee emp7 = new Employee("David","Martinez",22525250,"davidmartinez@arosaka.com",dep1,pos);
 				employeeRepo.save(emp);
 				employeeRepo.save(emp1);
 				employeeRepo.save(emp2);

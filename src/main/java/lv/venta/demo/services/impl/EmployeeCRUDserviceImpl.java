@@ -3,6 +3,9 @@ package lv.venta.demo.services.impl;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import lv.venta.demo.models.Employee;
 import lv.venta.demo.repos.IDepartmentRepo;
@@ -17,6 +20,13 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 	private IEmployeeRepo employeeRepo;
 	@Autowired
 	private IDepartmentRepo departmentRepo;
+	
+	
+	@Override
+	public Page<Employee> getPageList(int pageNr) {
+		Pageable pageable = PageRequest.of(pageNr-1, 2);
+		return employeeRepo.findAll(pageable);
+	}
 	
 	@Override
 	public boolean insertNewEmployee(Employee employee) {
@@ -72,6 +82,8 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 		}
 		return null;
 	}
+
+	
 
 }
 
