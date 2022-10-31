@@ -59,7 +59,6 @@ public class Department {
 	private Collection<Course> courses = new ArrayList<Course>();
 
 	public Department(Company company,String name) {
-    
 		this.name = name;
 		this.company = company;
 	}
