@@ -5,10 +5,12 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import lv.venta.demo.models.Company;
 import lv.venta.demo.models.Course;
@@ -19,6 +21,8 @@ import lv.venta.demo.models.Department;
 import lv.venta.demo.models.Employee;
 import lv.venta.demo.models.EmployeeCourse;
 import lv.venta.demo.models.Implementer;
+import lv.venta.demo.models.MyUser;
+import lv.venta.demo.models.MyUserAuthority;
 import lv.venta.demo.models.Position;
 import lv.venta.demo.repos.ICompanyRepo;
 import lv.venta.demo.repos.ICourseCalendarRepo;
@@ -29,6 +33,8 @@ import lv.venta.demo.repos.IDepartmentRepo;
 import lv.venta.demo.repos.IEmployeeCourseRepo;
 import lv.venta.demo.repos.IEmployeeRepo;
 import lv.venta.demo.repos.IImplementerRepo;
+import lv.venta.demo.repos.IMyAuthorityRepo;
+import lv.venta.demo.repos.IMyUserRepo;
 import lv.venta.demo.repos.IPositionRepo;
 
 @SpringBootApplication
@@ -37,13 +43,17 @@ public class VkTranzitsApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(VkTranzitsApplication.class, args);
 	}
+	
+	@Autowired
+	private BCryptPasswordEncoder encoder;
 
 	@Bean
 	public CommandLineRunner runner(IEmployeeRepo employeeRepo, IDepartmentRepo departmentRepo, 
 										ICompanyRepo companyRepo,ICourseTypeRepo courseTypeRepo, 
 										ICourseRepo courseRepo, IEmployeeCourseRepo employeeCourseRepo, 
 										IPositionRepo positionRepo, IImplementerRepo implementerRepo,
-										ICourseImplementerRepo courseImplementerRepo, ICourseCalendarRepo courseCalendarRepo)
+										ICourseImplementerRepo courseImplementerRepo, ICourseCalendarRepo courseCalendarRepo,
+										IMyUserRepo userRepo, IMyAuthorityRepo authorityRepo)
 	{
 		return new CommandLineRunner() {
 				
@@ -127,7 +137,24 @@ public class VkTranzitsApplication {
 				courseImplementerRepo.save(cim);
 				courseImplementerRepo.save(cim1);
 				
+				MyUserAuthority auth1 = new MyUserAuthority("ROLE_ADMIN");
+				MyUserAuthority auth2 = new MyUserAuthority("ROLE_IMPLEMENTER");
+				MyUserAuthority auth3 = new MyUserAuthority("ROLE_EMPLOYEE");
+				MyUserAuthority auth4 = new MyUserAuthority("ROLE_GUEST");
 				
+				authorityRepo.save(auth1);
+				authorityRepo.save(auth2);
+				authorityRepo.save(auth3);
+				authorityRepo.save(auth4);
+				
+				MyUser user1 = new MyUser("admin", encoder.encode("admin"));
+				
+				userRepo.save(user1);
+				
+				user1.addAuthority(auth1);
+				userRepo.save(user1);
+				auth1.addUser(user1);
+				authorityRepo.save(auth1);
 				
 			}
 		};

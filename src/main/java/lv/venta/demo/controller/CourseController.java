@@ -3,6 +3,7 @@ package lv.venta.demo.controller;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import lv.venta.demo.models.Course;
-import lv.venta.demo.models.Employee;
+
+
 import lv.venta.demo.services.ICourseService;
 import lv.venta.demo.services.IOtherServices;
 
@@ -22,9 +24,9 @@ public class CourseController {
 
 	@Autowired
 	private ICourseService courseService;
-	
 	@Autowired 
 	private IOtherServices otherService;
+
 
 	
 	@GetMapping("/courses") // All Courses
@@ -85,5 +87,7 @@ public class CourseController {
 	public String getDeleteCourseById(@PathVariable(name = "id") int id) {
 		courseService.deleteCourseById(id);
 		return "redirect:/courses";
+
+
 	}
 }

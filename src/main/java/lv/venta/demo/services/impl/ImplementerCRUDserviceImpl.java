@@ -27,7 +27,7 @@ public class ImplementerCRUDserviceImpl implements IImplementerCRUDservice {
 	public boolean updateImplementerById(int implementerId, Implementer implementer) {
 		if (implementerRepo.existsById(implementerId)) {
 			Implementer result = implementerRepo.findById(implementerId).get();
-			result.setName(implementer.getName());;
+			result.setName(implementer.getName());
 			implementerRepo.save(result);
 		}
 		return false;

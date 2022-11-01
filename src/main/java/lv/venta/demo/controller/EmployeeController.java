@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import lv.venta.demo.models.Employee;
+
 import lv.venta.demo.services.IDepartmentCRUDService;
 import lv.venta.demo.services.IEmployeeCRUDservice;
 import lv.venta.demo.services.IOtherServices;
@@ -21,13 +22,12 @@ public class EmployeeController {
 
 	@Autowired
 	private IEmployeeCRUDservice employeeService;
-	
-	@Autowired 
+	@Autowired
 	private IDepartmentCRUDService departmentsService;
 	@Autowired
 	private IOtherServices otherService;
-	
 
+	
 	@GetMapping("/employees") // All Employees
 	public String getAllEmployees(Model model) {
 		model.addAttribute("employee", employeeService.selectAllEmployees());
@@ -78,4 +78,13 @@ public class EmployeeController {
 		model.addAttribute("employee", employeeService.selectAllEmployeesFromDepartmentById(id));
 		return "employee-all";
 	}
+	
+	// localhost:8080/employee/delete/{id}
+		@GetMapping("/employee/delete/{id}")
+		public String getDeleteEmployeeById(Model model, @PathVariable(name = "id") int id) {
+			//MyMessage message = new MyMessage("Employee deleted successfully");
+			//template.convertAndSend(MQConfig.exchange, MQConfig.routingKey, message);
+			model.addAttribute("Employee", employeeService.deleteEmployeeById(id));
+			return "employee-all";
+		}
 }
