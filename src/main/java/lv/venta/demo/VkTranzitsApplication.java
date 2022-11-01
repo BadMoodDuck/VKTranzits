@@ -147,7 +147,7 @@ public class VkTranzitsApplication {
 				authorityRepo.save(auth3);
 				authorityRepo.save(auth4);
 				
-				MyUser user1 = new MyUser("admin", encoder.encode("admin"));
+				MyUser user1 = new MyUser("admins", encoder.encode("admins"));
 				
 				userRepo.save(user1);
 				
