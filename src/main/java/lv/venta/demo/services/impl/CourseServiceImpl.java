@@ -3,11 +3,13 @@ package lv.venta.demo.services.impl;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lv.venta.demo.models.Course;
 import lv.venta.demo.models.CourseType;
-import lv.venta.demo.models.EmployeeCourse;
 import lv.venta.demo.repos.ICourseRepo;
 import lv.venta.demo.services.ICourseService;
 
@@ -27,26 +29,7 @@ public class CourseServiceImpl implements ICourseService {
 	}
 
 	@Override
-	public Course getCourseByTitle(String title) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<EmployeeCourse> getAllEmployeeCoursesByEmployeeId(int employeeId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<Course> getAllCoursesByTypeId(int coTypeId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public ArrayList<Course> selectAllCourses() {
-		// TODO Auto-generated method stub
 		return (ArrayList<Course>) courseRepo.findAll();
 	}
 
@@ -57,12 +40,6 @@ public class CourseServiceImpl implements ICourseService {
 		//	return result;
 		//}
 		return true;
-	}
-
-	@Override
-	public ArrayList<Course> getAllCoursesFromDepartmentByID(int departmentId) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
@@ -84,6 +61,12 @@ public class CourseServiceImpl implements ICourseService {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public Page<Course> getPageList(int pageNr) {
+		Pageable pageable = PageRequest.of(pageNr - 1, 2);
+		return courseRepo.findAll(pageable);
 	}
 
 

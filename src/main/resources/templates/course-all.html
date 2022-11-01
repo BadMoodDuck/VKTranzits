@@ -39,9 +39,16 @@
 			      	</td>	
 				</tr>
 			</thbody>
-
 		</table>
-
+		
+		<!-- cool as heck nav bar-->
+		<div th:replace="fragments/pageination-navbar.html :: pageination-navbar(
+			 pageName = 'courses',
+			 currentPage = ${currentPage},
+			 totalPages = ${totalPages},
+			 totalElements = ${totalElements}
+			 )">
+		</div>
 	</div>
 
 	<div class="footer" th:replace="fragments/footer :: footer"></div>

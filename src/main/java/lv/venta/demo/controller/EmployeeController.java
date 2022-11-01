@@ -60,7 +60,7 @@ public class EmployeeController {
 			return "emplyee-add";
 		} else {
 			employeeService.insertNewEmployee(employee);
-			return "redirect:/employee";
+			return "redirect:/employees";
 		}
 	}
 	
