@@ -31,7 +31,6 @@ public class CourseController {
 	
 	@GetMapping("/courses") // All Courses
 	public String getAllCourses(Model model) {
-		System.out.println(courseService.selectAllCourses());
 		return getPageCourses(model, 1);
 	}
 	
