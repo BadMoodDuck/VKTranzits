@@ -41,13 +41,13 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		.antMatchers("/employees").hasAuthority("ROLE_ADMIN")
 		.antMatchers("/employees/**").hasAuthority("ROLE_ADMIN")
-		.antMatchers("/course").hasAnyAuthority("ROLE_ADMIN")
-		.antMatchers("/course/**").hasAnyAuthority("ROLE_ADMIN")
+		.antMatchers("/courses").hasAnyAuthority("ROLE_ADMIN")
+		.antMatchers("/courses/**").hasAnyAuthority("ROLE_ADMIN")
 		.and()
-		.formLogin().permitAll()
+		.formLogin().loginPage("/login").permitAll()
 		.and()
 		.logout().permitAll();
-		
+		http.csrf().disable();
 	}
 	
 	@Bean
