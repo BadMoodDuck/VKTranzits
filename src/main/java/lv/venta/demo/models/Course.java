@@ -44,7 +44,7 @@ public class Course {
 	
 	@Column(name="Description")
 	@Size(min=3,max=256,message="Title must be between 3 and 256 characters")
-	@Pattern(regexp="^(.|\\s)*[a-zA-Z]+(.|\\s)*$")
+	@Pattern(regexp="^(.|\\s)*[a-zA-Z]+(.|\\s)*$") 
 	private String description;
 	
 	@ManyToOne

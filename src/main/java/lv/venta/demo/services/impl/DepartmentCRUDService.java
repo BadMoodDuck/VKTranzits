@@ -16,7 +16,7 @@ public class DepartmentCRUDService implements IDepartmentCRUDService{
 	@Autowired
 	private IDepartmentRepo departmentRepo;
 	
-	
+	 
 	@Override
 	public ArrayList<Department> getAllDepartments() {
 		return (ArrayList<Department>) departmentRepo.findAll();

@@ -6,7 +6,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import lv.venta.demo.models.Employee;
 
 public interface IEmployeeRepo extends PagingAndSortingRepository<Employee, Integer> {
-
+ 
 	Employee findByIdEm(int employeeId);
 
 	@Query(value = "SELECT * FROM vktranzits.employee WHERE id_de=?1", nativeQuery = true)

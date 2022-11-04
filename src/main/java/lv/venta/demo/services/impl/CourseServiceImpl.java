@@ -78,7 +78,7 @@ public class CourseServiceImpl implements ICourseService {
 //			for (Employee employee : allEmpForThisCourse) {
 //				employee.removeCourse(course);
 //				employeeRepo.save(employee);
-//			}
+//			} 
 			courseRepo.deleteById(courseId);
 			return true;
 		}

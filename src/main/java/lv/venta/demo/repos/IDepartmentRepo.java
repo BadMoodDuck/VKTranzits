@@ -13,5 +13,5 @@ public interface IDepartmentRepo extends CrudRepository<Department,Integer>{
 
 	ArrayList<Department> findByCoursesIdCou(int courseId);
 
-
+ 
 }

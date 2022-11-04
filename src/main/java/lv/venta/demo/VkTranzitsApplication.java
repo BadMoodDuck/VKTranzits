@@ -77,7 +77,7 @@ public class VkTranzitsApplication {
 				
 				
 				Department dep = new Department(com,"Plumbas");
-				Department dep1 = new Department(com1,"Electricans");
+				Department dep1 = new Department(com1,"Electricans"); 
 				Department dep2 = new Department(com2,"Piekachus");
 				departmentRepo.save(dep);
 				departmentRepo.save(dep1);
