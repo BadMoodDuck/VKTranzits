@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html >
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <body>
 	<div th:fragment="header" style="background-color: rgba(0, 0, 0, 0.1);">
@@ -11,10 +11,10 @@
 		    <a class="nav-link" th:href="@{/courses}">All Courses</a>
 		  </li>
 		  <li class="nav-item">
-		    <a class="nav-link" th:href="@{/employees}">All Employees</a>
+		    <a class="nav-link" th:href="@{/employees}"sec:authorize="hasAuthority('ROLE_ADMIN')" >All Employees</a>
 		  </li>
 		  <li class="nav-item">
-		    <a class="nav-link" th:href="@{/department}">All Departments</a>
+		    <a class="nav-link" th:href="@{/department} "sec:authorize="hasAuthority('ROLE_ADMIN')">All Departments</a>
 		  </li>
 		  <li class="nav-item">
 		    <a class="nav-link disabled">Disabled</a>
