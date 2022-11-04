@@ -18,14 +18,13 @@ public interface IEmployeeCRUDservice {
 
 	// Dzest darbinieku
 	boolean deleteEmployeeById(int employeeId);
-
-	// Parādīt visus struktūrvienības darbiniekus
-	ArrayList<Employee> selectAllEmployeesFromDepartmentById(int departmentId);
 	
 	//paradit visus darbiniekus
 	ArrayList<Employee> selectAllEmployees();
 
 	Employee getEmployeeById(int employeId);
+
+	public Object readEmployeeById(int id) throws Exception;
 
 }
 

@@ -11,17 +11,14 @@ import lv.venta.demo.msg.MyMessageReceiver;
 
 @Controller
 public class HomeController {
-	
 
 	@Autowired
 	private RabbitTemplate template;
-
 
 	@GetMapping("/login")
 	public String getLogin() {
 		return "login";
 	}
-
 	
 	@GetMapping("")
 	public String getDefault() {
@@ -30,8 +27,8 @@ public class HomeController {
 	@GetMapping("/home")
 	public String getHomePage() {
 		System.out.println("homepage");
-		MyMessage message = new MyMessage("Logged in successfully");
-		template.convertAndSend(MQConfig.exchange, MQConfig.routingKey, message);
+		//MyMessage message = new MyMessage("Logged in successfully");
+		//template.convertAndSend(MQConfig.exchange, MQConfig.routingKey, message);
 		return "home";
 	}
 }

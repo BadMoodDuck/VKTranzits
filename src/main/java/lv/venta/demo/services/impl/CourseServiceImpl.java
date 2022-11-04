@@ -9,7 +9,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lv.venta.demo.models.Course;
-import lv.venta.demo.models.CourseType;
 import lv.venta.demo.repos.ICourseRepo;
 import lv.venta.demo.services.ICourseService;
 
@@ -37,20 +36,37 @@ public class CourseServiceImpl implements ICourseService {
 	public boolean insertNewCourse(Course course) {
 		//if (!courseRepo.existsByTitleIgnoreCase(title)) { TODO MAKE VALIDATION THAT COURSE ALREADY DOESNT EXIST
 			courseRepo.save(course);
-		//	return result;
 		//}
 		return true;
 	}
 
 	@Override
-	public Course updateExistingCourseById(int courseId, CourseType coType, String title, String description) {
+	public boolean updateExistingCourseById(int courseId, Course course) {
 		// TODO Auto-generated method stub
 		Course result = new Course();
 		if (courseRepo.existsById(courseId)) {
 			result = courseRepo.findByIdCou(courseId);
+			result.setCoType(course.getCoType());
+			result.setTitle(course.getTitle());
+			result.setDescription(course.getDescription());
+			courseRepo.save(course);
+			return true;
+		} else {
+			return false;
 		}
-		result = new Course(coType, title, description);
-		return result;
+	}
+	
+	@Override
+	public Course readCourseById(int id) throws Exception {
+		
+		if(courseRepo.existsById(id))
+		{
+			Course course = courseRepo.findByIdCou(id);
+			return course;
+		}
+		
+		throw new Exception("Course doesn't exist");
+		
 	}
 
 	

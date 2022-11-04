@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import lv.venta.demo.models.Course;
 import lv.venta.demo.models.Employee;
 import lv.venta.demo.msg.MQConfig;
 import lv.venta.demo.msg.MyMessage;
@@ -31,6 +32,7 @@ public class EmployeeController {
 	
 	@Autowired
 	private IDepartmentCRUDService departmentsService;
+	
 	@Autowired
 	private IOtherServices otherService;
 
@@ -64,7 +66,7 @@ public class EmployeeController {
 
 		if (result.hasErrors()) { 
 			System.out.println(result); 
-			return "emplyee-add";
+			return "employee-add";
 		} else {
 			employeeService.insertNewEmployee(employee);
 			return "redirect:/employees";
@@ -77,21 +79,40 @@ public class EmployeeController {
 		return "employee-one";
 	}
 	
-	
-
-	// localhost:8080/department/{id}/showAllEmployees
-	@GetMapping("/department/{id}/showAllEmployees")
-	public String getAllEmployeesInDepartment(Model model, @PathVariable(name = "id") int id) {
-		model.addAttribute("employee", employeeService.selectAllEmployeesFromDepartmentById(id));
-		return "employee-all";
-	}
-	
 	// localhost:8080/employee/delete/{id}
 		@GetMapping("/employee/delete/{id}")
 		public String getDeleteEmployeeById(Model model, @PathVariable(name = "id") int id) {
-			MyMessage message = new MyMessage("Employee deleted successfully");
-			template.convertAndSend(MQConfig.exchange, MQConfig.routingKey, message);
+			//MyMessage message = new MyMessage("Employee deleted successfully");
+			//template.convertAndSend(MQConfig.exchange, MQConfig.routingKey, message);
 			model.addAttribute("Employee", employeeService.deleteEmployeeById(id));
 			return "employee-all";
 		}
+		
+		// localhost:8080/employee/update/{id}
+		@GetMapping("/employee/update/{id}")
+		public String getUpdateEmployeeById(@PathVariable(name="id") int id, Model model) throws Exception {
+			try {
+				model.addAttribute("employee", employeeService.readEmployeeById(id));
+				return "employee-update";
+			} catch (Exception e){
+				throw new Exception("can't find employee");
+			}
+			
+		}
+
+		// localhost:8080/course/update/{id}
+		@PostMapping("/employee/update/{id}")
+		public String postUpdateCourseById(@PathVariable(name = "id") int id, Employee employee, BindingResult result) throws Exception {
+			if (!result.hasErrors()) {
+				if (employeeService.updateEmployeeById(id, employee)) {
+					return "redirect:/employees";
+				} else {
+					throw new Exception("can't update");
+				}
+			} else {
+				return "employee-update";
+			}
+		}
+		
+		
 }
