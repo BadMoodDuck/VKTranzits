@@ -14,7 +14,7 @@ public interface IEmployeeRepo extends PagingAndSortingRepository<Employee, Inte
 
 	boolean existsByDepartmentIdDe(int departmentId);
 
-	
+	 
 	//TODO Needs testing 
 	@Query(value = "SELECT * FROM employee WHERE email=?1 OR phone=?2", nativeQuery = true)
 	boolean existsByEmailOrPhone(String email, int phone);

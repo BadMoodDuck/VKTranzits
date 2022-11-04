@@ -63,6 +63,7 @@ public class Department {
 		this.company = company;
 	}
 	
+	
 	public void addNewCourse(Course course)
 	{
 		courses.add(course);

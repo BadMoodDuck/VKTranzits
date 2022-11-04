@@ -53,7 +53,7 @@ public class Course {
 	
 	@ManyToMany(mappedBy = "courses")
 	private Collection<Department> departments = new ArrayList<Department>();
-	
+	 
 	@OneToMany(mappedBy = "course")
 	@ToString.Exclude
 	private Collection<EmployeeCourse> emCourse;
