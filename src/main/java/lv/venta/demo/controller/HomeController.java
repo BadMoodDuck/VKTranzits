@@ -27,8 +27,8 @@ public class HomeController {
 	@GetMapping("/home")
 	public String getHomePage() {
 		System.out.println("homepage");
-		MyMessage message = new MyMessage("Logged in successfully");
-		template.convertAndSend(MQConfig.exchange, MQConfig.routingKey, message);
+		//MyMessage message = new MyMessage("Logged in successfully");
+		//template.convertAndSend(MQConfig.exchange, MQConfig.routingKey, message);
 		return "home";
 	}
 }

@@ -13,21 +13,6 @@
 	
 	<div class="container">
   		<h1>text</h1>
-  		<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
-       xsi:schemaLocation="http://www.springframework.org/schema/rabbit
-           https://www.springframework.org/schema/rabbit/spring-rabbit.xsd
-           http://www.springframework.org/schema/beans
-           https://www.springframework.org/schema/beans/spring-beans.xsd">
-
-    <rabbit:connection-factory id="connectionFactory"/>
-
-    <rabbit:template id="amqpTemplate" connection-factory="connectionFactory"/>
-
-    <rabbit:queue name="myMessageQueue"/>
-
-</beans>
 	</div>
 	
 	
