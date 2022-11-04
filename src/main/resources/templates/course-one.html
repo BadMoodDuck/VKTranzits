@@ -15,40 +15,34 @@
 	<div th:replace="fragments/header :: header"></div>
 
 	<div class="container">
-		<h1>All courses <a class="btn btn-primary" th:href="@{/course/addNew}" role="button">Add new</a> </h1>
-
+		<h1>Course</h1>
+		
 		<table class="table table-striped table-hover">
 
 			<thead>
 				<tr>
 					<th scope="col">#</th>
-					<th scope="col">Course type</th>
+					<th scope="col">Type/isObligatory</th>
 					<th scope="col">Title</th>
 					<th scope="col">Description</th>
-					<th scope="col"></th>
+					<th scope="col">s</th>
 				</tr>
 			</thead>
 			<thbody>
-				<tr th:each="course: ${course}">
-					<td th:text="${course.idCou}">#</td>
-					<td th:text="${course.coType.title}">#</td>
-					<td th:text="${course.title}">#</td>
-					<td th:text="${course.description}">#</td>
-			      	<td >
-			      		<a class="btn btn-primary" th:href="@{/course/{id}(id=${course.idCou})}" role="button">View</a>
-			      	</td>	
+				<tr>
+					<td th:text="${course.getIdCou()}">#</td>
+					<td th:text="${course.getCoType().isObligatory}">#</td>
+					<td th:text="${course.getTitle()}">#</td>
+					<td th:text="${course.getDescription()}">#</td>
+					<td>
+					<a class="btn btn-primary" href="#" role="button">Edit</a>
+					<a class="btn btn-danger" th:href="@{/course/delete/{id} (id=${course.getIdCou()}) }" role="button">delete</a>
+					</td>
 				</tr>
 			</thbody>
+	
 		</table>
-		
-		<!-- cool as heck nav bar-->
-		<div th:replace="fragments/pageination-navbar.html :: pageination-navbar(
-			 pageName = 'courses',
-			 currentPage = ${currentPage},
-			 totalPages = ${totalPages},
-			 totalElements = ${totalElements}
-			 )">
-		</div>
+
 	</div>
 
 	<div class="footer" th:replace="fragments/footer :: footer"></div>

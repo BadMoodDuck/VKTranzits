@@ -3,6 +3,7 @@ package lv.venta.demo.models;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -47,7 +48,7 @@ public class Department {
 	@JoinColumn(name="IdCo")
 	private Company company;
 	
-	@OneToMany(mappedBy = "department")
+	@OneToMany(mappedBy = "department", cascade = {CascadeType.ALL})
 	@ToString.Exclude
 	private Collection<Employee> employees;
 	
@@ -58,7 +59,6 @@ public class Department {
 	private Collection<Course> courses = new ArrayList<Course>();
 
 	public Department(Company company,String name) {
-    
 		this.name = name;
 		this.company = company;
 	}

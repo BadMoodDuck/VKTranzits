@@ -1,6 +1,7 @@
 package lv.venta.demo.models;
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,7 +33,7 @@ public class EmployeeCourse {
 	@Setter(value = AccessLevel.NONE)
 	private int idEmCo;
 	
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name="IdEm")
 	private Employee employee;
 	

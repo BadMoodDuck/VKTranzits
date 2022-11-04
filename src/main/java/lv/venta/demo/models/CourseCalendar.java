@@ -36,7 +36,7 @@ public class CourseCalendar {
 
 	@Min(value = 2022)
 	@Max(value = 2050)
-	@Column(name = "Year")
+	@Column(name = "CourseYear")
 	private int year;
 
 	// TODO validacijas
