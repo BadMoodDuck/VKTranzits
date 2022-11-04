@@ -50,7 +50,7 @@ public class Department {
 	
 	@OneToMany(mappedBy = "department", cascade = {CascadeType.ALL})
 	@ToString.Exclude
-	private Collection<Employee> employees;
+	private Collection<Employee> employees; 
 	
 	@ManyToMany
 	@JoinTable(joinColumns=@JoinColumn(name = "IdDe"),
@@ -69,5 +69,9 @@ public class Department {
 		courses.add(course);
 	}
 	
+	public void removeCourse(Course course)
+	{
+		courses.remove(course);
+	}
 	
 }

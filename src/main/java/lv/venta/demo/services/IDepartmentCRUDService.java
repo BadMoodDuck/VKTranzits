@@ -8,5 +8,6 @@ public interface IDepartmentCRUDService {
 
 	
 	ArrayList<Department> getAllDepartments();
+	
 }
  

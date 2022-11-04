@@ -35,7 +35,7 @@ public class EmployeeCourse {
 	
 	@ManyToOne()
 	@JoinColumn(name="IdEm")
-	private Employee employee;
+	private Employee employee; 
 	
 	@ManyToOne
 	@JoinColumn(name="IdCou")
