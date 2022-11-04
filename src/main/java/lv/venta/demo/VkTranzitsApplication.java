@@ -89,7 +89,7 @@ public class VkTranzitsApplication {
 				Employee emp3 = new Employee("Kristaps","Slieka",22134560,"rtyh@gmail.com",dep2,pos);
 				Employee emp4 = new Employee("Maris","Smiekls",22555660,"zxcv@gmail.com",dep2,pos2);
 				Employee emp5 = new Employee("Lone","Man",22512310,"abece@gmail.com",dep,pos2);
-				Employee emp7 = new Employee("Dude","Mane",22525250,"abolds123@gmail.com",dep1,pos);
+				Employee emp7 = new Employee("David","Martinez",22525250,"davidmartinez@arosaka.com",dep1,pos);
 				employeeRepo.save(emp);
 				employeeRepo.save(emp1);
 				employeeRepo.save(emp2);
@@ -99,13 +99,13 @@ public class VkTranzitsApplication {
 				employeeRepo.save(emp7);
 				
 				
-				CourseType cty = new CourseType(false, "Ugunsdrosiba");
-				CourseType cty1 = new CourseType(true, "Darba drosiba");
+				CourseType cty = new CourseType("Ugunsdrosiba", false, "Viss vajadzigais par ugunsdrosiba");
+				CourseType cty1 = new CourseType("Darba drosiba", true, "Viss vajadzigais par darba drosiba");
 				courseTypeRepo.save(cty);
 				courseTypeRepo.save(cty1);
 				
-				Course co = new Course(cty,"Ugunsdrosiba","Viss galvenais par uguni");
-				Course co1 = new Course(cty1,"Darba drosiba","Viss galvenais par darbu");
+				Course co = new Course(cty,"1.Ugunsdrosibas ievads","Viss galvenais par uguni");
+				Course co1 = new Course(cty1,"1.Darba drosibas ievads","Viss galvenais par darbu");
 				courseRepo.save(co);
 				courseRepo.save(co1);
 				
@@ -147,7 +147,7 @@ public class VkTranzitsApplication {
 				authorityRepo.save(auth3);
 				authorityRepo.save(auth4);
 				
-				MyUser user1 = new MyUser("JhonSilver", encoder.encode("Sonic123"));
+				MyUser user1 = new MyUser("admins", encoder.encode("admins"));
 				
 				userRepo.save(user1);
 				

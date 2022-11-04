@@ -2,10 +2,14 @@ package lv.venta.demo.services;
 
 import java.util.ArrayList;
 
+import org.springframework.data.domain.Page;
+
 import lv.venta.demo.models.Employee;
 
 public interface IEmployeeCRUDservice {
-
+	
+	public Page<Employee> getPageList(int pageNr);
+	
 	// Izveidot darbinieku
 	boolean insertNewEmployee(Employee employee);
 
@@ -21,4 +25,7 @@ public interface IEmployeeCRUDservice {
 	//paradit visus darbiniekus
 	ArrayList<Employee> selectAllEmployees();
 
+	Employee getEmployeeById(int employeId);
+
 }
+

@@ -3,6 +3,9 @@ package lv.venta.demo.services.impl;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import lv.venta.demo.models.Employee;
 import lv.venta.demo.repos.IDepartmentRepo;
@@ -20,13 +23,19 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 	
 	
 	@Override
+	public Page<Employee> getPageList(int pageNr) {
+		Pageable pageable = PageRequest.of(pageNr-1, 2);
+		return employeeRepo.findAll(pageable);
+	}
+	
+	@Override
 	public boolean insertNewEmployee(Employee employee) {
-		if (!employeeRepo.existsByEmailOrPhone(employee.getEmail(), employee.getPhone())) {
+		//if (!employeeRepo.existsByEmailOrPhone(employee.getEmail(), employee.getPhone())) {  TODO VALIDATION FIX
 			employeeRepo.save(employee);
-			return true;
-		}
+		//	return true;
+		//}
 
-		return false;
+		return true;
 	}
 
 	@Override 
@@ -64,4 +73,17 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 	public ArrayList<Employee> selectAllEmployees() {
 		return (ArrayList<Employee>) employeeRepo.findAll();
 	}
+
+	
+	@Override
+	public Employee getEmployeeById(int employeId) {
+		if (employeeRepo.existsById(employeId)) {
+			return employeeRepo.findById(employeId).get();
+		}
+		return null;
+	}
+
+	
+
 }
+

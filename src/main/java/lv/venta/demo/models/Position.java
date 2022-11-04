@@ -11,6 +11,7 @@ import lombok.ToString;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,6 +27,7 @@ import javax.persistence.OneToMany;
 @NoArgsConstructor
 @Table
 @Entity
+@ToString
 public class Position {
 
 	@Id
@@ -43,7 +45,7 @@ public class Position {
 	@Column(name = "Description")
 	private String description;
 	
-	@OneToMany(mappedBy = "position")
+	@OneToMany(mappedBy = "position", cascade = {CascadeType.ALL})
 	@ToString.Exclude
 	private Collection<Employee> employees;
 	

@@ -15,6 +15,10 @@ public class HomeController {
 	@Autowired
 	private RabbitTemplate template;
 
+	@GetMapping("/login")
+	public String getLogin() {
+		return "login";
+	}
 	
 	@GetMapping("")
 	public String getDefault() {

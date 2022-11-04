@@ -1,14 +1,15 @@
 package lv.venta.demo.services.impl;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lv.venta.demo.models.Course;
 import lv.venta.demo.models.CourseType;
-import lv.venta.demo.models.EmployeeCourse;
 import lv.venta.demo.repos.ICourseRepo;
 import lv.venta.demo.services.ICourseService;
 
@@ -28,65 +29,45 @@ public class CourseServiceImpl implements ICourseService {
 	}
 
 	@Override
-	public Course getCourseByTitle(String title) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<EmployeeCourse> getAllEmployeeCoursesByEmployeeId(int employeeId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<Course> getAllCoursesByTypeId(int coTypeId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public ArrayList<Course> selectAllCourses() {
-		// TODO Auto-generated method stub
 		return (ArrayList<Course>) courseRepo.findAll();
 	}
 
 	@Override
-	public Course insertNewCourse(CourseType coType, String title, String description) {
-		Course result = new Course(coType, title, description);
-		if (!courseRepo.existsByTitleIgnoreCase(title)) {
-			courseRepo.save(result);
-			return result;
-		}
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<Course> getAllCoursesFromDepartmentByID(int departmentId) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean insertNewCourse(Course course) {
+		//if (!courseRepo.existsByTitleIgnoreCase(title)) { TODO MAKE VALIDATION THAT COURSE ALREADY DOESNT EXIST
+			courseRepo.save(course);
+		//	return result;
+		//}
+		return true;
 	}
 
 	@Override
 	public Course updateExistingCourseById(int courseId, CourseType coType, String title, String description) {
 		// TODO Auto-generated method stub
 		Course result = new Course();
-		if (courseRepo.existsByIdCou(courseId)) {
+		if (courseRepo.existsById(courseId)) {
 			result = courseRepo.findByIdCou(courseId);
 		}
 		result = new Course(coType, title, description);
 		return result;
 	}
 
+	
 	@Override
-	public ArrayList<Course> deleteCourseById(int courseId) {
-		// TODO Auto-generated method stub
-		if (courseRepo.existsByIdCou(courseId)) {
-			courseRepo.deleteByIdCou(courseId);
+	public boolean deleteCourseById(int courseId) {
+		if (courseRepo.existsById(courseId)) {
+			courseRepo.deleteById(courseId);
+			return true;
 		}
-		ArrayList<Course> result = selectAllCourses();
-		return result;
+		return false;
 	}
+
+	@Override
+	public Page<Course> getPageList(int pageNr) {
+		Pageable pageable = PageRequest.of(pageNr - 1, 2);
+		return courseRepo.findAll(pageable);
+	}
+
 
 }
