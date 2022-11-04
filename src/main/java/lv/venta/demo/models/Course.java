@@ -54,9 +54,10 @@ public class Course {
 	@ManyToMany(mappedBy = "courses")
 	private Collection<Department> departments = new ArrayList<Department>();
 	
-	@OneToMany(mappedBy = "course")
+	@OneToMany(mappedBy = "course", cascade = CascadeType.REMOVE)
 	@ToString.Exclude
 	private Collection<EmployeeCourse> emCourse;
+	
 	
 	public Course(CourseType coType, String title, String description) {
 		this.coType = coType;

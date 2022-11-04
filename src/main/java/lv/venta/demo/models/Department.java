@@ -68,5 +68,9 @@ public class Department {
 		courses.add(course);
 	}
 	
+	public void removeCourse(Course course)
+	{
+		courses.remove(course);
+	}
 	
 }

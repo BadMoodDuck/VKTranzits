@@ -11,4 +11,7 @@ public interface IDepartmentRepo extends CrudRepository<Department,Integer>{
 
 	ArrayList<Employee> findAllByEmployeesIdEm(int employeeId);
 
+	ArrayList<Department> findByCoursesIdCou(int courseId);
+
+
 }
