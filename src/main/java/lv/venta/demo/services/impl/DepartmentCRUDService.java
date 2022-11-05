@@ -1,6 +1,7 @@
 package lv.venta.demo.services.impl;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import lv.venta.demo.models.Course;
 import lv.venta.demo.models.Department;
 import lv.venta.demo.models.Employee;
+import lv.venta.demo.repos.ICourseRepo;
 import lv.venta.demo.repos.IDepartmentRepo;
 import lv.venta.demo.repos.IEmployeeRepo;
 import lv.venta.demo.services.IDepartmentCRUDService;
@@ -19,6 +21,8 @@ public class DepartmentCRUDService implements IDepartmentCRUDService{
 	private IDepartmentRepo departmentRepo;
 	@Autowired
 	private IEmployeeRepo emRepo;
+	@Autowired
+	private ICourseRepo courseRepo;
 	
 	
 	@Override
@@ -33,6 +37,15 @@ public class DepartmentCRUDService implements IDepartmentCRUDService{
 			
 		}
 		return new ArrayList<Employee>();
+	}
+
+	@Override
+	public ArrayList<Course> getAllCoursesFromDepartment(int idDe) {
+		if (departmentRepo.existsById(idDe)) {
+			Department department = departmentRepo.findById(idDe).get();
+			return courseRepo.findByDepartments(department);
+		}
+		return null;
 	}
 
 

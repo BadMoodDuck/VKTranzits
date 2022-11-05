@@ -14,15 +14,21 @@ public class OtherController {
 	@Autowired
 	IDepartmentCRUDService departmentService;
 	
-	@GetMapping("/department") // All Employees
+	@GetMapping("/departments") // All Employees
 	public String getAllEmployees(Model model) {
 		model.addAttribute("departments", departmentService.getAllDepartments());
 		return "department-all";
 	}
 	
-	@GetMapping("/department/{id}") // All Employees
+	@GetMapping("/department/{id}/employees") // All Employees
 	public String getAllEmployeesFromDepartment(@PathVariable int id, Model model) {
 		model.addAttribute("employee", departmentService.getAllEmployeesFromDepartment(id));
 		return "department-employee-all";
+	}
+	
+	@GetMapping("/department/{id}/courses") // All Employees
+	public String getAllCoursesFromDepartment(@PathVariable int id, Model model) {
+		model.addAttribute("coruses", departmentService.getAllCoursesFromDepartment(id));
+		return "department-course-all";
 	}
 }

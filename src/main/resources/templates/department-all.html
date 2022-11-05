@@ -20,8 +20,8 @@
 		      <th scope="col">#</th>
 		      <th scope="col">Name</th>
 		      <th scope="col">Company</th>
-		      <th scope="col">Employees count</th>
-		      <th scope="col">Courses count</th>
+		      <th scope="col">Employees</th>
+		      <th scope="col">Courses</th>
 		      <th scope="col"></th>
 		    </tr>
 	  	 </thead>
@@ -30,8 +30,12 @@
 		      <td th:text="${department.idDe}">#</td>
 		      <td th:text="${department.name}">#</td>
 		      <td th:text="${department.company.name}">#</td>
-		      <td th:text="${department.employees.size()}">#</td>
-		      <td th:text="${department.courses.size()}">#</td>
+		      <td>
+		      	<a class="btn btn-primary" th:href="@{/department/{id}/employees(id=${department.idDe})}" role="button">View</a>
+		      </td>
+		      <td>
+		      	<a class="btn btn-primary" th:href="@{/department/{id}/courses(id=${department.idDe})}" role="button">View</a>
+		      </td>
 	      	  <td >
 	      		<a class="btn btn-primary" th:href="@{/department/{id}(id=${department.idDe})}" role="button">View</a>
 	      	  </td>
