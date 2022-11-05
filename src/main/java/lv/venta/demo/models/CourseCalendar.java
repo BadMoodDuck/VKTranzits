@@ -15,6 +15,9 @@ import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -41,9 +44,11 @@ public class CourseCalendar {
 
 	// TODO validacijas
 	@Column(name = "StartDate")
+	@DateTimeFormat(iso = ISO.DATE)
 	private Date startDate;
 
 	@Column(name = "EndDate")
+	@DateTimeFormat(iso = ISO.DATE)
 	private Date endDate;
 
 	@OneToMany(mappedBy = "courseCalendar")

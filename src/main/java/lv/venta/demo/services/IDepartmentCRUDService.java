@@ -8,4 +8,8 @@ public interface IDepartmentCRUDService {
 
 	
 	ArrayList<Department> getAllDepartments();
+
+	boolean deleteDepartmentById(int id);
+
+	boolean updateDepartmentById(int id, Department dep);
 }
