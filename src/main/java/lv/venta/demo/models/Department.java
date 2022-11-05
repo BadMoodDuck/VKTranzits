@@ -50,7 +50,7 @@ public class Department {
 	
 	@OneToMany(mappedBy = "department", cascade = {CascadeType.ALL})
 	@ToString.Exclude
-	private Collection<Employee> employees; 
+	private Collection<Employee> employees = new ArrayList<Employee>();
 	
 	@ManyToMany
 	@JoinTable(joinColumns=@JoinColumn(name = "IdDe"),
