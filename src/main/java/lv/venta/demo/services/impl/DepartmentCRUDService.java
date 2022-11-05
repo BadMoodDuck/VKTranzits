@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lv.venta.demo.models.Course;
 import lv.venta.demo.models.Department;
 import lv.venta.demo.models.Employee;
 import lv.venta.demo.repos.IDepartmentRepo;
@@ -16,8 +17,6 @@ public class DepartmentCRUDService implements IDepartmentCRUDService{
 
 	@Autowired
 	private IDepartmentRepo departmentRepo;
-	
-
 	@Autowired
 	private IEmployeeRepo emRepo;
 	
@@ -35,5 +34,6 @@ public class DepartmentCRUDService implements IDepartmentCRUDService{
 		}
 		return new ArrayList<Employee>();
 	}
+
 
 }

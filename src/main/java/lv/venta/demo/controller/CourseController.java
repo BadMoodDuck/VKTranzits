@@ -29,8 +29,8 @@ public class CourseController {
 	@Autowired 
 	private IOtherServices otherService;
 
-	@Autowired
-	private RabbitTemplate template;
+//	@Autowired
+//	private RabbitTemplate template;
 
 
 	@GetMapping("/courses") // All Courses
@@ -47,13 +47,6 @@ public class CourseController {
 		model.addAttribute("totalPages", page.getTotalPages());
 		return "course-all";
 	}
-
-//	// localhost:8080/course/showAll
-//	@GetMapping("/course/showAll")
-//	public String getAllCourses(Model model) {
-//		model.addAttribute("course", courseService.selectAllCourses());
-//		return "course-all";
-//	}
 
 	@GetMapping("/course/addNew")
 	public String getAddCourses(Model model, Course course) {
@@ -77,13 +70,6 @@ public class CourseController {
 		model.addAttribute("course", courseService.getCourseById(id));
 		return "course-one";
 	}
-
-	// localhost:8080/department/{id}/showAllCourses
-//	@GetMapping("/department/{id}/showAllCourses")
-//	public String getAllDepartmentCourses(Model model, @PathVariable(name = "id") int id) {
-//		model.addAttribute("course", courseService.getAllCoursesFromDepartmentByID(id));
-//		return "course-all";
-//	}
 
 	// localhost:8080/course/delete/{id}
 	@Transactional

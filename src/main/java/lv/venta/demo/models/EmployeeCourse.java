@@ -35,7 +35,7 @@ public class EmployeeCourse {
 	
 	@ManyToOne()
 	@JoinColumn(name="IdEm")
-	private Employee employee;
+	private Employee employee; 
 	
 	@ManyToOne
 	@JoinColumn(name="IdCou")
@@ -49,7 +49,7 @@ public class EmployeeCourse {
 	@Max(100)
 	@Min(0)
 	private float valuePr;
-	
+	 
 	public EmployeeCourse(Employee employee, Course course, float valuePr) {
 		this.employee = employee;
 		this.course = course;

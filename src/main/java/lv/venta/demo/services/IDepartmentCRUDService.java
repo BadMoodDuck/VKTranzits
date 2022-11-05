@@ -11,4 +11,6 @@ public interface IDepartmentCRUDService {
 	ArrayList<Department> getAllDepartments();
 
 	ArrayList<Employee> getAllEmployeesFromDepartment(int idDe);
+
 }
+ 

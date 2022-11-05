@@ -59,10 +59,10 @@ public class Employee {
 	@JoinColumn(name = "IdDe")
 	private Department department;
 
-	@OneToMany(mappedBy = "employee", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "employee")
 	@ToString.Exclude
 	private Collection<EmployeeCourse> emCourse;
-
+	
 	@ManyToOne
 	@JoinColumn(name = "IdPos")
 	private Position position;
@@ -75,6 +75,11 @@ public class Employee {
 		this.department = department;
 		this.position = position;
 
+	}
+	
+	public void removeCourse(Course course)
+	{
+		emCourse.remove(course);
 	}
 
 }

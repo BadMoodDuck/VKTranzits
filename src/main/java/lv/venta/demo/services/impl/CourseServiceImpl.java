@@ -9,7 +9,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lv.venta.demo.models.Course;
+import lv.venta.demo.models.Department;
 import lv.venta.demo.repos.ICourseRepo;
+import lv.venta.demo.repos.IDepartmentRepo;
 import lv.venta.demo.services.ICourseService;
 
 @Service
@@ -17,6 +19,8 @@ public class CourseServiceImpl implements ICourseService {
 
 	@Autowired
 	private ICourseRepo courseRepo;
+	@Autowired
+	private IDepartmentRepo departmentRepo;
 	
 	//TODO pabeigt funkcijas ar visam parbaudem
 	@Override
@@ -42,14 +46,14 @@ public class CourseServiceImpl implements ICourseService {
 
 	@Override
 	public boolean updateExistingCourseById(int courseId, Course course) {
-		// TODO Auto-generated method stub
+		
 		Course result = new Course();
 		if (courseRepo.existsById(courseId)) {
-			result = courseRepo.findByIdCou(courseId);
+			result = courseRepo.findById(courseId).get();
 			result.setCoType(course.getCoType());
 			result.setTitle(course.getTitle());
 			result.setDescription(course.getDescription());
-			courseRepo.save(course);
+			courseRepo.save(result);
 			return true;
 		} else {
 			return false;
@@ -73,12 +77,25 @@ public class CourseServiceImpl implements ICourseService {
 	@Override
 	public boolean deleteCourseById(int courseId) {
 		if (courseRepo.existsById(courseId)) {
+			Course course = courseRepo.findById(courseId).get();
+			
+			ArrayList<Department> allDepForThisCourse = departmentRepo.findByCoursesIdCou(courseId);
+			for (Department department : allDepForThisCourse) {
+				department.removeCourse(course);
+				departmentRepo.save(department);
+			}
+			
+//			ArrayList<Employee> allEmpForThisCourse = employeeRepo.findByCoursesIdCou(courseId);
+//			for (Employee employee : allEmpForThisCourse) {
+//				employee.removeCourse(course);
+//				employeeRepo.save(employee);
+//			} 
 			courseRepo.deleteById(courseId);
 			return true;
 		}
 		return false;
 	}
-
+ 
 	@Override
 	public Page<Course> getPageList(int pageNr) {
 		Pageable pageable = PageRequest.of(pageNr - 1, 2);
