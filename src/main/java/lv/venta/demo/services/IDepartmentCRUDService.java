@@ -7,7 +7,6 @@ import lv.venta.demo.models.Department;
 import lv.venta.demo.models.Employee;
 
 public interface IDepartmentCRUDService {
-
 	
 	ArrayList<Department> getAllDepartments();
 
