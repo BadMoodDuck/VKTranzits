@@ -15,7 +15,7 @@ import lv.venta.demo.repos.IEmployeeRepo;
 import lv.venta.demo.services.IDepartmentCRUDService;
 
 @Service
-public class DepartmentCRUDService implements IDepartmentCRUDService{
+public class DepartmentCRUDServiceImpl implements IDepartmentCRUDService{
 
 	@Autowired
 	private IDepartmentRepo departmentRepo;
