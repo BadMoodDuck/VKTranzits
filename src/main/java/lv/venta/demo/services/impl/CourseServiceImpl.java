@@ -1,7 +1,6 @@
 package lv.venta.demo.services.impl;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -10,12 +9,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lv.venta.demo.models.Course;
-import lv.venta.demo.models.CourseType;
 import lv.venta.demo.models.Department;
-import lv.venta.demo.models.Employee;
 import lv.venta.demo.repos.ICourseRepo;
 import lv.venta.demo.repos.IDepartmentRepo;
-import lv.venta.demo.repos.IEmployeeRepo;
 import lv.venta.demo.services.ICourseService;
 
 @Service
@@ -25,8 +21,6 @@ public class CourseServiceImpl implements ICourseService {
 	private ICourseRepo courseRepo;
 	@Autowired
 	private IDepartmentRepo departmentRepo;
-	@Autowired
-	private IEmployeeRepo employeeRepo;
 	
 	//TODO pabeigt funkcijas ar visam parbaudem
 	@Override
@@ -46,20 +40,37 @@ public class CourseServiceImpl implements ICourseService {
 	public boolean insertNewCourse(Course course) {
 		//if (!courseRepo.existsByTitleIgnoreCase(title)) { TODO MAKE VALIDATION THAT COURSE ALREADY DOESNT EXIST
 			courseRepo.save(course);
-		//	return result;
 		//}
 		return true;
 	}
 
 	@Override
-	public Course updateExistingCourseById(int courseId, CourseType coType, String title, String description) {
-		// TODO Auto-generated method stub
+	public boolean updateExistingCourseById(int courseId, Course course) {
+		
 		Course result = new Course();
 		if (courseRepo.existsById(courseId)) {
-			result = courseRepo.findByIdCou(courseId);
+			result = courseRepo.findById(courseId).get();
+			result.setCoType(course.getCoType());
+			result.setTitle(course.getTitle());
+			result.setDescription(course.getDescription());
+			courseRepo.save(result);
+			return true;
+		} else {
+			return false;
 		}
-		result = new Course(coType, title, description);
-		return result;
+	}
+	
+	@Override
+	public Course readCourseById(int id) throws Exception {
+		
+		if(courseRepo.existsById(id))
+		{
+			Course course = courseRepo.findByIdCou(id);
+			return course;
+		}
+		
+		throw new Exception("Course doesn't exist");
+		
 	}
 
 	

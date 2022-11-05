@@ -8,7 +8,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import lv.venta.demo.models.Employee;
-import lv.venta.demo.repos.IDepartmentRepo;
 import lv.venta.demo.repos.IEmployeeRepo;
 import lv.venta.demo.services.IEmployeeCRUDservice;
 
@@ -18,8 +17,6 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 	
 	@Autowired
 	private IEmployeeRepo employeeRepo;
-	@Autowired
-	private IDepartmentRepo departmentRepo;
 	
 	
 	@Override
@@ -63,13 +60,6 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 	}
 	
 	@Override
-	public ArrayList<Employee> selectAllEmployeesFromDepartmentById(int departmentId) {
-		if (departmentRepo.existsById(departmentId)) {
-			return (ArrayList<Employee>) employeeRepo.findAllByDepartmentIdDe(departmentId);
-		}
-		return null;
-	}
-	@Override
 	public ArrayList<Employee> selectAllEmployees() {
 		return (ArrayList<Employee>) employeeRepo.findAll();
 	}
@@ -81,6 +71,19 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 			return employeeRepo.findById(employeId).get();
 		}
 		return null;
+	}
+
+	@Override
+	public Object readEmployeeById(int id) throws Exception {
+		if(employeeRepo.existsById(id))
+		{
+			Employee em = employeeRepo.findByIdEm(id);
+			return em;
+		}
+		
+		throw new Exception("Course doesn't exist");
+		
+	
 	}
 
 	

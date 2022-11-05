@@ -19,12 +19,13 @@ public interface ICourseService {
 	// Izveidot jaunu kursu
 	public abstract boolean insertNewCourse(Course course);
 
-	// Kursa atjaunošanas pēc ID funkcija
-	public abstract Course updateExistingCourseById(int courseId, CourseType coType, String title, String description);
-
 	// Kursa dzēšanas pēc ID funkcija
 	public abstract boolean deleteCourseById(int courseId);
 	
 	Page<Course> getPageList(int pageNr);
+
+	boolean updateExistingCourseById(int courseId, Course course);
+
+	Course readCourseById(int id) throws Exception;
 
 }
