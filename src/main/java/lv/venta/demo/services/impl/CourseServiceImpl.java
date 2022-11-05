@@ -1,6 +1,7 @@
 package lv.venta.demo.services.impl;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -10,7 +11,11 @@ import org.springframework.stereotype.Service;
 
 import lv.venta.demo.models.Course;
 import lv.venta.demo.models.CourseType;
+import lv.venta.demo.models.Department;
+import lv.venta.demo.models.Employee;
 import lv.venta.demo.repos.ICourseRepo;
+import lv.venta.demo.repos.IDepartmentRepo;
+import lv.venta.demo.repos.IEmployeeRepo;
 import lv.venta.demo.services.ICourseService;
 
 @Service
@@ -18,6 +23,10 @@ public class CourseServiceImpl implements ICourseService {
 
 	@Autowired
 	private ICourseRepo courseRepo;
+	@Autowired
+	private IDepartmentRepo departmentRepo;
+	@Autowired
+	private IEmployeeRepo employeeRepo;
 	
 	//TODO pabeigt funkcijas ar visam parbaudem
 	@Override
@@ -57,12 +66,25 @@ public class CourseServiceImpl implements ICourseService {
 	@Override
 	public boolean deleteCourseById(int courseId) {
 		if (courseRepo.existsById(courseId)) {
+			Course course = courseRepo.findById(courseId).get();
+			
+			ArrayList<Department> allDepForThisCourse = departmentRepo.findByCoursesIdCou(courseId);
+			for (Department department : allDepForThisCourse) {
+				department.removeCourse(course);
+				departmentRepo.save(department);
+			}
+			
+//			ArrayList<Employee> allEmpForThisCourse = employeeRepo.findByCoursesIdCou(courseId);
+//			for (Employee employee : allEmpForThisCourse) {
+//				employee.removeCourse(course);
+//				employeeRepo.save(employee);
+//			} 
 			courseRepo.deleteById(courseId);
 			return true;
 		}
 		return false;
 	}
-
+ 
 	@Override
 	public Page<Course> getPageList(int pageNr) {
 		Pageable pageable = PageRequest.of(pageNr - 1, 2);
