@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import lv.venta.demo.models.Employee;
+import lv.venta.demo.repos.IDepartmentRepo;
 import lv.venta.demo.repos.IEmployeeRepo;
 import lv.venta.demo.services.IEmployeeCRUDservice;
 
@@ -17,7 +18,8 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 	
 	@Autowired
 	private IEmployeeRepo employeeRepo;
-	
+	@Autowired
+	private IDepartmentRepo departmentRepo;
 	
 	@Override
 	public Page<Employee> getPageList(int pageNr) {
@@ -85,7 +87,6 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 		
 	
 	}
-
 	
 
 }
