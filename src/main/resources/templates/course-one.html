@@ -35,7 +35,7 @@
 					<td th:text="${course.getTitle()}">#</td>
 					<td th:text="${course.getDescription()}">#</td>
 					<td>
-					<a class="btn btn-primary" href="#" role="button">Edit</a>
+					<a class="btn btn-primary" th:href="@{/course/update/{id} (id=${course.getIdCou()}) }" role="button">Edit</a>
 					<a class="btn btn-danger" th:href="@{/course/delete/{id} (id=${course.getIdCou()}) }" role="button">delete</a>
 					</td>
 				</tr>

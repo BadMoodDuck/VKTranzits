@@ -22,6 +22,7 @@ public class DepartmentCRUDService implements IDepartmentCRUDService{
 
 	@Autowired
 	private IEmployeeRepo emRepo;
+
 	
 	@Autowired
 	private ICourseRepo cRepo;
@@ -66,5 +67,23 @@ public class DepartmentCRUDService implements IDepartmentCRUDService{
 	}
 
 
+	public ArrayList<Employee> getAllEmployeesFromDepartment(int idDe){
+		if (departmentRepo.existsById(idDe)) {
+			return emRepo.findByDepartmentIdDe(idDe);
+			
+		}
+		return new ArrayList<Employee>();
+	}
+
+	@Override
+	public boolean createNewDepartment(Department dep) {
+		if(departmentRepo.existsById(dep.getIdDe())) {
+			return false;
+		}else {
+			departmentRepo.save(dep);
+			return true;
+		}
+		
+	}
 
 }

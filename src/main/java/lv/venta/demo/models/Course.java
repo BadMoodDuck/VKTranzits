@@ -68,4 +68,12 @@ public class Course {
 		
 	}
 	
+	public void removeDepartment(Department dep) {
+		departments.remove(dep);
+	}
+	
+	public void addDepartment(Department dep) {
+		departments.add(dep);
+	}
+	
 }
