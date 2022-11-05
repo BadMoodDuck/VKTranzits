@@ -60,6 +60,7 @@ public class VkTranzitsApplication {
 			public void run(String... args) throws Exception {
 				
 
+
 //				Company com = new Company("Jhons");
 //				Company com1 = new Company("Does");
 //				Company com2 = new Company("Fixer");
@@ -137,24 +138,15 @@ public class VkTranzitsApplication {
 //				courseImplementerRepo.save(cim);
 //				courseImplementerRepo.save(cim1);
 //				
-				MyUserAuthority auth1 = new MyUserAuthority("ROLE_ADMIN");
-				MyUserAuthority auth2 = new MyUserAuthority("ROLE_IMPLEMENTER");
-				MyUserAuthority auth3 = new MyUserAuthority("ROLE_EMPLOYEE");
-				MyUserAuthority auth4 = new MyUserAuthority("ROLE_GUEST");
+
 				
 //				authorityRepo.save(auth1);
 //				authorityRepo.save(auth2);
 //				authorityRepo.save(auth3);
 //				authorityRepo.save(auth4);
 ////				
-				MyUser user1 = new MyUser("guestss", encoder.encode("guestss"));
-				
-				userRepo.save(user1);
-				
-				user1.addAuthority(auth4);
-				userRepo.save(user1);
-				auth4.addUser(user1);
-				authorityRepo.save(auth4);
+
+//				authorityRepo.save(auth4);
 				
 			}
 		};

@@ -19,13 +19,14 @@ public class DepartmentCRUDService implements IDepartmentCRUDService{
 	@Autowired
 	private IDepartmentRepo departmentRepo;
 	
+
 	@Autowired
 	private IEmployeeRepo emRepo;
 	
 	@Autowired
 	private ICourseRepo cRepo;
 	
-	
+
 	@Override
 	public ArrayList<Department> getAllDepartments() {
 		return (ArrayList<Department>) departmentRepo.findAll();
@@ -63,6 +64,7 @@ public class DepartmentCRUDService implements IDepartmentCRUDService{
 		}
 		return false;
 	}
+
 
 
 }
