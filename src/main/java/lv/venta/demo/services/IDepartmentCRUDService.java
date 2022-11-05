@@ -14,5 +14,7 @@ public interface IDepartmentCRUDService {
 	ArrayList<Employee> getAllEmployeesFromDepartment(int idDe);
 
 	ArrayList<Course> getAllCoursesFromDepartment(int idDe);
+
+	boolean insertNewDepartment(Department department);
 }
  

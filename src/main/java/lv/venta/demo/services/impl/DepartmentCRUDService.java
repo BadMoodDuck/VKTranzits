@@ -48,5 +48,12 @@ public class DepartmentCRUDService implements IDepartmentCRUDService{
 		return null;
 	}
 
+	@Override
+	public boolean insertNewDepartment(Department department) {
+		// TODO VALIDATION ?
+		departmentRepo.save(department);
+		return true;
+	}
+
 
 }
