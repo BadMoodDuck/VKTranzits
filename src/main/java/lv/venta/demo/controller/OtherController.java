@@ -46,8 +46,9 @@ public class OtherController {
 	}
 	
 	@GetMapping("/department/addNew") // TODO NEEDS Company	
-	public String getAdddepartment(Department department) {
-		return "course-add";
+	public String getAdddepartment(Model model, Department department) {
+		model.addAttribute("companies", otherService.getAllCompanies());
+		return "department-add";
 	}
 
 	@PostMapping("/department/addNew") 

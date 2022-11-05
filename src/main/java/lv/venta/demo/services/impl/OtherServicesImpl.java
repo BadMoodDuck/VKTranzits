@@ -62,4 +62,11 @@ public class OtherServicesImpl implements IOtherServices {
 		throw new Exception("Company doesn't exist");
 	}
 
+	@Override
+	public ArrayList<Company> getAllCompanies() {
+		// TODO Validation ?
+		
+		return (ArrayList<Company>) companyRepo.findAll();
+	}
+
 }
