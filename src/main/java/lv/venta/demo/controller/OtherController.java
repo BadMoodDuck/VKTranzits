@@ -39,7 +39,7 @@ public class OtherController {
 		return "department-course-all";
 	}
 	
-	@GetMapping("/department/addNew") // TODO NEEDS Company
+	@GetMapping("/department/addNew") // TODO NEEDS Company	
 	public String getAdddepartment(Department department) {
 		return "course-add";
 	}
