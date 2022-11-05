@@ -20,4 +20,6 @@ public interface IOtherServices {
 	Page<Company> getPageList(int pageNr);
 
 	Company getCompanyById(int id) throws Exception;
+
+	ArrayList<Company> getAllCompanies();
 }
