@@ -12,21 +12,31 @@
 
 <body class="d-flex flex-column min-vh-100">
 	<div th:replace="fragments/header :: header"></div>
+	
+	<div class="container">
+		<h1>Department coruses <a class="btn btn-primary" th:href="@{/department/{id}/addEmployee}" role="button">Add</a> </h1>
+	
+		<table class="table table-striped table-hover">
+		
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Course type</th>
+					<th scope="col">Title</th>
+					<th scope="col">Description</th>
+				</tr>
+			</thead>
+			<thbody>
+				<tr th:each="temp: ${coruses}">
+					<td th:text="${temp.idCou}">#</td>
+					<td th:text="${temp.coType.title}">#</td>
+					<td th:text="${temp.title}">#</td>
+					<td th:text="${temp.description}">#</td>
+				</tr>
+			</thbody>
+		</table>
 
-	<h1>Department employees</h1>
-
-	<table>
-		<tr th:each="temp: ${coruses}">
-
-			<td th:text="${temp.idCou}">#</td>
-			<td th:text="${temp.coType.title}">#</td>
-			<td th:text="${temp.title}">#</td>
-			<td th:text="${temp.description}">#</td>
-		</tr>
-
-	</table>
-
-
+	</div>
 
 	<div class="footer" th:replace="fragments/footer :: footer"></div>
 </body>
