@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lv.venta.demo.models.Course;
@@ -53,6 +56,12 @@ public class DepartmentCRUDServiceImpl implements IDepartmentCRUDService{
 		// TODO VALIDATION ?
 		departmentRepo.save(department);
 		return true;
+	}
+
+	@Override
+	public Page<Department> getPageList(int currentPage) {
+		Pageable pagable = PageRequest.of(currentPage-1, 2);
+		return departmentRepo.findAll(pagable);
 	}
 
 

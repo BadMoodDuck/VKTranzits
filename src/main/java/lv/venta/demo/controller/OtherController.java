@@ -28,8 +28,17 @@ public class OtherController {
 	private IOtherServices otherService;
 	
 	@GetMapping("/departments") // All Employees
-	public String getAllEmployees(Model model) {
+	public String getAllDepartments(Model model) {
 		model.addAttribute("departments", departmentService.getAllDepartments());
+		return getPageDepartments(model, 1);
+	}
+	@GetMapping("/departments/{pageNr}") // All Employees
+	public String getPageDepartments(Model model, @PathVariable("pageNr") int currentPage) {
+		Page<Department> page = departmentService.getPageList(currentPage);
+		model.addAttribute("departments", page);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("totalElements", page.getTotalElements());
+		model.addAttribute("totalPages", page.getTotalPages());
 		return "department-all";
 	}
 	

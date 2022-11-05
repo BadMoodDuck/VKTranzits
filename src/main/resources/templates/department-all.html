@@ -42,6 +42,15 @@
 		    </tr>
 	  	 </thbody>
 		</table>
+		
+		<!-- cool as heck nav bar-->
+		<div th:replace="fragments/pageination-navbar.html :: pageination-navbar(
+			 pageName = 'departments',
+			 currentPage = ${currentPage},
+			 totalPages = ${totalPages},
+			 totalElements = ${totalElements}
+			 )">
+		</div>
 	
 	</div>
 	
