@@ -47,6 +47,17 @@ public class CourseController {
 		model.addAttribute("totalPages", page.getTotalPages());
 		return "course-all";
 	}
+	
+	@GetMapping("/courses/{pageNr}/{field}") // All Employees
+	public String getAllCourseWithSort(Model model, @PathVariable("pageNr") int currentPage, @PathVariable("field") String field) {
+		Page<Course> page = courseService.getPageListWithSort(currentPage, field);
+		model.addAttribute("course", page);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("totalElements", page.getTotalElements());
+		model.addAttribute("totalPages", page.getTotalPages());
+		model.addAttribute("field", field);
+		return "course-all";
+	}
 
 	@GetMapping("/course/addNew")
 	public String getAddCourses(Model model, Course course) {

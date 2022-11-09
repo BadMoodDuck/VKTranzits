@@ -28,4 +28,6 @@ public interface ICourseService {
 
 	Course readCourseById(int id) throws Exception;
 
+	Page<Course> getPageListWithSort(int pageNr,String field);
+	
 }

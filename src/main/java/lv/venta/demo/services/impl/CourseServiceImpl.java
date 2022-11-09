@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import lv.venta.demo.models.Course;
@@ -99,6 +100,12 @@ public class CourseServiceImpl implements ICourseService {
 	@Override
 	public Page<Course> getPageList(int pageNr) {
 		Pageable pageable = PageRequest.of(pageNr - 1, 2);
+		return courseRepo.findAll(pageable);
+	}
+
+	@Override
+	public Page<Course> getPageListWithSort(int pageNr, String field) {
+		Pageable pageable = PageRequest.of(pageNr - 1, 2, Sort.by(field));
 		return courseRepo.findAll(pageable);
 	}
 
