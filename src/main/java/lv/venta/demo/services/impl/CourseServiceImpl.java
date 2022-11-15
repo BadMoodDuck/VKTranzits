@@ -102,11 +102,21 @@ public class CourseServiceImpl implements ICourseService {
 		Pageable pageable = PageRequest.of(pageNr - 1, 2);
 		return courseRepo.findAll(pageable);
 	}
-
+	
 	@Override
 	public Page<Course> getPageListWithSort(int pageNr, String field) {
-		Pageable pageable = PageRequest.of(pageNr - 1, 2, Sort.by(field));
+		Pageable pageable = PageRequest.of(pageNr - 1, 2, Sort.by(field).ascending());
 		return courseRepo.findAll(pageable);
+	}
+
+	@Override
+	public Page<Course> getPageListWithSort(int pageNr, String field, String sortDir) {
+		Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name())?
+				Sort.by(field).ascending(): Sort.by(field).descending();
+		
+		Pageable pageable = PageRequest.of(pageNr - 1, 2, sort);
+		return courseRepo.findAll(pageable);
+	
 	}
 
 

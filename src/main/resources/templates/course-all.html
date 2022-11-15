@@ -21,9 +21,18 @@
 
 			<thead>
 				<tr>
-					<th scope="col">#</th>
-					<th scope="col">Course type  </th>
-					<th scope="col"> <a class="link-primary" th:herf="@{/courses/{page}/{field} (page=${currentPage}, field=${field})}" role="link">Title</a > </th>
+					<th scope="col">
+					  <a class="link-primary" 
+					  th:href="@{/courses/{page}/idCou?sortDir={sortDir} (page=${currentPage}, sortDir=${reverseSortDir})}" role="link">#</a >
+					</th>
+					<th scope="col">
+					  <a class="link-primary" 
+					  th:href="@{/courses/{page}/coType?sortDir={sortDir} (page=${currentPage}, sortDir=${reverseSortDir})}" role="link">Course type</a >
+					</th>
+					<th scope="col">
+					 <a class="link-primary" 
+					  th:href="@{/courses/{page}/title?sortDir={sortDir} (page=${currentPage}, sortDir=${reverseSortDir})}" role="link">Title</a > 
+					</th>
 					<th scope="col">Description</th>
 					<th scope="col"></th>
 				</tr>
