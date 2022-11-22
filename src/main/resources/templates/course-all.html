@@ -15,7 +15,9 @@
 	<div th:replace="fragments/header :: header"></div>
 
 	<div class="container">
-		<h1>All courses <a class="btn btn-primary" th:href="@{/course/addNew}" role="button">Add new</a> </h1>
+		<h1>All courses 
+			<a style="float: right; margin-top: 8px;" class="btn btn-primary" th:href="@{/course/addNew}" role="button">Add new</a> 
+		</h1>
 
 		<table class="table table-striped table-hover">
 
@@ -23,15 +25,15 @@
 				<tr>
 					<th scope="col">
 					  <a class="link-primary" 
-					  th:href="@{/courses/{page}/idCou?sortDir={sortDir} (page=${currentPage}, sortDir=${reverseSortDir})}" role="link">#</a >
+					  	th:href="@{/courses/{page}/idCou?sortDir={sortDir} (page=${currentPage}, sortDir=${reverseSortDir})}" role="link">#</a >
 					</th>
 					<th scope="col">
 					  <a class="link-primary" 
-					  th:href="@{/courses/{page}/coType?sortDir={sortDir} (page=${currentPage}, sortDir=${reverseSortDir})}" role="link">Course type</a >
+					  	th:href="@{/courses/{page}/coType?sortDir={sortDir} (page=${currentPage}, sortDir=${reverseSortDir})}" role="link">Course type</a >
 					</th>
 					<th scope="col">
 					 <a class="link-primary" 
-					  th:href="@{/courses/{page}/title?sortDir={sortDir} (page=${currentPage}, sortDir=${reverseSortDir})}" role="link">Title</a > 
+					 	 th:href="@{/courses/{page}/title?sortDir={sortDir} (page=${currentPage}, sortDir=${reverseSortDir})}" role="link">Title</a > 
 					</th>
 					<th scope="col">Description</th>
 					<th scope="col"></th>

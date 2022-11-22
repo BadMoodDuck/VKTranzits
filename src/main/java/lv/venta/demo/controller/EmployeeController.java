@@ -1,6 +1,7 @@
 package lv.venta.demo.controller;
 
 import javax.validation.Valid;
+import javax.websocket.server.PathParam;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,22 @@ public class EmployeeController {
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("totalElements", page.getTotalElements());
 		model.addAttribute("totalPages", page.getTotalPages());
+		return "employee-all";
+	}
+	
+	@GetMapping("/employees/{pageNr}/{field}") // Sort All Employees  //TODO README: Sorting works but it sorts all of the elements even the ones not displayed so switching pages will be confusing
+	public String getAllEmployeesWithSort(Model model,
+									   @PathVariable("pageNr") int currentPage,
+									   @PathVariable("field") String field,
+									   @PathParam("sortDir") String sortDir) {
+		
+		Page<Employee> page = employeeService.getPageListWithSort(currentPage, field, sortDir);
+		model.addAttribute("reverseSortDir", sortDir.equals("asc")? "desc" : "asc");
+		model.addAttribute("employee", page);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("totalElements", page.getTotalElements());
+		model.addAttribute("totalPages", page.getTotalPages());
+		model.addAttribute("field", field);
 		return "employee-all";
 	}
 	
