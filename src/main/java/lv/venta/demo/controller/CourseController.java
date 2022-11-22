@@ -2,6 +2,7 @@ package lv.venta.demo.controller;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+import javax.websocket.server.PathParam;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,13 +39,29 @@ public class CourseController {
 		return getPageCourses(model, 1);
 	}
 
-	@GetMapping("/courses/{pageNr}") // All Employees
+	@GetMapping("/courses/{pageNr}") // All Courses
 	public String getPageCourses(Model model, @PathVariable("pageNr") int currentPage) {
 		Page<Course> page = courseService.getPageList(currentPage);
 		model.addAttribute("course", page);
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("totalElements", page.getTotalElements());
 		model.addAttribute("totalPages", page.getTotalPages());
+		return "course-all";
+	}
+	
+	@GetMapping("/courses/{pageNr}/{field}") // Sort All Courses  //TODO README: Sorting works but it sorts all of the elements even the ones not displayed so switching pages will be confusing
+	public String getAllCourseWithSort(Model model,
+									   @PathVariable("pageNr") int currentPage,
+									   @PathVariable("field") String field,
+									   @PathParam("sortDir") String sortDir) {
+		
+		Page<Course> page = courseService.getPageListWithSort(currentPage, field, sortDir);
+		model.addAttribute("reverseSortDir", sortDir.equals("asc")? "desc" : "asc");
+		model.addAttribute("course", page);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("totalElements", page.getTotalElements());
+		model.addAttribute("totalPages", page.getTotalPages());
+		model.addAttribute("field", field);
 		return "course-all";
 	}
 

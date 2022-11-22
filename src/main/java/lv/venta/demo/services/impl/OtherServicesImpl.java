@@ -50,7 +50,7 @@ public class OtherServicesImpl implements IOtherServices {
 	
 	@Override
 	public Page<Company> getPageList(int pageNr) {
-		Pageable pageable = PageRequest.of(pageNr - 1, 2);
+		Pageable pageable = PageRequest.of(pageNr - 1, 10);
 		return companyRepo.findAll(pageable);
 	}
 

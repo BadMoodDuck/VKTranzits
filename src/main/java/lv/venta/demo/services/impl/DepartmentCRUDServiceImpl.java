@@ -60,7 +60,7 @@ public class DepartmentCRUDServiceImpl implements IDepartmentCRUDService{
 
 	@Override
 	public Page<Department> getPageList(int currentPage) {
-		Pageable pagable = PageRequest.of(currentPage-1, 2);
+		Pageable pagable = PageRequest.of(currentPage-1, 10);
 		return departmentRepo.findAll(pagable);
 	}
 
