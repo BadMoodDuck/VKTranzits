@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import lv.venta.demo.models.Company;
 import lv.venta.demo.models.Course;
 import lv.venta.demo.models.Department;
+import lv.venta.demo.models.Position;
 import lv.venta.demo.services.IDepartmentCRUDService;
 import lv.venta.demo.services.IEmployeeCRUDservice;
 import lv.venta.demo.services.IOtherServices;
@@ -109,6 +110,42 @@ public class OtherController {
 		} else {
 			otherService.insertNewCompany(company);
 			return "redirect:/companies";
+		}
+	}
+	
+	
+	//TODO
+	/*
+	
+	@GetMapping("/positions") // All Positions
+	public String getAllPositions(Model model) {
+		return getPagePositions(model, 1);
+	}
+	
+	@GetMapping("/positions/{pageNr}") 
+	public String getPagePositions(Model model, @PathVariable("pageNr") int currentPage) {
+		Page<Position> page = otherService.getPageList(currentPage);
+		model.addAttribute("company", page);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("totalElements", page.getTotalElements());
+		model.addAttribute("totalPages", page.getTotalPages());
+		return "position-all";
+	}
+	*/
+	
+	@GetMapping("/position/addNew") 
+	public String getAddPosition(Position position) {
+		return "position-add";
+	}
+	
+	@PostMapping("/position/addNew") 
+	public String postAddPosition(@Valid Position position, BindingResult result) {
+		if (result.hasErrors()) {
+			System.out.println(result);
+			return "error";
+		} else {
+			otherService.insertNewPosition(position);
+			return "position-all";
 		}
 	}
 	
