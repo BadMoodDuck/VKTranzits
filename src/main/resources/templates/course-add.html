@@ -12,23 +12,23 @@
 	<div th:replace="fragments/header :: header"></div>
 	
 	<div class="container">
-  		<h1>Add course</h1>
+  		<h1 th:text="#{course.add}">Add course</h1>
 
   		<form action="#" th:action="@{/course/addNew}" th:object="${course}" method="post">
   		
   		<table>
   		<tr>
-		    <td><label>Title</label></td>
+		    <td><label th:text="#{description}">Title</label ></td>
 		    <td><input type="text" th:field="*{title}"></td>
 		    <td th:if="${#fields.hasErrors('title')}" th:errors="*{title}"><td>
   		</tr>
   		<tr>
-		    <td><label>Descripion</label></td>
+		    <td><label th:text="#{description}">Descripion</label></td>
 		    <td><input type="text"  th:field="*{description}"></td>
 		    <td th:if="${#fields.hasErrors('description')}" th:errors="*{description}"><td>
 		</tr>
 		<tr>  
-		    <td><label>Course type</label></td>
+		    <td><label th:text="#{course.type}">Course type</label></td>
 		    <td>
 			    <select th:field="*{coType}">
 			    	<option th:each="c: ${courseTypes}" th:value="${c.idTy}" th:text="${c.title}" />
@@ -37,7 +37,7 @@
 		</tr>
 
   		<tr>
-		  <td><button type="submit" class="btn btn-primary">Submit</button></td>
+		  <td><button type="submit" class="btn btn-primary" th:text="#{submit}">Submit</button></td>
   		</tr>
 		  </table>
   		</form>
