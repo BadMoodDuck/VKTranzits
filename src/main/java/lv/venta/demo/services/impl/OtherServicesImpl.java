@@ -19,9 +19,6 @@ import lv.venta.demo.services.IOtherServices;
 
 @Service
 public class OtherServicesImpl implements IOtherServices {
-
-	@Autowired
-	private IPositionRepo positionRepo;
 	
 	@Autowired
 	private ICourseTypeRepo coTypeRepo;
@@ -29,10 +26,9 @@ public class OtherServicesImpl implements IOtherServices {
 	@Autowired
 	private ICompanyRepo companyRepo;
 	
-	@Override
-	public ArrayList<Position> getAllPositions() {
-		return (ArrayList<Position>) positionRepo.findAll();
-	}
+	@Autowired
+	private IPositionRepo positionRepo;
+	
 
 	@Override
 	public ArrayList<CourseType> getAllCourseTypes() {
@@ -68,5 +64,19 @@ public class OtherServicesImpl implements IOtherServices {
 		
 		return (ArrayList<Company>) companyRepo.findAll();
 	}
+	
+	@Override
+	public ArrayList<Position> getAllPositions() {
+		return (ArrayList<Position>) positionRepo.findAll();
+	}
+
+	@Override
+	public boolean insertNewPosition(Position position) {
+		if(!positionRepo.existsByTitleIgnoreCase(position.getTitle())) {
+			positionRepo.save(position);
+		}
+		return false;
+	}
+	
 
 }

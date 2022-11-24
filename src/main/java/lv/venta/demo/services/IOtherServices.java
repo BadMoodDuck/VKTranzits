@@ -10,8 +10,6 @@ import lv.venta.demo.models.CourseType;
 import lv.venta.demo.models.Position;
 
 public interface IOtherServices {
-
-	ArrayList<Position> getAllPositions();
 	
 	ArrayList<CourseType> getAllCourseTypes();
 	
@@ -22,4 +20,8 @@ public interface IOtherServices {
 	Company getCompanyById(int id) throws Exception;
 
 	ArrayList<Company> getAllCompanies();
+
+	ArrayList<Position> getAllPositions();
+
+	boolean insertNewPosition(Position position);
 }

@@ -36,7 +36,7 @@ public class EmployeeController {
 	
 	@Autowired
 	private IOtherServices otherService;
-
+	
 	
 	@GetMapping("/employees") // All Employees
 	public String getAllEmployees(Model model) {
@@ -102,14 +102,16 @@ public class EmployeeController {
 			//MyMessage message = new MyMessage("Employee deleted successfully");
 			//template.convertAndSend(MQConfig.exchange, MQConfig.routingKey, message);
 			model.addAttribute("Employee", employeeService.deleteEmployeeById(id));
-			return "employee-all";
+			return "redirect:/employees";
 		}
-		
+		//TODO fix update
 		// localhost:8080/employee/update/{id}
 		@GetMapping("/employee/update/{id}")
 		public String getUpdateEmployeeById(@PathVariable(name="id") int id, Model model) throws Exception {
 			try {
 				model.addAttribute("employee", employeeService.readEmployeeById(id));
+				model.addAttribute("departments", departmentsService.getAllDepartments());
+				model.addAttribute("positions", otherService.getAllPositions());
 				return "employee-update";
 			} catch (Exception e){
 				throw new Exception("can't find employee");

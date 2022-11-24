@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import lv.venta.demo.models.Course;
+import lv.venta.demo.models.Department;
 import lv.venta.demo.models.Employee;
 import lv.venta.demo.repos.IDepartmentRepo;
 import lv.venta.demo.repos.IEmployeeRepo;
@@ -42,14 +43,16 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 
 	@Override 
 	public boolean updateEmployeeById(int employeeId, Employee employee) {
+		Employee result = new Employee();
 		if (employeeRepo.existsById(employeeId)) {
-			Employee temp = employeeRepo.findById(employeeId).get();
-			temp.setName(employee.getName());
-			temp.setSurname(employee.getSurname());
-			temp.setPhone(employee.getPhone());
-			temp.setEmail(employee.getEmail());
-			temp.setDepartment(employee.getDepartment());
-			temp.setPosition(employee.getPosition());
+			result = employeeRepo.findById(employeeId).get();
+			result.setName(employee.getName());
+			result.setSurname(employee.getSurname());
+			result.setPhone(employee.getPhone());
+			result.setEmail(employee.getEmail());
+			result.setDepartment(employee.getDepartment());
+			result.setPosition(employee.getPosition());
+			employeeRepo.save(result);
 			return true;
 		}
 		return false;
@@ -58,6 +61,8 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 	@Override
 	public boolean deleteEmployeeById(int employeeId) {
 		if (employeeRepo.existsById(employeeId)) {
+			Employee employee = employeeRepo.findById(employeeId).get();
+			
 			employeeRepo.deleteById(employeeId);
 			return true;
 		}

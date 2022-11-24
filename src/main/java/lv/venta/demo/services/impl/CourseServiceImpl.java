@@ -39,9 +39,9 @@ public class CourseServiceImpl implements ICourseService {
 
 	@Override
 	public boolean insertNewCourse(Course course) {
-		//if (!courseRepo.existsByTitleIgnoreCase(title)) { TODO MAKE VALIDATION THAT COURSE ALREADY DOESNT EXIST
+		if (!courseRepo.existsByTitleIgnoreCase(course.getTitle())) {
 			courseRepo.save(course);
-		//}
+		}
 		return true;
 	}
 
@@ -86,11 +86,7 @@ public class CourseServiceImpl implements ICourseService {
 				departmentRepo.save(department);
 			}
 			
-//			ArrayList<Employee> allEmpForThisCourse = employeeRepo.findByCoursesIdCou(courseId);
-//			for (Employee employee : allEmpForThisCourse) {
-//				employee.removeCourse(course);
-//				employeeRepo.save(employee);
-//			} 
+
 			courseRepo.deleteById(courseId);
 			return true;
 		}
