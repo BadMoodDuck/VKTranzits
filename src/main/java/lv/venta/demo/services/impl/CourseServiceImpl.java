@@ -1,21 +1,24 @@
 package lv.venta.demo.services.impl;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import lv.venta.demo.models.Course;
+<<<<<<< HEAD
 import lv.venta.demo.models.CourseType;
 import lv.venta.demo.models.Department;
 import lv.venta.demo.models.Employee;
+=======
+import lv.venta.demo.models.Department;
+>>>>>>> 03e5bf7a73f7983721924a652ccb19a1a7ce2e99
 import lv.venta.demo.repos.ICourseRepo;
 import lv.venta.demo.repos.IDepartmentRepo;
-import lv.venta.demo.repos.IEmployeeRepo;
 import lv.venta.demo.services.ICourseService;
 
 @Service
@@ -25,8 +28,6 @@ public class CourseServiceImpl implements ICourseService {
 	private ICourseRepo courseRepo;
 	@Autowired
 	private IDepartmentRepo departmentRepo;
-	@Autowired
-	private IEmployeeRepo employeeRepo;
 	
 	//TODO pabeigt funkcijas ar visam parbaudem
 	@Override
@@ -52,14 +53,14 @@ public class CourseServiceImpl implements ICourseService {
 
 	@Override
 	public boolean updateExistingCourseById(int courseId, Course course) {
-		// TODO Auto-generated method stub
+		
 		Course result = new Course();
 		if (courseRepo.existsById(courseId)) {
-			result = courseRepo.findByIdCou(courseId);
+			result = courseRepo.findById(courseId).get();
 			result.setCoType(course.getCoType());
 			result.setTitle(course.getTitle());
 			result.setDescription(course.getDescription());
-			courseRepo.save(course);
+			courseRepo.save(result);
 			return true;
 		} else {
 			return false;
@@ -104,8 +105,19 @@ public class CourseServiceImpl implements ICourseService {
  
 	@Override
 	public Page<Course> getPageList(int pageNr) {
-		Pageable pageable = PageRequest.of(pageNr - 1, 2);
+		Pageable pageable = PageRequest.of(pageNr - 1, 10);
 		return courseRepo.findAll(pageable);
+	}
+	
+
+	@Override
+	public Page<Course> getPageListWithSort(int pageNr, String field, String sortDir) {
+		Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name())?
+				Sort.by(field).ascending(): Sort.by(field).descending();
+		
+		Pageable pageable = PageRequest.of(pageNr - 1, 10, sort);
+		return courseRepo.findAll(pageable);
+	
 	}
 
 

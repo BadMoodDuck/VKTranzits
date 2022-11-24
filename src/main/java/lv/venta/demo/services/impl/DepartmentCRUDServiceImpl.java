@@ -1,8 +1,12 @@
 package lv.venta.demo.services.impl;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lv.venta.demo.models.Course;
@@ -14,25 +18,43 @@ import lv.venta.demo.repos.IEmployeeRepo;
 import lv.venta.demo.services.IDepartmentCRUDService;
 
 @Service
-public class DepartmentCRUDService implements IDepartmentCRUDService{
+public class DepartmentCRUDServiceImpl implements IDepartmentCRUDService{
 
 	@Autowired
 	private IDepartmentRepo departmentRepo;
-	
-
 	@Autowired
 	private IEmployeeRepo emRepo;
-
-	
 	@Autowired
-	private ICourseRepo cRepo;
+	private ICourseRepo courseRepo;
 	
-
+	
 	@Override
 	public ArrayList<Department> getAllDepartments() {
 		return (ArrayList<Department>) departmentRepo.findAll();
 	}
 	
+	@Override
+	public ArrayList<Course> getAllCoursesFromDepartment(int idDe) {
+		if (departmentRepo.existsById(idDe)) {
+			Department department = departmentRepo.findById(idDe).get();
+			return courseRepo.findByDepartments(department);
+		}
+		return null;
+	}
+
+	@Override
+	public boolean insertNewDepartment(Department department) {
+		// TODO VALIDATION ?
+		departmentRepo.save(department);
+		return true;
+	}
+
+	@Override
+	public Page<Department> getPageList(int currentPage) {
+		Pageable pagable = PageRequest.of(currentPage-1, 10);
+		return departmentRepo.findAll(pagable);
+	}
+
 	@Override
 	public boolean deleteDepartmentById(int id) {
 		if(departmentRepo.existsById(id)) {
@@ -41,10 +63,10 @@ public class DepartmentCRUDService implements IDepartmentCRUDService{
 				temp.setDepartment(null);
 				emRepo.save(temp);
 			}
-			ArrayList<Course> cours= cRepo.findByDepartmentsIdDe(id);
+			ArrayList<Course> cours= courseRepo.findByDepartmentsIdDe(id);
 			for(Course temp : cours) {
 				temp.setDepartments(null);
-				cRepo.save(temp);
+				courseRepo.save(temp);
 			}
 			departmentRepo.deleteById(id);
 			return true;

@@ -12,42 +12,16 @@
 	<div th:replace="fragments/header :: header"></div>
 	
 	<div class="container">
-  		<h1>Add department</h1>
+  		<h1>Add company</h1>
 
-  		<form action="#" th:action="@{/department/addNew}" th:object="${department}" method="post">
+  		<form action="#" th:action="@{/company/addNew}" th:object="${company}" method="post">
   		
   		<table>
   		<tr>
-<<<<<<< HEAD
-		    <td><label>Company</label></td>
-		   <select class="form-control" th:field="*{company}" > 
-				<option  th:each="temp:${listCompanies}"
-				th:value="${temp.getIdCo}" 
-				
-				th:text="${temp.getName} ?: 'default value'" > </option>
-			</select>
-  		</tr>
-  		<tr>
-		    <td><label>Name</label></td>
-		    <td><input type="text"  th:field="*{name}"></td>
-		    <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"><td>
-
-		</tr>
-		
-=======
 		    <td><label>Name</label></td>
 		    <td><input type="text" th:field="*{name}"></td>
 		    <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"><td>
   		</tr>
-		<tr>  
-		    <td><label>Company</label></td>
-		    <td>
-			    <select th:field="*{company}">
-			    	<option th:each="c: ${companies}" th:value="${c.idCo}" th:text="${c.name}" />
-				</select>
-		    </td>
-		</tr>
->>>>>>> 03e5bf7a73f7983721924a652ccb19a1a7ce2e99
   		<tr>
 		  <td><button type="submit" class="btn btn-primary">Submit</button></td>
   		</tr>

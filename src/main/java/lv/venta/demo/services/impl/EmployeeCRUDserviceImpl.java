@@ -6,8 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import lv.venta.demo.models.Course;
 import lv.venta.demo.models.Employee;
+import lv.venta.demo.repos.IDepartmentRepo;
 import lv.venta.demo.repos.IEmployeeRepo;
 import lv.venta.demo.services.IEmployeeCRUDservice;
 
@@ -17,11 +21,12 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 	
 	@Autowired
 	private IEmployeeRepo employeeRepo;
-	
+	@Autowired
+	private IDepartmentRepo departmentRepo;
 	
 	@Override
 	public Page<Employee> getPageList(int pageNr) {
-		Pageable pageable = PageRequest.of(pageNr-1, 2);
+		Pageable pageable = PageRequest.of(pageNr-1, 10);
 		return employeeRepo.findAll(pageable);
 	}
 	
@@ -85,8 +90,16 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 		
 	
 	}
-
+	@Override
+	public Page<Employee> getPageListWithSort(int pageNr, String field, String sortDir) {
+		Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name())?
+				Sort.by(field).ascending(): Sort.by(field).descending();
+		
+		Pageable pageable = PageRequest.of(pageNr - 1, 10, sort);
+		return employeeRepo.findAll(pageable);
 	
+	}
+
 
 }
 

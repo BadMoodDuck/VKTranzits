@@ -3,11 +3,12 @@ package lv.venta.demo.repos;
 import java.util.ArrayList;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import lv.venta.demo.models.Department;
 import lv.venta.demo.models.Employee;
 
-public interface IDepartmentRepo extends CrudRepository<Department,Integer>{
+public interface IDepartmentRepo extends PagingAndSortingRepository<Department,Integer>{
 
 	ArrayList<Employee> findAllByEmployeesIdEm(int employeeId);
 
