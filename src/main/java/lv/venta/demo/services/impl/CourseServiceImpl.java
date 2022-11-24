@@ -10,13 +10,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import lv.venta.demo.models.Course;
-<<<<<<< HEAD
 import lv.venta.demo.models.CourseType;
 import lv.venta.demo.models.Department;
 import lv.venta.demo.models.Employee;
-=======
 import lv.venta.demo.models.Department;
->>>>>>> 03e5bf7a73f7983721924a652ccb19a1a7ce2e99
 import lv.venta.demo.repos.ICourseRepo;
 import lv.venta.demo.repos.IDepartmentRepo;
 import lv.venta.demo.services.ICourseService;
