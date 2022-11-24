@@ -101,8 +101,13 @@ public class EmployeeController {
 		public String getDeleteEmployeeById(Model model, @PathVariable(name = "id") int id) {
 			//MyMessage message = new MyMessage("Employee deleted successfully");
 			//template.convertAndSend(MQConfig.exchange, MQConfig.routingKey, message);
-			model.addAttribute("Employee", employeeService.deleteEmployeeById(id));
-			return "employee-all";
+			if(employeeService.deleteEmployeeById(id)) {
+				model.addAttribute("Employee", employeeService.selectAllEmployees());
+				return "redirect:/employees";
+			}else {
+				return "error-page";
+			}
+			
 		}
 		
 		// localhost:8080/employee/update/{id}
@@ -116,6 +121,7 @@ public class EmployeeController {
 			}
 			
 		}
+		
 
 		// localhost:8080/course/update/{id}
 		@PostMapping("/employee/update/{id}")

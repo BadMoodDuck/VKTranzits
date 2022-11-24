@@ -73,6 +73,11 @@
 			<artifactId>spring-boot-starter-amqp</artifactId>
 		</dependency>
 
+		<dependency>
+		    <groupId>org.apache.poi</groupId>
+		    <artifactId>poi-ooxml</artifactId>
+		    <version>5.2.2</version>
+		</dependency>
 
 	</dependencies>
 
@@ -84,6 +89,16 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-	</build>
+	
+    <pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.4.0.905</version>
+            </plugin>
+        </plugins>
+    </pluginManagement>
+</build>
 
 </project>

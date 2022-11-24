@@ -28,7 +28,7 @@ public class OtherServicesImpl implements IOtherServices {
 	
 	@Autowired
 	private ICompanyRepo compRepo;
-	private ICompanyRepo companyRepo;
+	//private ICompanyRepo companyRepo;
 	
 	@Override
 	public ArrayList<Position> getAllPositions() {
@@ -44,8 +44,8 @@ public class OtherServicesImpl implements IOtherServices {
 //	public ArrayList<Company> getAllCompanies() {
 //		return (ArrayList<Company>) compRepo.findAll();
 	public boolean insertNewCompany(Company company) {
-		if(!companyRepo.existsByNameIgnoreCase(company.getName())){
-			companyRepo.save(company);
+		if(!compRepo.existsByNameIgnoreCase(company.getName())){
+			compRepo.save(company);
 			return true;
 		}
 		return false;
@@ -54,19 +54,19 @@ public class OtherServicesImpl implements IOtherServices {
 	@Override
 	public Page<Company> getPageList(int pageNr) {
 		Pageable pageable = PageRequest.of(pageNr - 1, 10);
-		return companyRepo.findAll(pageable);
+		return compRepo.findAll(pageable);
 	}
 
 	@Override
 	public Company getCompanyById(int id) throws Exception {
-		if (companyRepo.existsById(id)) {
-			return companyRepo.findById(id).get();
+		if (compRepo.existsById(id)) {
+			return compRepo.findById(id).get();
 		}
 		throw new Exception("Company doesn't exist");
 	}
 	@Override
 	public ArrayList<Company> getAllCompanies() {
-		return (ArrayList<Company>) companyRepo.findAll();
+		return (ArrayList<Company>) compRepo.findAll();
 	}
 
 }

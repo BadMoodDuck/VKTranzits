@@ -39,7 +39,10 @@
 			      <td th:text="${employee.getEmail()}">#</td>
 			      <td th:text="${employee.getDepartment().getName()}">#</td>
 			      <td th:text="${employee.getPosition().getTitle()}">#</td>
+			      <td><a class="btn btn-danger" th:href="@{/employee/delete/{id}(id=${employee.getIdEm()})}" role="button">Delete</a>
+			      </td>
 			    </tr>
+			    
 	  	 	</thbody>	
 
 		</table>

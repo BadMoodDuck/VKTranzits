@@ -1,6 +1,10 @@
 package lv.venta.demo.controller;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +18,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import lv.venta.demo.models.Company;
 import lv.venta.demo.models.Department;
+import lv.venta.demo.models.EmployeeCourse;
+import lv.venta.demo.models.ExcelExport;
 import lv.venta.demo.services.IDepartmentCRUDService;
 import lv.venta.demo.models.Course;
 import lv.venta.demo.models.Department;
@@ -29,6 +35,9 @@ public class OtherController {
 	
 	@Autowired
 	private IOtherServices otherService;
+	
+	@Autowired
+	private IEmployeeCRUDservice eService;
 	
 //	@GetMapping("/department") // All Employees
 //	public String getAllEmployees(Model model) {
@@ -74,9 +83,30 @@ public class OtherController {
 		}else {
 			return "error-add-page";
 		}
-		
-		
-		
+				
+	}
+	/*
+	 * 	@GetMapping("/teacher/remove/{id}")
+	public String deleteTeacherById(Model models, @PathVariable(name="id")int id) {
+		if(teacherService.deleteTeacherById(id)) {
+			models.addAttribute("object", teacherService.selectAllTeachers());
+			return"teacher-all-page";
+		}else {
+			return "error-page";
+		}
+	
+			
+	}
+	 */
+	
+	@GetMapping("/department/delete/{id}")
+	public String deleteDepartment(Model models, @PathVariable(name="id")int id) {
+		if(departmentService.deleteDepartmentById(id)) {
+			models.addAttribute("departments", departmentService.getAllDepartments());
+			return "redirect:/departments";
+		}else {
+			return "error-page";
+		}
 	}
 
 
@@ -86,22 +116,6 @@ public class OtherController {
 		return "department-course-all";
 	}
 	
-	@GetMapping("/department/addNew") // TODO NEEDS Company	
-	public String getAdddepartment(Model model, Department department) {
-		model.addAttribute("companies", otherService.getAllCompanies());
-		return "department-add";
-	}
-
-	@PostMapping("/department/addNew") 
-	public String postAdddepartment(@Valid Department department, BindingResult result) {
-		if (result.hasErrors()) {
-			System.out.println(result);
-			return "error";
-		} else {
-			departmentService.insertNewDepartment(department);
-			return "redirect:/departments";
-		}
-	}
 	
 	@GetMapping("/companies") // All Companies
 	public String getAllCompanies(Model model) {
@@ -144,6 +158,17 @@ public class OtherController {
 		}
 	}
 	
+	@GetMapping("/export/excel")
+	public void exportExcel( HttpServletResponse response) throws IOException{
+		response.setContentType("application/octet-stream");
+		String headerKey = "Content-Disposition";
+		String headervalue = "attachment; filename=EmployeeCourse_info.xlsx";
+		response.setHeader(headerKey, headervalue);
+		ArrayList<EmployeeCourse> allEmplCourse = eService.findAll();
+		ExcelExport excel = new ExcelExport(allEmplCourse);
+		excel.export(response);
+	
+	}
 
 }
 
