@@ -25,14 +25,16 @@
 			<li class="nav-item">
 				<a class="nav-link" th:href="@{/logout}" th:text="#{logout}">Logout</a>
 			</li>
-			<li>
-			<span style="text-align:center" th:text="#{lang.change}"></span>:
-			<select id="locales">
-				<option></option>
-				<option value="en" th:text="#{lang.eng}"></option>
-				<option value="lv" th:text="#{lang.lv}"></option>
-				<option value="ru" th:text="#{lang.ru}"></option>
-			</select>
+			<li class="nav-item">
+				<span class="nav-link" style="color: black; text-align: center;" th:text="#{lang.change}"></span>
+			</li>
+			<li class="nav-item">
+				<select style="margin-top: 8px" id="locales">
+					<option></option>
+					<option value="en" th:text="#{lang.eng}"></option>
+					<option value="lv" th:text="#{lang.lv}"></option>
+					<option value="ru" th:text="#{lang.ru}"></option>
+				</select>
 			</li>
 			
 			
