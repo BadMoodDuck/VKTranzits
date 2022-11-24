@@ -54,6 +54,10 @@ public class Employee {
 	@Size(min = 1, max = 40)
 	@Pattern(regexp = "[\\w-]+@[\\w-]+.+[\\w-]{2,4}$")
 	private String email;
+	
+	@Column(name = "Password")
+	@Size(min = 8, max = 40)
+	private String password;
 
 	@ManyToOne()
 	@JoinColumn(name = "IdDe")
@@ -67,11 +71,12 @@ public class Employee {
 	@JoinColumn(name = "IdPos")
 	private Position position;
 
-	public Employee(String name,String surname,int phone,String email,Department department, Position position) {
+	public Employee(String name,String surname,int phone,String email, String password, Department department, Position position) {
 		this.name = name;
 		this.surname =surname;
 		this.phone =phone;
 		this.email =email;
+		this.password =password;
 		this.department = department;
 		this.position = position;
 

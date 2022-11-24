@@ -16,8 +16,8 @@
 
 	<div class="container">
 
-		<h1> <span th:text="#{companies}"></span>
-		<a style="float: right; margin-top: 8px;" class="btn btn-primary" th:href="@{/company/addNew}" role="button"><span th:text="#{add}"></span> </a> 
+		<h1> <span th:text="#{courseTypes}"></span>
+		<a style="float: right; margin-top: 8px;" class="btn btn-primary" th:href="@{/course/type/addNew}" role="button"><span th:text="#{add}"></span> </a> 
 		</h1>
 
 		<table class="table table-striped table-hover">
@@ -25,17 +25,24 @@
 			<thead>
 				<tr>
 					<th scope="col">#</th>
-					<th scope="col" th:text="#{companyName}"></th>
+					<th scope="col" th:text="#{courseTypeTitle}"></th>
+					<th scope="col" th:text="#{courseTypeIsObligatory}"></th>
+					<th scope="col" th:text="#{courseTypeDescription}"></th>
 					<th style="margin-left: auto;" scope="col"></th>
 				</tr>
 			</thead>
 			<thbody>
-				<tr th:each="company: ${company}">
-					<td th:text="${company.idCo}">#</td>
-					<td th:text="${company.name}">#</td>
-			      	<td>
-			      		<a class="btn btn-primary" th:href="@{/company/{id}(id=${company.idCo})}" role="button" th:text="#{view}">View</a>
-			      	</td>	
+				<tr th:each="courseType: ${courseTypes}">
+					<td th:text="${courseType.idTy}">#</td>
+					<td th:text="${courseType.title}">#</td>
+					<td th:text="${courseType.isObligatory}">#</td>
+					<td th:text="${courseType.description}">#</td>
+			      	<td >
+			      		<a class="btn btn-primary" th:href="@{/course/type/update/{id}(id=${courseType.idTy})}" role="button" th:text="#{edit}">View</a>
+			      	</td>
+			      	<td >
+			      		<a class="btn btn-danger" th:href="@{/course/type/delete/{id}(id=${courseType.idTy})}" role="button" th:text="#{delete}">View</a>
+			      	</td>		
 				</tr>
 			</thbody>
 		</table>
