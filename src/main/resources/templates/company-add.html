@@ -12,18 +12,18 @@
 	<div th:replace="fragments/header :: header"></div>
 	
 	<div class="container">
-  		<h1>Add company</h1>
+  		<h1 th:text="#{company.add}">Add company</h1>
 
   		<form action="#" th:action="@{/company/addNew}" th:object="${company}" method="post">
   		
   		<table>
   		<tr>
-		    <td><label>Name</label></td>
+		    <td><label th:text="#{title}">Name</label></td>
 		    <td><input type="text" th:field="*{name}"></td>
 		    <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"><td>
   		</tr>
   		<tr>
-		  <td><button type="submit" class="btn btn-primary">Submit</button></td>
+		  <td><button type="submit" class="btn btn-primary" th:text="#{submit}">Submit</button></td>
   		</tr>
 		  </table>
   		</form>

@@ -12,18 +12,17 @@
 	<div th:replace="fragments/header :: header"></div>
 	
 	<div class="container">
-  		<h1>All Departments 
-  			<a style="float: right; margin-top: 8px;" class="btn btn-primary" th:href="@{department/addNew}" role="button">Add new</a> 
+  		<h1><span th:text="#{departments}"></span>
+  			<a style="float: right; margin-top: 8px;" class="btn btn-primary" th:href="@{department/addNew}" role="button"><span th:text="#{add}"></span> </a> 
   		</h1>
-	
 		<table class="table table-striped table-hover">
 		 <thead>
 		    <tr>
 		      <th scope="col">#</th>
-		      <th scope="col">Name</th>
-		      <th scope="col">Company</th>
-		      <th scope="col">Employees</th>
-		      <th scope="col">Courses</th>
+		      <th scope="col" th:text="#{department.name}">Name</th>
+		      <th scope="col" th:text="#{company}">Company</th>
+		      <th scope="col" th:text="#{employees}">Employees</th>
+		      <th scope="col" th:text="#{courses}">Courses</th>
 		      <th scope="col"></th>
 		    </tr>
 	  	 </thead>
@@ -33,13 +32,13 @@
 		      <td th:text="${department.name}">#</td>
 		      <td th:text="${department.company.name}">#</td>
 		      <td>
-		      	<a class="btn btn-primary" th:href="@{/department/{id}/employees(id=${department.idDe})}" role="button">Employees</a>
+		      	<a class="btn btn-primary" th:href="@{/department/{id}/employees(id=${department.idDe})}" role="button" th:text="#{employees}">Employees</a>
 		      </td>
 		      <td>
-		      	<a class="btn btn-primary" th:href="@{/department/{id}/courses(id=${department.idDe})}" role="button">Courses</a>
+		      	<a class="btn btn-primary" th:href="@{/department/{id}/courses(id=${department.idDe})}" role="button" th:text="#{courses}">Courses</a>
 		      </td>
 	      	  <td >
-	      		<a class="btn btn-primary" th:href="@{/department/{id}(id=${department.idDe})}" role="button">Edit</a>
+	      		<a class="btn btn-primary" th:href="@{/department/{id}(id=${department.idDe})}" role="button" th:text="#{edit}">Edit</a>
 	      	  </td>
 		    </tr>
 	  	 </thbody>
