@@ -30,4 +30,13 @@ public interface ICourseService {
 
 	Page<Course> getPageListWithSort(int pageNr, String field, String sortDir);
 	
+	Page<CourseType> getPageListWithSortCourseType(int pageNr);
+	
+	boolean insertNewCourseType(CourseType courseType);
+
+	boolean updateExistingCourseTypeById(int courseTypeId, CourseType courseType);
+	
+	CourseType getCourseTypeById(int courseTypeId);
+	
+	boolean deleteCourseTypeById(int courseTypeId);
 }

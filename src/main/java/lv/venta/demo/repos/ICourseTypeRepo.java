@@ -1,9 +1,9 @@
 package lv.venta.demo.repos;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import lv.venta.demo.models.CourseType;
 
-public interface ICourseTypeRepo extends CrudRepository<CourseType, Integer> {
+public interface ICourseTypeRepo extends PagingAndSortingRepository<CourseType, Integer> {
 
 }
