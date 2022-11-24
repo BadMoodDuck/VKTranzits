@@ -23,8 +23,4 @@ public interface IEmployeeRepo extends PagingAndSortingRepository<Employee, Inte
 	//Employee findByEmailOrPhone(String email, int phone);
 
 	ArrayList<Employee> findByDepartmentIdDe(int idDe);
-<<<<<<< HEAD
-=======
-
->>>>>>> 03e5bf7a73f7983721924a652ccb19a1a7ce2e99
 }

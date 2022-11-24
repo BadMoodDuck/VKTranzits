@@ -42,12 +42,6 @@ public class DepartmentCRUDServiceImpl implements IDepartmentCRUDService{
 		return null;
 	}
 
-	@Override
-	public boolean insertNewDepartment(Department department) {
-		// TODO VALIDATION ?
-		departmentRepo.save(department);
-		return true;
-	}
 
 	@Override
 	public Page<Department> getPageList(int currentPage) {
@@ -106,6 +100,12 @@ public class DepartmentCRUDServiceImpl implements IDepartmentCRUDService{
 			return true;
 		}
 		
+	}
+
+	@Override
+	public boolean insertNewDepartment(Department department) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
