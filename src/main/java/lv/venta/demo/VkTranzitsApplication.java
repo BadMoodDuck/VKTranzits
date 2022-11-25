@@ -83,13 +83,13 @@ public class VkTranzitsApplication {
 				departmentRepo.save(dep1);
 				departmentRepo.save(dep2);
 				
-				Employee emp = new Employee("Jhon","Silver",22134570,"abce@gmail.com",dep,pos);
-				Employee emp1 = new Employee("Jevgenijs","Saimnieks",22564540,"sert@gmail.com",dep1,pos1);
-				Employee emp2 = new Employee("Janis","Sudrabs",22626561,"asdf@gmail.com",dep1,pos1);
-				Employee emp3 = new Employee("Kristaps","Slieka",22134560,"rtyh@gmail.com",dep2,pos);
-				Employee emp4 = new Employee("Maris","Smiekls",22555660,"zxcv@gmail.com",dep2,pos2);
-				Employee emp5 = new Employee("Lone","Man",22512310,"abece@gmail.com",dep,pos2);
-				Employee emp7 = new Employee("David","Martinez",22525250,"davidmartinez@arosaka.com",dep1,pos);
+				Employee emp = new Employee("Jhon","Silver",22134570,"abce@gmail.com","12345678",dep,pos);
+				Employee emp1 = new Employee("Jevgenijs","Saimnieks",22564540,"sert@gmail.com","12345678",dep1,pos1);
+				Employee emp2 = new Employee("Janis","Sudrabs",22626561,"asdf@gmail.com","12345678",dep1,pos1);
+				Employee emp3 = new Employee("Kristaps","Slieka",22134560,"rtyh@gmail.com","12345678",dep2,pos);
+				Employee emp4 = new Employee("Maris","Smiekls",22555660,"zxcv@gmail.com","12345678",dep2,pos2);
+				Employee emp5 = new Employee("Lone","Man",22512310,"abece@gmail.com","12345678",dep,pos2);
+				Employee emp7 = new Employee("David","Martinez",22525250,"davidmartinez@arosaka.com","12345678",dep1,pos);
 				employeeRepo.save(emp);
 				employeeRepo.save(emp1);
 				employeeRepo.save(emp2);

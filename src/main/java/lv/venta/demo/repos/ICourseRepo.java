@@ -15,4 +15,6 @@ public interface ICourseRepo extends PagingAndSortingRepository<Course, Integer>
 
 	ArrayList<Course> findByDepartments(Department department);
 
+	ArrayList<Course> findAllByCoTypeIdTy(int coTypeId);
+
 }

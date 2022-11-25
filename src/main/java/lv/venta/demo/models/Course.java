@@ -68,4 +68,9 @@ public class Course {
 		
 	}
 	
+	
+	public void removeCourseType()
+	{
+		coType = null;
+	}
 }

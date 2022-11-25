@@ -31,7 +31,7 @@
 			<thbody>
 				<tr>
 					<td th:text="${course.getIdCou()}">#</td>
-					<td th:text="${course.getCoType().isObligatory}">#</td>
+					<td th:text="${course?.getCoType()?.isObligatory}">#</td>
 					<td th:text="${course.getTitle()}">#</td>
 					<td th:text="${course.getDescription()}">#</td>
 					<td>

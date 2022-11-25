@@ -118,10 +118,9 @@ public class EmployeeController {
 			}
 			
 		}
-
 		// localhost:8080/course/update/{id}
 		@PostMapping("/employee/update/{id}")
-		public String postUpdateCourseById(@PathVariable(name = "id") int id, Employee employee, BindingResult result) throws Exception {
+		public String getUpdateEmployeeById(@PathVariable(name = "id") int id, Employee employee, BindingResult result) throws Exception {
 			if (!result.hasErrors()) {
 				if (employeeService.updateEmployeeById(id, employee)) {
 					return "redirect:/employees";

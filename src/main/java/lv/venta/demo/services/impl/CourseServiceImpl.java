@@ -1,6 +1,7 @@
 package lv.venta.demo.services.impl;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -10,8 +11,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import lv.venta.demo.models.Course;
+import lv.venta.demo.models.CourseType;
 import lv.venta.demo.models.Department;
 import lv.venta.demo.repos.ICourseRepo;
+import lv.venta.demo.repos.ICourseTypeRepo;
 import lv.venta.demo.repos.IDepartmentRepo;
 import lv.venta.demo.services.ICourseService;
 
@@ -22,6 +25,8 @@ public class CourseServiceImpl implements ICourseService {
 	private ICourseRepo courseRepo;
 	@Autowired
 	private IDepartmentRepo departmentRepo;
+	@Autowired 
+	private ICourseTypeRepo coTypeRepo;
 	
 	//TODO pabeigt funkcijas ar visam parbaudem
 	@Override
@@ -110,5 +115,59 @@ public class CourseServiceImpl implements ICourseService {
 	
 	}
 
+	@Override
+	public Page<CourseType> getPageListWithSortCourseType(int pageNr) {
+		Pageable pageable = PageRequest.of(pageNr-1, 10);
+		return coTypeRepo.findAll(pageable);
+	}
 
+	@Override
+	public boolean insertNewCourseType(CourseType courseType) {
+		coTypeRepo.save(courseType);
+		return true;
+	}
+
+	@Override
+	public boolean updateExistingCourseTypeById(int courseTypeId, CourseType courseType) {
+		CourseType result = new CourseType();
+		if (coTypeRepo.existsById(courseTypeId)) {
+			result = coTypeRepo.findById(courseTypeId).get();
+			result.setCourses(courseType.getCourses());
+			result.setTitle(courseType.getTitle());
+			result.setIsObligatory(courseType.getIsObligatory());
+			result.setDescription(courseType.getDescription());
+			coTypeRepo.save(result);
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public CourseType getCourseTypeById(int courseTypeId) {
+		if (coTypeRepo.existsById(courseTypeId)) {
+			return coTypeRepo.findById(courseTypeId).get();
+		}
+		return null;
+	}
+
+	@Override
+	public boolean deleteCourseTypeById(int courseTypeId) {
+		try {
+			
+			ArrayList<Course> courseList = courseRepo.findAllByCoTypeIdTy(courseTypeId);
+			for (Course course : courseList) {
+				course.removeCourseType();
+			}
+			coTypeRepo.deleteById(courseTypeId);
+			return true;
+		}catch (Exception e) {
+			System.out.println(e);
+		}
+		return false;
+	}
+
+
+	
+	
 }

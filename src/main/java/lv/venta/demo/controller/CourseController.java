@@ -15,9 +15,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import lv.venta.demo.models.Course;
-
+import lv.venta.demo.models.CourseType;
 import lv.venta.demo.msg.MQConfig;
 import lv.venta.demo.msg.MyMessage;
+import lv.venta.demo.repos.ICourseRepo;
 import lv.venta.demo.services.ICourseService;
 import lv.venta.demo.services.IOtherServices;
 
@@ -122,4 +123,67 @@ public class CourseController {
 			return "course-update";
 		}
 	}
+	
+	@GetMapping("/course/types")
+	public String getAllCourseTypes(Model model) {
+		return getPageCourseTypes(model,1);
+		
+	}
+	@GetMapping("/course/types/{pageNr}")
+	public String getPageCourseTypes(Model model, @PathVariable("pageNr") int currentPage) {
+		Page<CourseType> page = courseService.getPageListWithSortCourseType(currentPage);
+		model.addAttribute("courseTypes", page);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("totalElements", page.getTotalElements());
+		model.addAttribute("totalPages", page.getTotalPages());
+		return "course-type-all";
+	}
+	
+	@GetMapping("/course/type/addNew")
+	public String getAddCourseTypes(CourseType course) {
+		return "course-type-add";
+	}
+
+	@PostMapping("/course/type/addNew")
+	public String postAddCourseTypes(@Valid CourseType courseType, BindingResult result) {
+		if (result.hasErrors()) {
+			System.out.println(result);
+			return "error";
+		} else {
+			courseService.insertNewCourseType(courseType);
+			return "redirect:/course/types";
+		}
+	}
+	@GetMapping("/course/type/update/{id}")
+	public String getUpdateCourseTypeById(@PathVariable(name="id") int id, Model model) throws Exception {
+		try {
+			model.addAttribute("courseType", courseService.getCourseTypeById(id));
+			return "course-type-update";
+		} catch (Exception e){
+			throw new Exception("can't find course type");
+		}
+		
+	}
+
+	// localhost:8080/course/update/{id}
+	@PostMapping("/course/type/update/{id}")
+	public String postUpdateCourseTypeById(@PathVariable(name = "id") int id, CourseType courseType, BindingResult result) throws Exception {
+		if (!result.hasErrors()) {
+			if (courseService.updateExistingCourseTypeById(id, courseType)) {
+				return "redirect:/course/types";
+			} else {
+				throw new Exception("can't update");
+			}
+		} else {
+			return "course-type-update";
+		}
+	}
+	
+	@Transactional
+	@GetMapping("/course/type/delete/{id}")
+	public String getDeleteCourseTypeById(@PathVariable(name = "id") int id) {
+		courseService.deleteCourseTypeById(id);
+		return "redirect:/course/types";
+	}
+	
 }
