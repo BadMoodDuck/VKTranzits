@@ -29,7 +29,7 @@
 			<thbody>
 				<tr th:each="temp: ${coruses}">
 					<td th:text="${temp.idCou}">#</td>
-					<td th:text="${temp.coType.title}">#</td>
+					<td th:text="${temp?.coType?.title}">#</td>
 					<td th:text="${temp.title}">#</td>
 					<td th:text="${temp.description}">#</td>
 				</tr>
