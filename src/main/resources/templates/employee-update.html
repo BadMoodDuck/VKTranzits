@@ -14,7 +14,7 @@
 	<div class="container">
   		<h1 th:text="#{employee.update}">Update employee</h1>
 
-  		<form action="#" th:action="@{/employee/update/{id}}" th:object="${employee}" method="post">
+  		<form action="#" th:action="@{/employee/update/__${id}__}" th:object="${employee}" method="post">
   		
   		<table>
   		<tr>

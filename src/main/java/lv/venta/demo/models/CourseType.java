@@ -1,5 +1,6 @@
 package lv.venta.demo.models;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.CascadeType;
@@ -51,7 +52,7 @@ public class CourseType {
 	
 	@OneToMany(mappedBy = "coType")
 	@ToString.Exclude
-	private Collection<Course> courses;
+	private Collection<Course> courses = new ArrayList<Course>();
 	
 	
 	public CourseType(String title,boolean isObligatory, String description/*, Collection<Course> courses*/) {

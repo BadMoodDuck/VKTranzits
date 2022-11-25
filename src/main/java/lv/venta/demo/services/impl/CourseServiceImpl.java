@@ -1,6 +1,7 @@
 package lv.venta.demo.services.impl;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -153,6 +154,11 @@ public class CourseServiceImpl implements ICourseService {
 	@Override
 	public boolean deleteCourseTypeById(int courseTypeId) {
 		try {
+			
+			ArrayList<Course> courseList = courseRepo.findAllByCoTypeIdTy(courseTypeId);
+			for (Course course : courseList) {
+				course.removeCourseType();
+			}
 			coTypeRepo.deleteById(courseTypeId);
 			return true;
 		}catch (Exception e) {
