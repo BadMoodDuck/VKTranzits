@@ -55,10 +55,9 @@ public class CourseType {
 	private Collection<Course> courses = new ArrayList<Course>();
 	
 	
-	public CourseType(String title,boolean isObligatory, String description/*, Collection<Course> courses*/) {
+	public CourseType(String title, boolean isObligatory, String description) {
 		this.title = title;
 		this.isObligatory = isObligatory;
 		this.description = description;
-		//this.courses = courses;
 	}
 }

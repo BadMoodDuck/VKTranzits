@@ -62,7 +62,6 @@ public class Course {
 	
 	public Course(CourseType coType, String title, String description) {
 		this.coType = coType;
-		// this.departments = departments; sito nevajag, jo veidojot kursu nav janorada strukturvieniba
 		this.title = title;
 		this.description = description;
 		
