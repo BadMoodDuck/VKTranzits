@@ -18,7 +18,7 @@ class DepartmentTest {
 	Department depRight = new Department(company, "IT");
 
 	@Test
-	void removeCourseToDepartmentTest() {
+	void removeCourseFromDepartmentTest() {
 		depRight.addNewCourse(course);
 	
 		assertTrue(Arrays.asList(depRight.getCourses().contains(course)) != null);

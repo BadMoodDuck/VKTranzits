@@ -47,7 +47,9 @@ public class MyUserAuthority {
 			myUsers.add(user);
 		}
 		public void deleteUser(MyUser user) {
+			if(myUsers.contains(user)) {
 			myUsers.remove(user);
+			}
 		}
 
 }

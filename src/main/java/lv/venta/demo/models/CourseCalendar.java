@@ -64,5 +64,11 @@ public class CourseCalendar {
 	public void addPosition(Position position) {
 		positions.add(position);
 	}
+	
+	public void removePosition(Position position) {
+		if(positions.contains(position)) {
+			positions.remove(position);
+		}
+	}
 
 }

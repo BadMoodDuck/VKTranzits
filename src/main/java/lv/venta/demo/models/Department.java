@@ -71,7 +71,9 @@ public class Department {
 	
 	public void removeCourse(Course course)
 	{
+		if(courses.contains(course)) {
 		courses.remove(course);
+		}
 	}
 	
 }

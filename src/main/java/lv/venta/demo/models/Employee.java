@@ -82,9 +82,15 @@ public class Employee {
 
 	}
 	
-	public void removeCourse(Course course)
+	public void addEmCourse(EmployeeCourse course) {
+		emCourse.add(course);
+	}
+	
+	public void removeCourse(EmployeeCourse course)
 	{
+		if(emCourse.contains(course)) {
 		emCourse.remove(course);
+		}
 	}
 
 }
