@@ -10,6 +10,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Column;
@@ -39,7 +40,7 @@ public class Implementer {
 
 	@OneToMany(mappedBy = "implementer")
 	@ToString.Exclude
-	private Collection<CourseImplementer> CourseImplements;
+	private Collection<CourseImplementer> CourseImplements = new ArrayList<>();
 
 	public Implementer(String name) {
 		

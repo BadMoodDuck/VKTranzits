@@ -1,5 +1,6 @@
 package lv.venta.demo.models;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.CascadeType;
@@ -65,13 +66,13 @@ public class Employee {
 
 	@OneToMany(mappedBy = "employee")
 	@ToString.Exclude
-	private Collection<EmployeeCourse> emCourse;
+	private Collection<EmployeeCourse> emCourses = new ArrayList<>();
 	
 	@ManyToOne
 	@JoinColumn(name = "IdPos")
 	private Position position;
 
-	public Employee(String name,String surname,int phone,String email, String password, Department department, Position position) {
+	public Employee(String name,String surname,int phone, String email, String password, Department department, Position position) {
 		this.name = name;
 		this.surname =surname;
 		this.phone =phone;
@@ -83,13 +84,13 @@ public class Employee {
 	}
 	
 	public void addEmCourse(EmployeeCourse course) {
-		emCourse.add(course);
+		emCourses.add(course);
 	}
 	
-	public void removeCourse(EmployeeCourse course)
+	public void removeEmCourse(EmployeeCourse course)
 	{
-		if(emCourse.contains(course)) {
-		emCourse.remove(course);
+		if(emCourses.contains(course)) {
+		emCourses.remove(course);
 		}
 	}
 

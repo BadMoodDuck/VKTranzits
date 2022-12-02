@@ -1,6 +1,5 @@
 package lv.venta.demo.models;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
@@ -21,11 +20,13 @@ class DepartmentTest {
 	void removeCourseFromDepartmentTest() {
 		depRight.addNewCourse(course);
 	
-		assertTrue(Arrays.asList(depRight.getCourses().contains(course)) != null);
+		assertNotNull(Arrays.asList(depRight.getCourses().contains(course)));
 		
 		depRight.removeCourse(course);
 		
 		assertFalse(depRight.getCourses().contains(course));
+		
+		
 		
 	}
 

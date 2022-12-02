@@ -48,7 +48,7 @@ public class CourseCalendar {
 
 	@OneToMany(mappedBy = "courseCalendar")
 	@ToString.Exclude
-	private Collection<CourseImplementer> courseImplementers;
+	private Collection<CourseImplementer> courseImplementers = new ArrayList<>();
 
 	@ManyToMany(mappedBy = "calendars")
 	@ToString.Exclude
