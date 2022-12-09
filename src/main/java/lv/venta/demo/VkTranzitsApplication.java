@@ -12,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import lv.venta.demo.enums.EnumQuestionTypes;
 import lv.venta.demo.models.Company;
 import lv.venta.demo.models.Course;
 import lv.venta.demo.models.CourseCalendar;
@@ -24,6 +25,8 @@ import lv.venta.demo.models.Implementer;
 import lv.venta.demo.models.MyUser;
 import lv.venta.demo.models.MyUserAuthority;
 import lv.venta.demo.models.Position;
+import lv.venta.demo.models.Quiz;
+import lv.venta.demo.models.QuizQuestion;
 import lv.venta.demo.repos.ICompanyRepo;
 import lv.venta.demo.repos.ICourseCalendarRepo;
 import lv.venta.demo.repos.ICourseImplementerRepo;
@@ -36,6 +39,8 @@ import lv.venta.demo.repos.IImplementerRepo;
 import lv.venta.demo.repos.IMyAuthorityRepo;
 import lv.venta.demo.repos.IMyUserRepo;
 import lv.venta.demo.repos.IPositionRepo;
+import lv.venta.demo.repos.IQuizQuestion;
+import lv.venta.demo.repos.IQuizRepo;
 
 @SpringBootApplication
 public class VkTranzitsApplication {
@@ -53,13 +58,17 @@ public class VkTranzitsApplication {
 										ICourseRepo courseRepo, IEmployeeCourseRepo employeeCourseRepo, 
 										IPositionRepo positionRepo, IImplementerRepo implementerRepo,
 										ICourseImplementerRepo courseImplementerRepo, ICourseCalendarRepo courseCalendarRepo,
-										IMyUserRepo userRepo, IMyAuthorityRepo authorityRepo)
+										IMyUserRepo userRepo, IMyAuthorityRepo authorityRepo,
+										IQuizRepo quizRepo, IQuizQuestion quizQuestionRepo)
 	{
 		return new CommandLineRunner() {
 				
 			public void run(String... args) throws Exception {
 				
+				
 
+				
+				
 				Company com = new Company("Jhons");
 				Company com1 = new Company("Does");
 				Company com2 = new Company("Fixer");
@@ -108,6 +117,15 @@ public class VkTranzitsApplication {
 				Course co1 = new Course(cty1,"1.Darba drosibas ievads","Viss galvenais par darbu");
 				courseRepo.save(co);
 				courseRepo.save(co1);
+				
+				
+				Quiz quiz1 = new Quiz("Best Quiz", null, co);
+				quizRepo.save(quiz1);
+				System.out.println(quiz1);
+				
+				QuizQuestion qq = new QuizQuestion("Are u smart?",EnumQuestionTypes.RADIO,quiz1);
+				quizQuestionRepo.save(qq);
+				System.out.println(qq);
 				
 				
 				dep.addNewCourse(co);

@@ -59,14 +59,21 @@ public class Course {
 	@ToString.Exclude
 	private Collection<EmployeeCourse> emCourse = new ArrayList<>();
 	
+	@OneToMany(mappedBy = "course")
+	@ToString.Exclude
+	private Collection<Quiz> quiz = new ArrayList<Quiz>();
 	
 	public Course(CourseType coType, String title, String description) {
 		this.coType = coType;
 		this.title = title;
 		this.description = description;
-		
 	}
 	
+	public void addQuiz(Quiz quiz) {
+		if (quiz != null) {
+			this.quiz.add(quiz);
+		}
+	}
 	
 	public void removeCourseType()
 	{

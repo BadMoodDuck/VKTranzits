@@ -55,7 +55,4 @@ public class EmployeeCourse {
 		this.course = course;
 		this.valuePr = valuePr;
 	}
-	
-	
-	
 }
