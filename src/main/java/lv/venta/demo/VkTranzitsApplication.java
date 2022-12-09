@@ -26,6 +26,7 @@ import lv.venta.demo.models.MyUser;
 import lv.venta.demo.models.MyUserAuthority;
 import lv.venta.demo.models.Position;
 import lv.venta.demo.models.Quiz;
+import lv.venta.demo.models.QuizAnswers;
 import lv.venta.demo.models.QuizQuestion;
 import lv.venta.demo.repos.ICompanyRepo;
 import lv.venta.demo.repos.ICourseCalendarRepo;
@@ -39,6 +40,7 @@ import lv.venta.demo.repos.IImplementerRepo;
 import lv.venta.demo.repos.IMyAuthorityRepo;
 import lv.venta.demo.repos.IMyUserRepo;
 import lv.venta.demo.repos.IPositionRepo;
+import lv.venta.demo.repos.IQuizAnswers;
 import lv.venta.demo.repos.IQuizQuestion;
 import lv.venta.demo.repos.IQuizRepo;
 
@@ -59,7 +61,8 @@ public class VkTranzitsApplication {
 										IPositionRepo positionRepo, IImplementerRepo implementerRepo,
 										ICourseImplementerRepo courseImplementerRepo, ICourseCalendarRepo courseCalendarRepo,
 										IMyUserRepo userRepo, IMyAuthorityRepo authorityRepo,
-										IQuizRepo quizRepo, IQuizQuestion quizQuestionRepo)
+										IQuizRepo quizRepo, IQuizQuestion quizQuestionRepo,
+										IQuizAnswers quizAnswersRepo)
 	{
 		return new CommandLineRunner() {
 				
@@ -126,6 +129,14 @@ public class VkTranzitsApplication {
 				QuizQuestion qq = new QuizQuestion("Are u smart?",EnumQuestionTypes.RADIO,quiz1);
 				quizQuestionRepo.save(qq);
 				System.out.println(qq);
+				
+				QuizAnswers qa = new QuizAnswers(qq, "Yes", false);
+				QuizAnswers qa2 = new QuizAnswers(qq, "No", true);
+				
+				quizAnswersRepo.save(qa);
+				quizAnswersRepo.save(qa2);
+				System.out.println(qa);
+				System.out.println(qa2);
 				
 				
 				dep.addNewCourse(co);

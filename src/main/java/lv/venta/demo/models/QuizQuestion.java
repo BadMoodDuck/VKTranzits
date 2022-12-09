@@ -1,5 +1,8 @@
 package lv.venta.demo.models;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AccessLevel;
@@ -39,6 +43,10 @@ public class QuizQuestion {
 	@ManyToOne
 	@JoinColumn(name = "IdQu")
 	private Quiz quiz;
+	
+	@ToString.Exclude
+	@OneToMany(mappedBy = "quizQuestion")
+	private Collection<QuizAnswers> quizAnswers = new ArrayList<QuizAnswers>();
 	
 	public QuizQuestion(String question, EnumQuestionTypes questionType, Quiz quiz) {
 		this.question = question;
