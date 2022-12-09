@@ -52,6 +52,5 @@ public class QuizAnswers {
 		this.quizQuestion = quizQuestion;
 		this.answer = answer;
 		this.isCorrect = isCorrect;
-		
 	}
 }
