@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>DaMPS</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+		crossorigin="anonymous"></script>
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+	<div th:replace="fragments/header :: header"></div>
+
+	<div class="container">
+		<h1 th:text="${quiz.getTitle()}">Quiz Title</h1>
+		<a class="btn btn-primary" th:href="@{/}" role="button" th:text="#{Add question}">Edit</a>
+		<table class="table table-striped table-hover">
+
+			<thead>
+				<tr>
+					<th scope="col" th:text="#{Question}">Question</th>
+					<th scope="col" th:text="#{Answers}">Answers</th>
+					<th scope="col" th:text="#{Correct Answer}">Correct Answer</th>
+				</tr>
+			</thead>
+			<thbody>
+				<tr th:each="question: ${quiz.getQuizQuestions}">
+					<td th:text="${question.getQuestion()}"></td>
+					<td>
+					 	<span th:each="answer: ${question.getQuizAnswers()}">
+					 		<span th:text="${answer.getAnswer()}" />
+					 		<br/> 
+					 	</span>
+					</td>
+					<td>
+					 	<span th:each="answer: ${question.getQuizAnswers()}">
+					 		<span th:if="${answer.isCorrect()}" th:text="${answer.getAnswer()}"/> 
+					 	</span> 
+					</td>
+					<td>
+						<a class="btn btn-primary" th:href="@{/}" role="button" th:text="#{Edit}">Edit</a>
+					</td>
+				</tr>
+			</thbody>
+	
+		</table>
+
+	</div>
+
+	<div class="footer" th:replace="fragments/footer :: footer"></div>
+</body>
+
+</html>
