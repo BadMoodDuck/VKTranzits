@@ -33,12 +33,12 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 	
 	@Override
 	public boolean insertNewEmployee(Employee employee) {
-		//if (!employeeRepo.existsByEmailOrPhone(employee.getEmail(), employee.getPhone())) {  TODO VALIDATION FIX
+		//if (!employeeRepo.existsByEmailOrPhone(employee.getEmail(), employee.getPhone())) {  //TODO VALIDATION FIX
 			employeeRepo.save(employee);
-		//	return true;
+		return true;
 		//}
 
-		return true;
+		//return false;
 	}
 
 	@Override 
@@ -91,7 +91,7 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 			return em;
 		}
 		
-		throw new Exception("Course doesn't exist");
+		throw new Exception("Employee doesn't exist");
 		
 	
 	}

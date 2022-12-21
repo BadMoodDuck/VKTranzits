@@ -59,6 +59,61 @@ public class VkTranzitsApplication {
 				
 			public void run(String... args) throws Exception {
 				
+				MyUserAuthority auth1 = new MyUserAuthority("ROLE_ADMIN");
+				MyUserAuthority auth2 = new MyUserAuthority("ROLE_IMPLEMENTER");
+				MyUserAuthority auth3 = new MyUserAuthority("ROLE_EMPLOYEE");
+				MyUserAuthority auth4 = new MyUserAuthority("ROLE_GUEST");
+				
+				authorityRepo.save(auth1);
+				authorityRepo.save(auth2);
+				authorityRepo.save(auth3);
+				authorityRepo.save(auth4);
+				
+				MyUser user1 = new MyUser("admins", encoder.encode("admins"));
+				MyUser user2 = new MyUser("jevgenijs", encoder.encode("Fksd123"));
+				MyUser user3 = new MyUser("janis123", encoder.encode("Fkwertyu1"));
+				MyUser user4 = new MyUser("kristaps", encoder.encode("Password"));
+				MyUser user5 = new MyUser("maris1234", encoder.encode("12345"));
+				MyUser user6 = new MyUser("lone123", encoder.encode("111111111"));
+				MyUser user7 = new MyUser("david123", encoder.encode("idontknow"));
+				
+				userRepo.save(user1);
+				userRepo.save(user2);
+				userRepo.save(user3);
+				userRepo.save(user4);
+				userRepo.save(user5);
+				userRepo.save(user6);
+				userRepo.save(user7);
+				
+				user1.addAuthority(auth1);
+				user2.addAuthority(auth2);
+				user3.addAuthority(auth3);
+				user4.addAuthority(auth4);
+				user5.addAuthority(auth4);
+				user6.addAuthority(auth3);
+				user7.addAuthority(auth3);
+				
+				userRepo.save(user1);
+				userRepo.save(user2);
+				userRepo.save(user3);
+				userRepo.save(user4);
+				userRepo.save(user5);
+				userRepo.save(user6);
+				userRepo.save(user7);
+				
+				auth1.addUser(user1);
+				auth2.addUser(user2);
+				auth3.addUser(user3);
+				auth4.addUser(user4);
+				auth4.addUser(user5);
+				auth3.addUser(user6);
+				auth3.addUser(user7);
+				
+				authorityRepo.save(auth1);
+				authorityRepo.save(auth2);
+				authorityRepo.save(auth3);
+				authorityRepo.save(auth4);
+				
 
 				Company com = new Company("Jhons");
 				Company com1 = new Company("Does");
@@ -83,13 +138,13 @@ public class VkTranzitsApplication {
 				departmentRepo.save(dep1);
 				departmentRepo.save(dep2);
 				
-				Employee emp = new Employee("Jhon","Silver",22134570,"abce@gmail.com","12345678",dep,pos);
-				Employee emp1 = new Employee("Jevgenijs","Saimnieks",22564540,"sert@gmail.com","12345678",dep1,pos1);
-				Employee emp2 = new Employee("Janis","Sudrabs",22626561,"asdf@gmail.com","12345678",dep1,pos1);
-				Employee emp3 = new Employee("Kristaps","Slieka",22134560,"rtyh@gmail.com","12345678",dep2,pos);
-				Employee emp4 = new Employee("Maris","Smiekls",22555660,"zxcv@gmail.com","12345678",dep2,pos2);
-				Employee emp5 = new Employee("Lone","Man",22512310,"abece@gmail.com","12345678",dep,pos2);
-				Employee emp7 = new Employee("David","Martinez",22525250,"davidmartinez@arosaka.com","12345678",dep1,pos);
+				Employee emp = new Employee("Jhon","Silver",22134570,"abce@gmail.com",user1,dep,pos);
+				Employee emp1 = new Employee("Jevgenijs","Saimnieks",22564540,"sert@gmail.com",user2,dep1,pos1);
+				Employee emp2 = new Employee("Janis","Sudrabs",22626561,"asdf@gmail.com",user3,dep1,pos1);
+				Employee emp3 = new Employee("Kristaps","Slieka",22134560,"rtyh@gmail.com",user4,dep2,pos);
+				Employee emp4 = new Employee("Maris","Smiekls",22555660,"zxcv@gmail.com",user5,dep2,pos2);
+				Employee emp5 = new Employee("Lone","Man",22512310,"abece@gmail.com",user6,dep,pos2);
+				Employee emp7 = new Employee("David","Martinez",22525250,"davidmartinez@arosaka.com",user7,dep1,pos);
 				employeeRepo.save(emp);
 				employeeRepo.save(emp1);
 				employeeRepo.save(emp2);
@@ -136,25 +191,6 @@ public class VkTranzitsApplication {
 				CourseImplementer cim1 = new CourseImplementer(imp1, cal, "Damn this hard");
 				courseImplementerRepo.save(cim);
 				courseImplementerRepo.save(cim1);
-				
-				MyUserAuthority auth1 = new MyUserAuthority("ROLE_ADMIN");
-				MyUserAuthority auth2 = new MyUserAuthority("ROLE_IMPLEMENTER");
-				MyUserAuthority auth3 = new MyUserAuthority("ROLE_EMPLOYEE");
-				MyUserAuthority auth4 = new MyUserAuthority("ROLE_GUEST");
-				
-				authorityRepo.save(auth1);
-				authorityRepo.save(auth2);
-				authorityRepo.save(auth3);
-				authorityRepo.save(auth4);
-				
-				MyUser user1 = new MyUser("admins", encoder.encode("admins"));
-				
-				userRepo.save(user1);
-				
-				user1.addAuthority(auth1);
-				userRepo.save(user1);
-				auth1.addUser(user1);
-				authorityRepo.save(auth1);
 				
 			}
 		};

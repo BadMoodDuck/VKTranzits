@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Pattern;
@@ -56,9 +57,9 @@ public class Employee {
 	@Pattern(regexp = "[\\w-]+@[\\w-]+.+[\\w-]{2,4}$")
 	private String email;
 	
-	@Column(name = "Password")
-	@Size(min = 8, max = 40)
-	private String password;
+	@OneToOne
+	@JoinColumn(name = "IdU")
+	private MyUser user;
 
 	@ManyToOne()
 	@JoinColumn(name = "IdDe")
@@ -72,12 +73,12 @@ public class Employee {
 	@JoinColumn(name = "IdPos")
 	private Position position;
 
-	public Employee(String name,String surname,int phone, String email, String password, Department department, Position position) {
+	public Employee(String name,String surname,int phone, String email, MyUser user, Department department, Position position) {
 		this.name = name;
 		this.surname =surname;
 		this.phone =phone;
 		this.email =email;
-		this.password =password;
+		this.user = user;
 		this.department = department;
 		this.position = position;
 

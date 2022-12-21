@@ -19,5 +19,9 @@ public interface IDepartmentCRUDService {
 	boolean insertNewDepartment(Department department);
 
 	Page<Department> getPageList(int currentPage);
+
+	Department readDepartmentById(int id) throws Exception;
+
+	boolean updateDepartmentById(int departmentId, Department department);
 }
  

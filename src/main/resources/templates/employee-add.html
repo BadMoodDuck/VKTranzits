@@ -40,11 +40,6 @@
 		    <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>
 		</tr>
 		<tr>  
-		    <td><label th:text="#{password}">Password</label></td>
-		    <td><input type="text"  th:field="*{password}"></td>
-		    <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></td>
-		</tr>
-		<tr>  
 		    <td><label th:text="#{department}">Department</label></td>
 		    <td>
 			    <select th:field="*{department}">

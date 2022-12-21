@@ -31,7 +31,13 @@
 		    </tr>
 	  	 </thbody>
 		</table>
-		
+				<div th:replace="fragments/pageination-navbar.html :: pageination-navbar(
+			 pageName = 'companies',
+			 currentPage = ${currentPage},
+			 totalPages = ${totalPages},
+			 totalElements = ${totalElements}
+			 )">
+		</div>
 	
 	</div>
 	

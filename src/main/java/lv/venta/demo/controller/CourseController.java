@@ -20,7 +20,8 @@ import lv.venta.demo.msg.MQConfig;
 import lv.venta.demo.msg.MyMessage;
 import lv.venta.demo.repos.ICourseRepo;
 import lv.venta.demo.services.ICourseService;
-import lv.venta.demo.services.IOtherServices;
+import lv.venta.demo.services.ICourseTypeService;
+import lv.venta.demo.services.ICompanyService;
 
 @Controller
 public class CourseController {
@@ -29,7 +30,7 @@ public class CourseController {
 	private ICourseService courseService;
 
 	@Autowired 
-	private IOtherServices otherService;
+	private ICourseTypeService coTypeService;
 
 //	@Autowired
 //	private RabbitTemplate template;
@@ -68,7 +69,7 @@ public class CourseController {
 
 	@GetMapping("/course/addNew")
 	public String getAddCourses(Model model, Course course) {
-		model.addAttribute("courseTypes", otherService.getAllCourseTypes());
+		model.addAttribute("courseTypes", coTypeService.getAllCourseTypes());
 		return "course-add";
 	}
 
@@ -102,7 +103,7 @@ public class CourseController {
 	public String getUpdateCourseById(@PathVariable(name="id") int id, Model model) throws Exception {
 		try {
 			model.addAttribute("course", courseService.readCourseById(id));
-			model.addAttribute("courseTypes", otherService.getAllCourseTypes());
+			model.addAttribute("courseTypes", coTypeService.getAllCourseTypes());
 			return "course-update";
 		} catch (Exception e){
 			throw new Exception("can't find course");

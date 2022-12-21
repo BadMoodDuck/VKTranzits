@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -42,6 +43,9 @@ public class MyUser {
 	@Size(min = 8, max = 60)
 	@Pattern(regexp = "[a-zA-Z0-9\\W]+")
 	private String password;
+	
+	@OneToOne(mappedBy = "user")
+	private Employee employee;
 
 	@ManyToMany(mappedBy = "myUsers", fetch = FetchType.EAGER)
 	private Collection<MyUserAuthority> allAuthorities = new ArrayList<>();
@@ -49,6 +53,10 @@ public class MyUser {
 	public MyUser(String username, String password) {
 		this.username = username;
 		this.password = password;
+	}
+	
+	public MyUser(String username) {
+		this.username = username;
 	}
 
 	public void addAuthority(MyUserAuthority authority) {

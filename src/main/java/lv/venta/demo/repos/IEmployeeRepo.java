@@ -20,7 +20,6 @@ public interface IEmployeeRepo extends PagingAndSortingRepository<Employee, Inte
 	boolean existsByEmailOrPhone(String email, int phone);
 
 	Employee findByEmailOrPhone(String email, int phone);
-	//Employee findByEmailOrPhone(String email, int phone);
 
 	ArrayList<Employee> findByDepartmentIdDe(int idDe);
 

@@ -53,15 +53,39 @@ public class DepartmentCRUDServiceImpl implements IDepartmentCRUDService{
 
 	@Override
 	public boolean insertNewDepartment(Department department) {
-		// TODO VALIDATION ?
+		if(!departmentRepo.existsByName(department.getName())) {
 		departmentRepo.save(department);
 		return true;
+		}
+		return false;
 	}
 
 	@Override
 	public Page<Department> getPageList(int currentPage) {
 		Pageable pagable = PageRequest.of(currentPage-1, 10);
 		return departmentRepo.findAll(pagable);
+	}
+
+	@Override
+	public Department readDepartmentById(int id) throws Exception {
+		if(departmentRepo.existsById(id)) {
+			Department dep = departmentRepo.findByIdDe(id);
+			return dep;
+		} 
+		throw new Exception("Department doesn't exist");
+	}
+	
+	@Override
+	public boolean updateDepartmentById(int departmentId, Department department) {
+		Department result = new Department();
+		if(departmentRepo.existsById(departmentId)) {
+			result = departmentRepo.findById(departmentId).get();
+			result.setName(department.getName());
+			result.setCompany(department.getCompany());
+			departmentRepo.save(result);
+			return true;
+		}
+		return false;
 	}
 
 

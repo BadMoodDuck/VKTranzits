@@ -9,9 +9,7 @@ import lv.venta.demo.models.Course;
 import lv.venta.demo.models.CourseType;
 import lv.venta.demo.models.Position;
 
-public interface IOtherServices {
-	
-	ArrayList<CourseType> getAllCourseTypes();
+public interface ICompanyService {
 	
 	boolean insertNewCompany(Company company);
 
@@ -21,7 +19,4 @@ public interface IOtherServices {
 
 	ArrayList<Company> getAllCompanies();
 
-	ArrayList<Position> getAllPositions();
-
-	boolean insertNewPosition(Position position);
 }

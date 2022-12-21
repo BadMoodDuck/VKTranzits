@@ -26,8 +26,13 @@ class DepartmentTest {
 		
 		assertFalse(depRight.getCourses().contains(course));
 		
-		
-		
+	}
+	
+	@Test
+	void DepartmentCreationTest() {
+		//right
+		assertEquals(company, depRight.getCompany());
+		assertEquals("IT", depRight.getName());
 	}
 
 }

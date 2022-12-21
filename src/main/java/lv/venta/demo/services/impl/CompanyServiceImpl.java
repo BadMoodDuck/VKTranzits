@@ -6,19 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import lv.venta.demo.models.Company;
 import lv.venta.demo.models.Course;
 import lv.venta.demo.models.CourseType;
+import lv.venta.demo.models.Employee;
 import lv.venta.demo.models.Position;
 import lv.venta.demo.repos.ICompanyRepo;
 import lv.venta.demo.repos.ICourseTypeRepo;
 import lv.venta.demo.repos.IPositionRepo;
-import lv.venta.demo.services.IOtherServices;
+import lv.venta.demo.services.ICompanyService;
 
 @Service
-public class OtherServicesImpl implements IOtherServices {
+public class CompanyServiceImpl implements ICompanyService {
 	
 	@Autowired
 	private ICourseTypeRepo coTypeRepo;
@@ -26,14 +28,6 @@ public class OtherServicesImpl implements IOtherServices {
 	@Autowired
 	private ICompanyRepo companyRepo;
 	
-	@Autowired
-	private IPositionRepo positionRepo;
-	
-
-	@Override
-	public ArrayList<CourseType> getAllCourseTypes() {
-		return (ArrayList<CourseType>) coTypeRepo.findAll();
-	}
 
 	@Override
 	public boolean insertNewCompany(Company company) {
@@ -64,19 +58,7 @@ public class OtherServicesImpl implements IOtherServices {
 		
 		return (ArrayList<Company>) companyRepo.findAll();
 	}
-	
-	@Override
-	public ArrayList<Position> getAllPositions() {
-		return (ArrayList<Position>) positionRepo.findAll();
-	}
 
-	@Override
-	public boolean insertNewPosition(Position position) {
-		if(!positionRepo.existsByTitleIgnoreCase(position.getTitle())) {
-			positionRepo.save(position);
-		}
-		return false;
-	}
 	
 
 }
