@@ -53,16 +53,19 @@ public class Course {
 	
 	@ManyToMany(mappedBy = "courses")
 	private Collection<Department> departments = new ArrayList<Department>();
+	
+	@OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+	@ToString.Exclude
+	private Collection<CourseCalendar> calendar;
 
 	
 	@OneToMany(mappedBy = "course", cascade = CascadeType.REMOVE)
 	@ToString.Exclude
-	private Collection<EmployeeCourse> emCourse;
+	private Collection<EmployeeCourse> emCourse = new ArrayList<>();
 	
 	
 	public Course(CourseType coType, String title, String description) {
 		this.coType = coType;
-		// this.departments = departments; sito nevajag, jo veidojot kursu nav janorada strukturvieniba
 		this.title = title;
 		this.description = description;
 		

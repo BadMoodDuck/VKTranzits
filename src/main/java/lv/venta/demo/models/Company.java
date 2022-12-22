@@ -1,5 +1,6 @@
 package lv.venta.demo.models;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Column;
@@ -39,7 +40,7 @@ public class Company {
 	
 	@OneToMany(mappedBy = "company")
 	@ToString.Exclude
-	private Collection<Department> department;
+	private Collection<Department> department = new ArrayList<>();
 
 	public Company(String name) {
 		this.name=name;

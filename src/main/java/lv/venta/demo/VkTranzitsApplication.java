@@ -131,8 +131,24 @@ public class VkTranzitsApplication {
 //				
 //				CourseCalendar cal = new CourseCalendar(2023, new Date(System.currentTimeMillis()),new Date(System.currentTimeMillis()));
 //				courseCalendarRepo.save(cal);
+				
+				
 //				
+//				CourseType cty = new CourseType("Drosiba ar datoru", false, "viss par datoriem");
+//				CourseType cty1 = new CourseType("Clean code", true, "viss par kodesanu");
+//				courseTypeRepo.save(cty);
+//				courseTypeRepo.save(cty1);
 //				
+//				Course co = new Course(cty,"Datoru drosibu ievads","ka rikoties ar datoru");
+//				Course co1 = new Course(cty1,"Clean code ievads","kas ir clean code");
+//				courseRepo.save(co);
+//				courseRepo.save(co1);
+////				
+//				CourseCalendar cal = new CourseCalendar(2023, new Date(122,11,21),new Date(122,11,27), co);
+//				courseCalendarRepo.save(cal);
+//				CourseCalendar cal2 = new CourseCalendar(2023, new Date(122,10,21),new Date(122,10,28), co1);
+//				courseCalendarRepo.save(cal2);
+				
 //				CourseImplementer cim = new CourseImplementer(imp,  cal, "Not important");
 //				CourseImplementer cim1 = new CourseImplementer(imp1, cal, "Damn this hard");
 //				courseImplementerRepo.save(cim);

@@ -35,8 +35,14 @@
 					<td th:text="${course.getTitle()}">#</td>
 					<td th:text="${course.getDescription()}">#</td>
 					<td>
+
 					<a class="btn btn-primary" th:href="@{/course/update/{id} (id=${course.getIdCou()}) }" role="button">Edit</a>
 					<a class="btn btn-danger" th:href="@{/course/delete/{id} (id=${course.getIdCou()}) }" role="button">delete</a>
+
+					<a class="btn btn-primary" th:href="@{/course/update/{id} (id=${course.getIdCou()}) }" role="button" th:text="#{edit}">Edit</a>
+					<a class="btn btn-danger" th:href="@{/course/delete/{id} (id=${course.getIdCou()}) }" role="button" th:text="#{delete}">delete</a>
+					<a class="btn btn-success" th:href="@{/export/excel}">Excel</a>
+
 					</td>
 				</tr>
 			</thbody>
