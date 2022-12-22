@@ -34,10 +34,10 @@ public class QuizQuestion {
 	@Column(name = "IdQuQe")
 	private int idQuQe;
 	
-	@Column(name = "question")
+	@Column(name = "Question")
 	private String question;
 	
-	@Column(name = "questionType")
+	@Column(name = "QuestionType")
 	private EnumQuestionTypes questionType;
 	
 	@ManyToOne

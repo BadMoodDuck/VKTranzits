@@ -12,30 +12,30 @@
 	<div th:replace="fragments/header :: header"></div>
 	
 	<div class="container">
-  		<h1 th:text="#{quiz.addQuestion}">Add question</h1>
+  		<h1 th:text="#{course.add}">Add course</h1>
 
-  		<form action="#" th:action="@{/quiz/{id}/addQuestion (id=${quizId})}" th:object="${quizQuestion}" method="post">
+  		<form action="#" th:action="@{/quiz/addNew}" th:object="${quiz}" method="post">
   		
   		<table>
-	  		<tr>
-			    <td><label th:text="#{question}">Question</label></td>
-			    <td><input type="text" th:field="*{question}"></td>
-			    <td th:if="${#fields.hasErrors('question')}" th:errors="*{question}"><td>
-	  		</tr>
-	  		<tr>
-			    <td><label th:text="#{questionType}">Question Type</label></td>
-    		    <td>
-				    <select th:field="*{questionType}">
-					    <span th:each="qt, i: ${questionTypes}"> 
-					    	<option th:value="${qt}" th:text="${i.current}" />
-					    </span>
-					</select>
-		    	</td>
-	  		</tr>
+  		<tr>
+		    <td><label th:text="#{title}">Title</label ></td>
+		    <td><input type="text" th:field="*{title}"></td>
+		    <td th:if="${#fields.hasErrors('title')}" th:errors="*{title}"><td>
+  		</tr>
+  		<tr>
+		    <td><label th:text="#{completionDeadLine}">Deadline</label></td>
+			<td><p text="23.12.1978"/></td>
+		</tr>
+		<tr>  
+		    <td><label th:text="#{course}">Course</label></td>
+		    <td>
+			    <p text="No course needs this quiz"/>
+		    </td>
+		</tr>
 
-	  		<tr>
-			  <td><button type="submit" class="btn btn-primary" th:text="#{submit}">Submit</button></td>
-	  		</tr>
+  		<tr>
+		  <td><button type="submit" class="btn btn-primary" th:text="#{submit}">Submit</button></td>
+  		</tr>
 		  </table>
   		</form>
 	</div>

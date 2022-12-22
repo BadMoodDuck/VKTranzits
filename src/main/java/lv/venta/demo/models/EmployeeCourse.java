@@ -50,11 +50,11 @@ public class EmployeeCourse {
 	//@Column(name="Date")
 	//private Date date;
 	
-	@ManyToMany
-	@JoinTable(name = "QuizAnswers_EmployeeCourse", joinColumns = @JoinColumn(name = "IdQuAn"),
-	inverseJoinColumns = @JoinColumn(name = "IdEmCo"))
-	private Collection<QuizAnswers> quizAnswers = new ArrayList<QuizAnswers>();
-	
+//	@ManyToMany
+//	@JoinTable(name = "QuizAnswers_EmployeeCourse", joinColumns = @JoinColumn(name = "IdQuAn"),
+//	inverseJoinColumns = @JoinColumn(name = "IdEmCo"))
+//	private Collection<QuizAnswers> quizAnswers = new ArrayList<QuizAnswers>();
+//	
 	@Column(name="ValuePr")
 	@Max(100)
 	@Min(0)

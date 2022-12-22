@@ -39,14 +39,15 @@ public class QuizAnswers {
 	@JoinColumn(name="IdQuQe")
 	private QuizQuestion quizQuestion;
 	
-	@Column(name = "answer")
+	@Column(name = "Answer")
 	private String answer;
 	
-	@Column(name = "isCorrect")
-	private boolean isCorrect;
+	@Column(name = "IsCorrect")
 	
-	@ManyToMany(mappedBy = "quizAnswers")
-	private Collection<EmployeeCourse> employeeCourse = new ArrayList<EmployeeCourse>();
+	private Boolean isCorrect;
+	
+//	@ManyToMany(mappedBy = "quizAnswers")
+//	private Collection<EmployeeCourse> employeeCourse = new ArrayList<EmployeeCourse>();
 	
 	public QuizAnswers(QuizQuestion quizQuestion,String answer, boolean isCorrect) {
 		this.quizQuestion = quizQuestion;

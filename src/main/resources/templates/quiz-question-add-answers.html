@@ -12,26 +12,28 @@
 	<div th:replace="fragments/header :: header"></div>
 	
 	<div class="container">
-  		<h1 th:text="#{quiz.addQuestion}">Add question</h1>
+  		<h1 th:text="#{quiz.addAnswers}">Add answers</h1>
 
-  		<form action="#" th:action="@{/quiz/{id}/addQuestion (id=${quizId})}" th:object="${quizQuestion}" method="post">
+  		<form action="#" th:action="@{/quiz/{id}/question/{qId}/addAnswers (id=${quizId}, qId=${questionId})}" th:object="${quizAnswers}" method="post">
   		
   		<table>
-	  		<tr>
-			    <td><label th:text="#{question}">Question</label></td>
-			    <td><input type="text" th:field="*{question}"></td>
-			    <td th:if="${#fields.hasErrors('question')}" th:errors="*{question}"><td>
+	  		<tr> 
+			    <td><label th:text="#{answer}">Answer</label></td>
+			    <td><input type="text" th:field="*{answer}"></td>
+			    <td th:if="${#fields.hasErrors('answer')}" th:errors="*{answer}"><td>
 	  		</tr>
+	  		
 	  		<tr>
-			    <td><label th:text="#{questionType}">Question Type</label></td>
-    		    <td>
-				    <select th:field="*{questionType}">
-					    <span th:each="qt, i: ${questionTypes}"> 
-					    	<option th:value="${qt}" th:text="${i.current}" />
-					    </span>
+			    <td><label th:text="#{isCorrect}">Is Correct?</label></td>
+	  			<td>
+				    <select th:field="*{isCorrect}">
+					    <span th:each="ic, i: ${boolList}"> 
+					    	<option th:value="${ic}" th:text="${i.current}" />
+				    	</span>	
 					</select>
-		    	</td>
+			    </td>
 	  		</tr>
+
 
 	  		<tr>
 			  <td><button type="submit" class="btn btn-primary" th:text="#{submit}">Submit</button></td>
