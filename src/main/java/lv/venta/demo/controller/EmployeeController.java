@@ -57,9 +57,9 @@ public class EmployeeController {
 		return "employee-all";
 	}
 
-	@GetMapping("/employees/{pageNr}/{field}") // Sort All Employees //TODO README: Sorting works but it sorts all of
+												// Sort All Employees //TODO README: Sorting works but it sorts all of
 												// the elements even the ones not displayed so switching pages will be
-												// confusing
+	@GetMapping("/employees/{pageNr}/{field}") 	// confusing
 	public String getAllEmployeesWithSort(Model model, @PathVariable("pageNr") int currentPage,
 			@PathVariable("field") String field, @PathParam("sortDir") String sortDir) {
 

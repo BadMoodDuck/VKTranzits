@@ -29,10 +29,12 @@ public class ImplementerCRUDserviceImpl implements IImplementerCRUDservice {
 
 	@Override
 	public boolean updateImplementerById(int implementerId, Implementer implementer) {
+		Implementer result = new Implementer();
 		if (implementerRepo.existsById(implementerId)) {
-			Implementer result = implementerRepo.findById(implementerId).get();
+			result = implementerRepo.findById(implementerId).get();
 			result.setName(implementer.getName());
 			implementerRepo.save(result);
+			return true;
 		}
 		return false;
 	}

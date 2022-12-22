@@ -48,5 +48,9 @@ public class CourseImplementer {
 		this.notes = notes;
 
 	}
+	
+	public void removeImplementer() { //TODO: Check
+		implementer = new Implementer();
+	}
 
 }

@@ -59,7 +59,6 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 	@Override
 	public boolean deleteEmployeeById(int employeeId) {
 		if (employeeRepo.existsById(employeeId)) {
-			Employee employee = employeeRepo.findById(employeeId).get();
 			
 			employeeRepo.deleteById(employeeId);
 			return true;
