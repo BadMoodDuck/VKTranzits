@@ -74,11 +74,6 @@ public class VkTranzitsApplication {
 				MyUserAuthority auth3 = new MyUserAuthority("ROLE_EMPLOYEE");
 				MyUserAuthority auth4 = new MyUserAuthority("ROLE_GUEST");
 				
-				authorityRepo.save(auth1);
-				authorityRepo.save(auth2);
-				authorityRepo.save(auth3);
-				authorityRepo.save(auth4);
-				
 				MyUser user1 = new MyUser("admins", encoder.encode("admins"));
 				MyUser user2 = new MyUser("jevgenijs", encoder.encode("Fksd123"));
 				MyUser user3 = new MyUser("janis123", encoder.encode("Fkwertyu1"));
@@ -86,14 +81,6 @@ public class VkTranzitsApplication {
 				MyUser user5 = new MyUser("maris1234", encoder.encode("12345"));
 				MyUser user6 = new MyUser("lone123", encoder.encode("111111111"));
 				MyUser user7 = new MyUser("david123", encoder.encode("idontknow"));
-				
-				userRepo.save(user1);
-				userRepo.save(user2);
-				userRepo.save(user3);
-				userRepo.save(user4);
-				userRepo.save(user5);
-				userRepo.save(user6);
-				userRepo.save(user7);
 				
 				user1.addAuthority(auth1);
 				user2.addAuthority(auth2);
@@ -103,6 +90,13 @@ public class VkTranzitsApplication {
 				user6.addAuthority(auth3);
 				user7.addAuthority(auth3);
 				
+				userRepo.save(user1);
+				userRepo.save(user2);
+				userRepo.save(user3);
+				userRepo.save(user4);
+				userRepo.save(user5);
+				userRepo.save(user6);
+				userRepo.save(user7);
 				
 				auth1.addUser(user1);
 				auth2.addUser(user2);
@@ -111,8 +105,13 @@ public class VkTranzitsApplication {
 				auth4.addUser(user5);
 				auth3.addUser(user6);
 				auth3.addUser(user7);
-
 				
+				authorityRepo.save(auth1);
+				authorityRepo.save(auth2);
+				authorityRepo.save(auth3);
+				authorityRepo.save(auth4);
+				
+
 				
 				Company com = new Company("Jhons");
 				Company com1 = new Company("Does");
