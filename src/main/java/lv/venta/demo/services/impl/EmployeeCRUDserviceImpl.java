@@ -9,8 +9,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import lv.venta.demo.models.Course;
-import lv.venta.demo.models.Department;
 import lv.venta.demo.models.Employee;
 import lv.venta.demo.repos.IDepartmentRepo;
 import lv.venta.demo.repos.IEmployeeRepo;
@@ -74,27 +72,16 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 		return (ArrayList<Employee>) employeeRepo.findAll();
 	}
 
-	
 	@Override
-	public Employee getEmployeeById(int employeId) {
-		if (employeeRepo.existsById(employeId)) {
-			return employeeRepo.findById(employeId).get();
-		}
-		return null;
-	}
-
-	@Override
-	public Object readEmployeeById(int id) throws Exception {
+	public Employee readEmployeeById(int id) throws Exception {
 		if(employeeRepo.existsById(id))
 		{
 			Employee em = employeeRepo.findByIdEm(id);
 			return em;
 		}
-		
 		throw new Exception("Employee doesn't exist");
-		
-	
 	}
+	
 	@Override
 	public Page<Employee> getPageListWithSort(int pageNr, String field, String sortDir) {
 		Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name())?

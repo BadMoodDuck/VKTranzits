@@ -36,7 +36,7 @@ public class EmployeeController {
 	private IDepartmentCRUDService departmentsService;
 
 	@Autowired
-	private ICompanyService otherService;
+	private ICompanyService companyService;
 	
 	@Autowired
 	private IPositionService positionService;
@@ -94,7 +94,12 @@ public class EmployeeController {
 
 	@GetMapping("/employee/{id}")
 	public String getOneEmployee(Model model, @PathVariable(name = "id") int id) {
-		model.addAttribute("employee", employeeService.getEmployeeById(id));
+		try {
+			model.addAttribute("employee", employeeService.readEmployeeById(id));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "employee-one";
 	}
 

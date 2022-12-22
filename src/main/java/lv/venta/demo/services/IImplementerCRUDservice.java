@@ -2,6 +2,8 @@ package lv.venta.demo.services;
 
 import java.util.ArrayList;
 
+import org.springframework.data.domain.Page;
+
 import lv.venta.demo.models.Implementer;
 
 public interface IImplementerCRUDservice {
@@ -17,5 +19,9 @@ public interface IImplementerCRUDservice {
 
 	// radit visus istenotajus
 	ArrayList<Implementer> selectAllImplementers();
+
+	Page<Implementer> getPageList(int pageNr);
+
+	Implementer readImplementerById(int id) throws Exception;
 
 }

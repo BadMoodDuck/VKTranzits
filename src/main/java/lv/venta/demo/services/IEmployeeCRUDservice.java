@@ -23,9 +23,7 @@ public interface IEmployeeCRUDservice {
 	//paradit visus darbiniekus
 	ArrayList<Employee> selectAllEmployees();
 
-	Employee getEmployeeById(int employeId);
-
-	public Object readEmployeeById(int id) throws Exception;
+	public Employee readEmployeeById(int id) throws Exception;
 	
 	Page<Employee> getPageListWithSort(int pageNr, String field, String sortDir);
 

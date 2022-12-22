@@ -12,28 +12,31 @@
 	<div th:replace="fragments/header :: header"></div>
 	
 	<div class="container">
-  		<h1><span th:text="#{positions}"></span>
-  			<a style="float: right; margin-top: 8px;" class="btn btn-primary" th:href="@{position/addNew}" role="button"><span th:text="#{add}"></span> </a> 
+  		<h1><span th:text="#{implementers}"></span>
+  			<a style="float: right; margin-top: 8px;" class="btn btn-primary" th:href="@{implementer/addNew}" role="button"><span th:text="#{add}"></span> </a> 
   		</h1>
 		<table class="table table-striped table-hover">
 		 <thead>
 		    <tr>
 		      <th scope="col">#</th>
-		      <th scope="col" th:text="#{title}">title</th>
-		      <th scope="col" th:text="#{description}">description</th>
+		      <th scope="col" th:text="#{implementer.name}">Name</th>
 		      <th scope="col"></th>
 		    </tr>
 	  	 </thead>
 	  	  <thbody>
-		    <tr th:each="position: ${positions}">
-		    <td th:text="${position.idPos}">#</td>
-		      <td th:text="${position.title}">#</td>
-		      <td th:text="${position.description}">#</td>
+		    <tr th:each="implementer: ${implementers}">
+		      <td th:text="${implementer.idImpl}">#</td>
+		      <td th:text="${implementer.name}">#</td>
+		      <td >
+	      		<a class="btn btn-primary" th:href="@{/implementer/{id}(id=${implementer.idImpl})}" role="button" th:text="#{view}">View</a>
+	      	  </td>
 		    </tr>
 	  	 </thbody>
 		</table>
-				<div th:replace="fragments/pageination-navbar.html :: pageination-navbar(
-			 pageName = 'companies',
+		
+		<!-- cool as heck nav bar-->
+		<div th:replace="fragments/pageination-navbar.html :: pageination-navbar(
+			 pageName = 'departments',
 			 currentPage = ${currentPage},
 			 totalPages = ${totalPages},
 			 totalElements = ${totalElements}
