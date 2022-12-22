@@ -25,4 +25,3 @@ public interface IDepartmentCRUDService {
 
 	Page<Department> getPageList(int currentPage);
 }
- 
