@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import lv.venta.demo.enums.EnumQuestionTypes;
-import lv.venta.demo.models.Course;
 import lv.venta.demo.models.Quiz;
 import lv.venta.demo.models.QuizAnswers;
 import lv.venta.demo.models.QuizQuestion;
@@ -94,7 +93,7 @@ public class QuizController {
 			Boolean[] list = {true, false};
 			model.addAttribute("boolList",  list);
 			model.addAttribute("quizId", id);
-			model.addAttribute("questionId", questionId);
+//			model.addAttribute("questionId", questionId);
 			return "quiz-question-add-answers";
 		} catch (Exception e) {
 			throw new Exception("Error at Get /quiz/{id}/addQuestion");
@@ -118,12 +117,47 @@ public class QuizController {
 		}
 	}
 	@GetMapping("/quiz/{id}/question/{questionId}/delete/{answerId}")
-	public String getDeleteEmployeeById(Model model, 
+	public String getDeleteAnswerById(Model model, 
 										@PathVariable(name = "id") int id,
 										@PathVariable(name = "questionId") int questionId,
 										@PathVariable(name = "answerId") int answerId) {
 
 		model.addAttribute("QuizAnswer", quizService.deleteQuizAnswerById(answerId));
 		return "redirect:/quiz/{id}";
+	}
+	
+	@GetMapping("/quiz/{id}/question/{questionId}/update/{answerId}")
+	public String getUpdateAnswerById(@PathVariable(name = "id") int id,
+									  @PathVariable(name = "questionId") int questionId,
+									  @PathVariable(name = "answerId") int answerId,
+									  Model model) throws Exception {
+		try {
+			Boolean[] list = {true, false};
+			model.addAttribute("boolList",  list);
+			model.addAttribute("quizAnswer", quizService.getQuizAnswerById(answerId));
+			model.addAttribute("quizId", id);
+			return "quiz-answer-update";
+		} catch (Exception e) {
+			System.out.println(e);
+			throw new Exception("can't find quiz answer");
+		}
+	}
+
+	// localhost:8080/course/update/{id}
+	@PostMapping("/quiz/{id}/question/{questionId}/update/{answerId}")
+	public String postUpdateAnswerById(@PathVariable(name = "id") int id,
+									   @PathVariable(name = "questionId") int questionId,
+									   @PathVariable(name = "answerId") int answerId, 
+									   QuizAnswers quizAnswer, BindingResult result) throws Exception {
+		if (!result.hasErrors()) {
+			if (quizService.updateQuizAnswerById(answerId, quizAnswer)) {
+				return "redirect:/quiz/{id}";
+			} else {
+				throw new Exception("can't update");
+			}
+		} else {
+			return "quiz-answer-update";
+		}
+
 	}
 }

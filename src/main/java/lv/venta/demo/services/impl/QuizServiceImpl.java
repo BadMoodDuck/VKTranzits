@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lv.venta.demo.models.Course;
 import lv.venta.demo.models.Quiz;
 import lv.venta.demo.models.QuizAnswers;
 import lv.venta.demo.models.QuizQuestion;
@@ -70,5 +71,25 @@ public class QuizServiceImpl implements IQuizService{
 		}
 		return false;
 	}
-
+	@Override
+	public QuizAnswers getQuizAnswerById(int id) {
+		if (quizAnswersRepo.existsById(id)) {
+			QuizAnswers qa = quizAnswersRepo.findById(id).get();
+			return qa;
+		}
+		return null;
+	}
+	@Override
+	public boolean updateQuizAnswerById(int id, QuizAnswers quizAnswer) {
+		QuizAnswers result = new QuizAnswers();
+		if (quizAnswersRepo.existsById(id)) {
+			result = quizAnswersRepo.findById(id).get();
+			result.setAnswer(quizAnswer.getAnswer());
+			result.setIsCorrect(quizAnswer.getIsCorrect());
+			quizAnswersRepo.save(result);
+			return true;
+		} else {
+		return false;
+		}
+	}
 }
