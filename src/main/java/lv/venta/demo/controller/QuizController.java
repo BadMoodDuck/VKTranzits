@@ -117,4 +117,13 @@ public class QuizController {
 			return "redirect:/quiz/{id}";
 		}
 	}
+	@GetMapping("/quiz/{id}/question/{questionId}/delete/{answerId}")
+	public String getDeleteEmployeeById(Model model, 
+										@PathVariable(name = "id") int id,
+										@PathVariable(name = "questionId") int questionId,
+										@PathVariable(name = "answerId") int answerId) {
+
+		model.addAttribute("QuizAnswer", quizService.deleteQuizAnswerById(answerId));
+		return "redirect:/quiz/{id}";
+	}
 }

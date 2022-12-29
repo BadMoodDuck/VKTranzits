@@ -62,5 +62,13 @@ public class QuizServiceImpl implements IQuizService{
 	public void insertNewQuiz(Quiz quiz) {
 		quizRepo.save(quiz);
 	}
+	@Override
+	public boolean deleteQuizAnswerById(int answerId) {
+		if (quizAnswersRepo.existsById(answerId)) {
+			quizAnswersRepo.deleteById(answerId);
+			return true;
+		}
+		return false;
+	}
 
 }

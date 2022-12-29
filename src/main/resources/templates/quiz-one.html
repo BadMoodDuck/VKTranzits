@@ -25,6 +25,7 @@
 					<th scope="col" th:text="#{Question Type}">Question Type</th>
 					<th scope="col" th:text="#{Answers}">Answers</th>
 					<th scope="col" th:text="#{Correct Answer}">Correct Answer</th>
+					<th scope="col"></th>
 				</tr>
 			</thead>
 			<thbody>
@@ -32,10 +33,16 @@
 					<td th:text="${question.getQuestion()}"></td>
 					<td th:text="${question.getQuestionType()}"></td>
 					<td>
-					 	<p th:each="answer: ${question.getQuizAnswers()}"
-					 		  th:text="${answer.getAnswer()}">
+					 	<div th:each="answer: ${question.getQuizAnswers()}">
+					 	<div style="display:flex;">
+					 		 <p th:text="${answer.getAnswer()}"></p>
+					 		 <a style="margin-left: auto;" class="btn btn-primary" th:href="@{/quiz/{id}/question/{qId}/edit/{aId} (id=${quiz.getIdQu}, qId=${question.getIdQuQe}, aId=${answer.getIdQuAn}) }" role="button">E</a>
+					 		 <a style="margin-left: 2px;" class="btn btn-danger" th:href="@{/quiz/{id}/question/{qId}/delete/{aId} (id=${quiz.getIdQu}, qId=${question.getIdQuQe}, aId=${answer.getIdQuAn}) }" role="button">X</a>
+
+					 	</div>
 				 			<br/> 
-					 	<p/>
+				 			
+					 	<div/>
 					</td>
 					<td>
 					 	<p th:each="answer: ${question.getQuizAnswers()}"
@@ -43,6 +50,7 @@
 					 		  th:text="${answer.getAnswer()}">
 				 			<br/>
 					 	<p/> 
+
 					</td>
 					<td>
 						<a class="btn btn-primary" th:href="@{/quiz/{id}/question/{qId}/addAnswers (id=${id}, qId=${question.getIdQuQe()})}" role="button" th:text="#{Edit Answers}">Edit Answers</a> <br/>

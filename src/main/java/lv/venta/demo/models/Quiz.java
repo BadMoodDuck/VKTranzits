@@ -64,4 +64,9 @@ public class Quiz {
 		this.completionDeadLine = completionDeadLine;
 		this.course = course;
 	}
+	
+	public void RemoveQuizQuestion(QuizQuestion question) {
+		quizQuestions.remove(question);
+		System.out.println(quizQuestions);
+	}
 }
