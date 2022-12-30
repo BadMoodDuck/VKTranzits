@@ -8,10 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import lv.venta.demo.models.Course;
 import lv.venta.demo.models.CourseImplementer;
-import lv.venta.demo.models.Department;
-import lv.venta.demo.models.Employee;
 import lv.venta.demo.models.Implementer;
 import lv.venta.demo.repos.ICourseImplementerRepo;
 import lv.venta.demo.repos.IImplementerRepo;

@@ -13,10 +13,12 @@ public interface IDepartmentCRUDService {
 	ArrayList<Department> getAllDepartments();
 
 	ArrayList<Employee> getAllEmployeesFromDepartment(int idDe);
-
+	
 	ArrayList<Course> getAllCoursesFromDepartment(int idDe);
-
+	
 	boolean insertNewDepartment(Department department);
+	
+	boolean deleteDepartmentById(int id);
 
 	Page<Department> getPageList(int currentPage);
 
@@ -25,3 +27,6 @@ public interface IDepartmentCRUDService {
 	boolean updateDepartmentById(int departmentId, Department department);
 }
  
+
+
+

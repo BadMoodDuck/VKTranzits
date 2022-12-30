@@ -6,7 +6,6 @@ import org.springframework.data.domain.Page;
 
 import lv.venta.demo.models.Course;
 import lv.venta.demo.models.CourseType;
-import lv.venta.demo.models.EmployeeCourse;
 
 public interface ICourseService {
 
