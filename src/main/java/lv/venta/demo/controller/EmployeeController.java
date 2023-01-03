@@ -103,14 +103,21 @@ public class EmployeeController {
 		return "employee-one";
 	}
 
-	// localhost:8080/employee/delete/{id}
+
+	
 	@GetMapping("/employee/delete/{id}")
 	public String getDeleteEmployeeById(Model model, @PathVariable(name = "id") int id) {
-		// MyMessage message = new MyMessage("Employee deleted successfully");
-		// template.convertAndSend(MQConfig.exchange, MQConfig.routingKey, message);
-		model.addAttribute("Employee", employeeService.deleteEmployeeById(id));
-		return "redirect:/employees";
+		//MyMessage message = new MyMessage("Employee deleted successfully");
+		//template.convertAndSend(MQConfig.exchange, MQConfig.routingKey, message);
+		if(employeeService.deleteEmployeeById(id)) {
+			model.addAttribute("Employee", employeeService.selectAllEmployees());
+			return "redirect:/employees";
+		}else {
+			return "error-page";
+		}
+
 	}
+	
 
 	// TODO fix update
 	// localhost:8080/employee/update/{id}
@@ -123,7 +130,8 @@ public class EmployeeController {
 			return "employee-update";
 		} catch (Exception e) {
 			throw new Exception("can't find employee");
-		}
+
+	}
 	}
 
 	// localhost:8080/course/update/{id}
@@ -139,6 +147,11 @@ public class EmployeeController {
 		} else {
 			return "employee-update";
 		}
+	
 	}
 
+
+		
+		
 }
+

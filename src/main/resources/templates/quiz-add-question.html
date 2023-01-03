@@ -12,27 +12,30 @@
 	<div th:replace="fragments/header :: header"></div>
 	
 	<div class="container">
-  		<h1 th:text="#{department.update}">Update department</h1>
+  		<h1 th:text="#{quiz.addQuestion}">Add question</h1>
 
-  		<form action="#" th:action="@{/department/update/__${id}__}" th:object="${department}" method="post">
+  		<form action="#" th:action="@{/quiz/{id}/addQuestion (id=${quizId})}" th:object="${quizQuestion}" method="post">
   		
   		<table>
-  		<tr>
-		    <td><label th:text="#{department.name}">Name</label></td>
-		    <td><input type="text" th:field="*{name}"></td>
-		    <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"><td>
-  		</tr>
-		<tr>  
-		    <td><label th:text="#{company}">Company</label></td>
-		    <td>
-			    <select th:field="*{company}">
-			    	<option th:each="c: ${companies}" th:value="${c.idCo}" th:text="${c.name}" />
-				</select>
-		    </td>
-		</tr>
-  	
-		  <td><button type="submit" class="btn btn-primary" th:text="#{submit}">Submit</button></td>
-  		</tr>
+	  		<tr>
+			    <td><label th:text="#{question}">Question</label></td>
+			    <td><input type="text" th:field="*{question}"></td>
+			    <td th:if="${#fields.hasErrors('question')}" th:errors="*{question}"><td>
+	  		</tr>
+	  		<tr>
+			    <td><label th:text="#{questionType}">Question Type</label></td>
+    		    <td>
+				    <select th:field="*{questionType}">
+					    <span th:each="qt, i: ${questionTypes}"> 
+					    	<option th:value="${qt}" th:text="${i.current}" />
+					    </span>
+					</select>
+		    	</td>
+	  		</tr>
+
+	  		<tr>
+			  <td><button type="submit" class="btn btn-primary" th:text="#{submit}">Submit</button></td>
+	  		</tr>
 		  </table>
   		</form>
 	</div>

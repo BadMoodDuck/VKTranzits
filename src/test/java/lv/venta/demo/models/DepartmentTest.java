@@ -25,7 +25,7 @@ class DepartmentTest {
 		depRight.removeCourse(course);
 		
 		assertFalse(depRight.getCourses().contains(course));
-		
+
 	}
 	
 	@Test
@@ -33,6 +33,7 @@ class DepartmentTest {
 		//right
 		assertEquals(company, depRight.getCompany());
 		assertEquals("IT", depRight.getName());
+
 	}
 
 }
