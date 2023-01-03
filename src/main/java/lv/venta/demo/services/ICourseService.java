@@ -39,4 +39,6 @@ public interface ICourseService {
 	CourseType getCourseTypeById(int courseTypeId);
 	
 	boolean deleteCourseTypeById(int courseTypeId);
+
+	ArrayList<Course> getAllCourses();
 }

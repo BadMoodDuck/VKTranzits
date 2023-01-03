@@ -167,6 +167,12 @@ public class CourseServiceImpl implements ICourseService {
 		return false;
 	}
 
+	@Override
+	public ArrayList<Course> getAllCourses() {
+		// TODO Auto-generated method stub
+		return (ArrayList<Course>) courseRepo.findAll();
+	}
+
 
 	
 	

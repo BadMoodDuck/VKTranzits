@@ -24,12 +24,14 @@
   		</tr>
   		<tr>
 		    <td><label th:text="#{completionDeadLine}">Deadline</label></td>
-			<td><p text="23.12.1978"/></td>
+			<td><input type="date" th:field="*{completionDeadLine}"/></td>
 		</tr>
 		<tr>  
 		    <td><label th:text="#{course}">Course</label></td>
 		    <td>
-			    <p text="No course needs this quiz"/>
+			    <select th:field="*{course}">
+			    	<option th:each="c: ${Courses}" th:value="${c.idCou}" th:text="${c.title}" />
+				</select>
 		    </td>
 		</tr>
 

@@ -18,6 +18,7 @@ import lv.venta.demo.enums.EnumQuestionTypes;
 import lv.venta.demo.models.Quiz;
 import lv.venta.demo.models.QuizAnswers;
 import lv.venta.demo.models.QuizQuestion;
+import lv.venta.demo.services.ICourseService;
 import lv.venta.demo.services.IQuizService;
 
 @Controller
@@ -25,6 +26,9 @@ public class QuizController {
 
 	@Autowired
 	private IQuizService quizService;
+	
+	@Autowired
+	private ICourseService courseService;
 	
 	
 	@GetMapping("/quizes") // All Courses
@@ -35,6 +39,7 @@ public class QuizController {
 	
 	@GetMapping("/quiz/addNew") // All Courses
 	public String getQuizAdd(Model model, Quiz quiz) {
+		model.addAttribute("Courses", courseService.getAllCourses());
 		return "quiz-add";
 	}
 	@PostMapping("/quiz/addNew")
@@ -93,7 +98,6 @@ public class QuizController {
 			Boolean[] list = {true, false};
 			model.addAttribute("boolList",  list);
 			model.addAttribute("quizId", id);
-//			model.addAttribute("questionId", questionId);
 			return "quiz-question-add-answers";
 		} catch (Exception e) {
 			throw new Exception("Error at Get /quiz/{id}/addQuestion");

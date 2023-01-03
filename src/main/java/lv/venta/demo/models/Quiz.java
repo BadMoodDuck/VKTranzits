@@ -1,8 +1,8 @@
 package lv.venta.demo.models;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -45,10 +45,11 @@ public class Quiz {
 	@Column(name = "creationDate")
 	@CreationTimestamp
 	@DateTimeFormat(iso = ISO.DATE_TIME)
-	private java.util.Date creationDate;
+	private Date creationDate;
 	
 	
 	@Column(name = "completionDeadLine")
+	@DateTimeFormat(iso = ISO.DATE_TIME)
 	private Date completionDeadLine;
 	
 	@ManyToOne
