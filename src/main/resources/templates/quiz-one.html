@@ -16,15 +16,15 @@
 
 	<div class="container">
 		<h1 th:text="${quiz.getTitle()}">Quiz Title</h1>
-		<a class="btn btn-primary" th:href="@{{id}/addQuestion (id=${quiz.getIdQu})}" role="button" th:text="#{Add question}">Edit</a>
+		<a class="btn btn-primary" th:href="@{{id}/addQuestion (id=${quiz.getIdQu})}" role="button" th:text="#{question.add}">Edit</a>
 		<table class="table table-striped table-hover">
 
 			<thead>
 				<tr>
-					<th scope="col" th:text="#{Question}">Question</th>
-					<th scope="col" th:text="#{Question Type}">Question Type</th>
-					<th scope="col" th:text="#{Answers}">Answers</th>
-					<th scope="col" th:text="#{Correct Answer}">Correct Answer</th>
+					<th scope="col" th:text="#{question}">Question</th>
+					<th scope="col" th:text="#{question.type}">Question Type</th>
+					<th scope="col" th:text="#{answers}">Answers</th>
+					<th scope="col" th:text="#{correct.answer}">Correct Answer</th>
 				</tr>
 			</thead>
 			<thbody>
@@ -45,8 +45,8 @@
 					 	<p/> 
 					</td>
 					<td>
-						<a class="btn btn-primary" th:href="@{/quiz/{id}/question/{qId}/addAnswers (id=${id}, qId=${question.getIdQuQe()})}" role="button" th:text="#{Edit Answers}">Edit Answers</a> <br/>
-						<a class="btn btn-primary" th:href="@{/}" role="button" th:text="#{Edit Question}">Edit Answers</a> <br/>
+						<a class="btn btn-primary" th:href="@{/quiz/{id}/question/{qId}/addAnswers (id=${id}, qId=${question.getIdQuQe()})}" role="button" th:text="#{answers.edit}">Edit Answers</a> <br/>
+						<a class="btn btn-primary" th:href="@{/}" role="button" th:text="#{question.edit}">Edit Question</a> <br/>
 
 					</td>
 				</tr>
