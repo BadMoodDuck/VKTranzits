@@ -43,7 +43,6 @@ public class QuizAnswers {
 	private String answer;
 	
 	@Column(name = "IsCorrect")
-	
 	private Boolean isCorrect;
 	
 //	@ManyToMany(mappedBy = "quizAnswers")

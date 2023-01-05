@@ -14,7 +14,7 @@
 	<div class="container">
   		<h1 th:text="#{course.add}">Add course</h1>
 
-  		<form action="#" th:action="@{/quiz/addNew}" th:object="${quiz}" method="post">
+  		<form action="#" th:action="@{/quiz/{id}/update (id=${quiz.getIdQu()})} " th:object="${quiz}" method="post">
   		
   		<table>
   		<tr>

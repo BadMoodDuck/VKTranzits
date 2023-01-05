@@ -53,4 +53,8 @@ public class QuizQuestion {
 		this.questionType = questionType;
 		this.quiz = quiz;
 	}
+
+	public void removeAnswer() {
+		quizAnswers.clear();
+	}
 }
