@@ -112,4 +112,20 @@ public class QuizServiceImpl implements IQuizService{
 		return true;
 		
 	}
+	@Override
+	public QuizQuestion getQuizQuestionById(int id) {
+		if (!quizQuestionRepo.existsById(id))
+			return new QuizQuestion();
+		
+		return quizQuestionRepo.findById(id).get();
+	}
+	@Override
+	public void updateQuizQuestionById(QuizQuestion quizQuestion, int id) {
+		if (!quizQuestionRepo.existsById(id))
+			return;
+		QuizQuestion updatedQuestion = quizQuestionRepo.findById(id).get();
+		updatedQuestion.setQuestion(quizQuestion.getQuestion());
+		updatedQuestion.setQuestionType(quizQuestion.getQuestionType());
+		quizQuestionRepo.save(updatedQuestion);
+	}
 }

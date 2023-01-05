@@ -88,6 +88,37 @@ public class QuizController {
 		}
 	}
 	
+	@GetMapping("/quiz/{id}/updateQuestion/{questionId}") 
+	public String getQuizUpdateQuestion(Model model,
+									 @PathVariable(name = "id") int id,
+									 @PathVariable(name = "questionId") int questionId) throws Exception {
+		try {
+			model.addAttribute("quizQuestion", quizService.getQuizQuestionById(questionId));
+			List<EnumQuestionTypes> enums = Arrays.asList(EnumQuestionTypes.values());
+			model.addAttribute("questionTypes", enums);
+			model.addAttribute("quizId", id);
+			return "quiz-update-question";
+		} catch (Exception e) {
+			throw new Exception("Error at Get /quiz/{id}/updateQuestion/{questionId}");
+		}
+		
+	}
+	@PostMapping("/quiz/{id}/updateQuestion/{questionId}") 
+	public String getQuizUpdateQuestion(QuizQuestion quizQuestion,
+								      BindingResult result,
+								      @PathVariable(name = "id") int id,
+								      @PathVariable(name = "questionId") int questionId) {
+		if (result.hasErrors()) { 
+			System.out.println(result); 
+			return "quiz-update-question";
+
+		} else {
+			System.out.println("no proble");
+			quizService.updateQuizQuestionById(quizQuestion,questionId);
+			return "redirect:/quiz/{id}";
+		}
+	}
+	
 	
 	@GetMapping("/quiz/{id}/deleteQuestion/{questionId}")
 	public String getDeleteEmployeeById(Model model, 
@@ -168,6 +199,5 @@ public class QuizController {
 		} else {
 			return "quiz-answer-update";
 		}
-
 	}
 }
