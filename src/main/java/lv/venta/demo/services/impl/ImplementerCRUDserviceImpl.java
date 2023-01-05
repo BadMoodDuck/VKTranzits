@@ -8,8 +8,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import lv.venta.demo.models.Employee;
+import lv.venta.demo.models.CourseImplementer;
 import lv.venta.demo.models.Implementer;
+import lv.venta.demo.repos.ICourseImplementerRepo;
 import lv.venta.demo.repos.IImplementerRepo;
 import lv.venta.demo.services.IImplementerCRUDservice;
 
@@ -18,6 +19,9 @@ public class ImplementerCRUDserviceImpl implements IImplementerCRUDservice {
 
 	@Autowired
 	private IImplementerRepo implementerRepo;
+	
+	@Autowired
+	private ICourseImplementerRepo courseImplRepo;
 
 	public boolean insertNewImplementer(Implementer implementer) {
 		if (implementerRepo.existsByName(implementer.getName())) {
@@ -43,6 +47,17 @@ public class ImplementerCRUDserviceImpl implements IImplementerCRUDservice {
 	public boolean deleteImplementerById(int implementerId) {
 		if (implementerRepo.existsById(implementerId)) 
 		{
+			try {
+				Implementer implementer = readImplementerById(implementerId);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			ArrayList<CourseImplementer> allImplementers = courseImplRepo.findByImplementerIdImpl(implementerId);
+			for (CourseImplementer coimpl : allImplementers) {
+				coimpl.removeImplementer();
+				courseImplRepo.save(coimpl);
+			}
 			implementerRepo.deleteById(implementerId);
 			return true;
 		}

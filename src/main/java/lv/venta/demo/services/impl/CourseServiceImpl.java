@@ -1,8 +1,6 @@
 package lv.venta.demo.services.impl;
 
 import java.util.ArrayList;
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -168,14 +166,10 @@ public class CourseServiceImpl implements ICourseService {
 		return false;
 	}
 
+
 	@Override
 	public ArrayList<Course> getAllCourses() {
 		// TODO Auto-generated method stub
 		return (ArrayList<Course>) courseRepo.findAll();
 	}
-
-
-
-	
-	
 }

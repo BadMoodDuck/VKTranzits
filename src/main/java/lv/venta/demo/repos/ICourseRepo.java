@@ -12,7 +12,8 @@ public interface ICourseRepo extends PagingAndSortingRepository<Course, Integer>
 	Course findByIdCou(int courseId);
 
 	boolean existsByTitleIgnoreCase(String title);
-
+	
+	ArrayList<Course> findByDepartmentsIdDe(int id);
 	ArrayList<Course> findByDepartments(Department department);
 
 	ArrayList<Course> findAllByCoTypeIdTy(int coTypeId);

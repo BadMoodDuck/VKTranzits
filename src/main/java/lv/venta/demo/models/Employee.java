@@ -73,7 +73,8 @@ public class Employee {
 	@JoinColumn(name = "IdPos")
 	private Position position;
 
-	public Employee(String name,String surname,int phone, String email, MyUser user, Department department, Position position) {
+	public Employee(String name,String surname,int phone, String email, String password, Department department, Position position) {
+
 		this.name = name;
 		this.surname =surname;
 		this.phone =phone;

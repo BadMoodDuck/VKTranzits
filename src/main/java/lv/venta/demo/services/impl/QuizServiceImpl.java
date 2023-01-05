@@ -1,15 +1,11 @@
 package lv.venta.demo.services.impl;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
-import javax.validation.Valid;
 
-import org.aspectj.weaver.patterns.TypePatternQuestions.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import lv.venta.demo.models.Course;
 import lv.venta.demo.models.Quiz;
 import lv.venta.demo.models.QuizAnswers;
 import lv.venta.demo.models.QuizQuestion;

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import org.springframework.data.domain.Page;
 
-import lv.venta.demo.models.Course;
 import lv.venta.demo.models.Employee;
+import lv.venta.demo.models.EmployeeCourse;
 
 public interface IEmployeeCRUDservice {
 	
@@ -26,6 +26,8 @@ public interface IEmployeeCRUDservice {
 	public Employee readEmployeeById(int id) throws Exception;
 	
 	Page<Employee> getPageListWithSort(int pageNr, String field, String sortDir);
+
+	public ArrayList<EmployeeCourse> findAll();
 
 }
 

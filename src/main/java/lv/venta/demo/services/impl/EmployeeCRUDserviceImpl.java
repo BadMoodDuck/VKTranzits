@@ -10,7 +10,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import lv.venta.demo.models.Employee;
+import lv.venta.demo.models.EmployeeCourse;
 import lv.venta.demo.repos.IDepartmentRepo;
+import lv.venta.demo.repos.IEmployeeCourseRepo;
 import lv.venta.demo.repos.IEmployeeRepo;
 import lv.venta.demo.services.IEmployeeCRUDservice;
 
@@ -22,6 +24,8 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 	private IEmployeeRepo employeeRepo;
 	@Autowired
 	private IDepartmentRepo departmentRepo;
+	@Autowired
+	private IEmployeeCourseRepo eCourseRepo;
 	
 	@Override
 	public Page<Employee> getPageList(int pageNr) {
@@ -90,7 +94,11 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 		return employeeRepo.findAll(pageable);
 	
 	}
-
+	
+	@Override
+	public ArrayList<EmployeeCourse> findAll() {
+		return (ArrayList<EmployeeCourse>) eCourseRepo.findAll();
+	}
 
 }
 
