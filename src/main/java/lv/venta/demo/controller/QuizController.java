@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import lv.venta.demo.enums.EnumQuestionTypes;
+import lv.venta.demo.models.Course;
 import lv.venta.demo.models.Quiz;
 import lv.venta.demo.models.QuizAnswers;
 import lv.venta.demo.models.QuizQuestion;
@@ -52,6 +53,39 @@ public class QuizController {
 			return "redirect:/quizes";
 		}
 	}
+	@GetMapping("/quiz/{id}/update")
+	public String getUpdateCourseById(Model model,
+									  @PathVariable(name="id") int id) throws Exception {
+		try {
+			model.addAttribute("quiz", quizService.getQuizById(id));
+			model.addAttribute("Courses", courseService.getAllCourses());
+			return "quiz-update";
+		} catch (Exception e){
+			throw new Exception("can't find course");
+		}
+		
+	}
+
+	// localhost:8080/course/update/{id}
+	@PostMapping("/quiz/{id}/update")
+	public String postUpdateCourseById(@PathVariable(name = "id") int id, Quiz quiz, BindingResult result) throws Exception {
+		if (!result.hasErrors()) {
+			if (quizService.updateQuizById(id, quiz)) {
+				return "redirect:/quizes";
+			} else {
+				throw new Exception("can't update");
+			}
+		} else {
+			return "course-update";
+		}
+	}
+	
+	@GetMapping("/quiz/{id}/delete")
+	public String postQuizDelete(Model model, 
+							   	 @PathVariable(name = "id") int id) {
+		quizService.deleteQuizById(id);
+		return "redirect:/quizes";
+	}
 	
 	@GetMapping("/quiz/{id}") // Single quiz
 	public String getOneQuiz(Model model, @PathVariable(name = "id") int id) {
@@ -71,7 +105,6 @@ public class QuizController {
 		} catch (Exception e) {
 			throw new Exception("Error at Get /quiz/{id}/addQuestion");
 		}
-		
 	}
 	@PostMapping("/quiz/{id}/addQuestion") 
 	public String postQuizAddQuestion(QuizQuestion quizQuestion,

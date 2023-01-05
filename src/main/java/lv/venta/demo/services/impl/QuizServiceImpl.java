@@ -128,4 +128,30 @@ public class QuizServiceImpl implements IQuizService{
 		updatedQuestion.setQuestionType(quizQuestion.getQuestionType());
 		quizQuestionRepo.save(updatedQuestion);
 	}
+	@Override
+	public void deleteQuizById(int id) {
+		if (!quizRepo.existsById(id))
+			return;
+		
+		Quiz quiz = quizRepo.findById(id).get();
+		for (QuizQuestion question : quiz.getQuizQuestions()) {
+			for (QuizAnswers answer : question.getQuizAnswers()) {
+				quizAnswersRepo.delete(answer);
+			}
+			quizQuestionRepo.delete(question);
+		}
+		quizRepo.deleteById(id);
+	}
+	@Override
+	public boolean updateQuizById(int id, Quiz quiz) {
+		if (!quizRepo.existsById(id))
+			return false;
+		
+		Quiz updatedQuiz = quizRepo.findById(id).get();
+		updatedQuiz.setTitle(quiz.getTitle());
+		updatedQuiz.setCompletionDeadLine(quiz.getCompletionDeadLine());
+		updatedQuiz.setCourse(quiz.getCourse());
+		quizRepo.save(updatedQuiz);
+		return true;
+	}
 }

@@ -32,5 +32,8 @@ public interface IQuizService {
 
 	void updateQuizQuestionById(QuizQuestion quizQuestion, int id);
 
+	void deleteQuizById(int id);
+
+	boolean updateQuizById(int id, Quiz quiz);
 
 }
