@@ -126,7 +126,7 @@ public class QuizController {
 			return "redirect:/quiz/{id}";
 		}
 	}
-	@GetMapping("/quiz/{id}/question/{questionId}/delete/{answerId}")
+	@GetMapping("/quiz/{id}/question/{questionId}/deleteAnswer/{answerId}")
 	public String getDeleteAnswerById(Model model, 
 										@PathVariable(name = "id") int id,
 										@PathVariable(name = "questionId") int questionId,
@@ -136,7 +136,7 @@ public class QuizController {
 		return "redirect:/quiz/{id}";
 	}
 	
-	@GetMapping("/quiz/{id}/question/{questionId}/update/{answerId}")
+	@GetMapping("/quiz/{id}/question/{questionId}/updateAnswer/{answerId}")
 	public String getUpdateAnswerById(@PathVariable(name = "id") int id,
 									  @PathVariable(name = "questionId") int questionId,
 									  @PathVariable(name = "answerId") int answerId,
@@ -154,7 +154,7 @@ public class QuizController {
 	}
 
 	// localhost:8080/course/update/{id}
-	@PostMapping("/quiz/{id}/question/{questionId}/update/{answerId}")
+	@PostMapping("/quiz/{id}/question/{questionId}/updateAnswer/{answerId}")
 	public String postUpdateAnswerById(@PathVariable(name = "id") int id,
 									   @PathVariable(name = "questionId") int questionId,
 									   @PathVariable(name = "answerId") int answerId, 

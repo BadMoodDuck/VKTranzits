@@ -109,7 +109,7 @@ public class QuizServiceImpl implements IQuizService{
 		quizQuestionRepo.delete(quizQuestion);
 		quizRepo.save(quiz);
 		
-		return false;
+		return true;
 		
 	}
 }

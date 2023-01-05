@@ -36,7 +36,7 @@
 					 	<div th:each="answer: ${question.getQuizAnswers()}">
 					 	<div style="display:flex;">
 					 		 <p th:text="${answer.getAnswer()}"></p>
-					 		 <a style="margin-left: auto; height: fit-content;" class="btn btn-primary" th:href="@{/quiz/{id}/question/{qId}/update/{aId} (id=${quiz.getIdQu}, qId=${question.getIdQuQe}, aId=${answer.getIdQuAn}) }" role="button">E</a>
+					 		 <a style="margin-left: auto; height: fit-content;" class="btn btn-primary" th:href="@{/quiz/{id}/question/{qId}/updateAnswer/{aId} (id=${quiz.getIdQu}, qId=${question.getIdQuQe}, aId=${answer.getIdQuAn}) }" role="button">E</a>
 					 		 <a style="margin-left: 2px; height: fit-content;" class="btn btn-danger" th:href="@{/quiz/{id}/question/{qId}/delete/{aId} (id=${quiz.getIdQu}, qId=${question.getIdQuQe}, aId=${answer.getIdQuAn}) }" role="button">X</a>
 					 	</div>
 				 			
