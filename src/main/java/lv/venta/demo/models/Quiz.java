@@ -44,12 +44,12 @@ public class Quiz {
 	// (h2) Might not work with other databases 
 	@Column(name = "creationDate")
 	@CreationTimestamp
-	@DateTimeFormat(iso = ISO.DATE_TIME)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date creationDate;
 	
 	
 	@Column(name = "completionDeadLine")
-	@DateTimeFormat(iso = ISO.DATE_TIME)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date completionDeadLine;
 	
 	@ManyToOne

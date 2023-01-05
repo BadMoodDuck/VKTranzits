@@ -163,7 +163,7 @@ public class VkTranzitsApplication {
 				courseRepo.save(co1);
 				
 				
-				Quiz quiz1 = new Quiz("Best Quiz", null, co);
+				Quiz quiz1 = new Quiz("Best Quiz", null , co);
 				quizRepo.save(quiz1);
 				System.out.println(quiz1);
 				

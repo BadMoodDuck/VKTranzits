@@ -1,9 +1,11 @@
 package lv.venta.demo.services.impl;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.validation.Valid;
 
+import org.aspectj.weaver.patterns.TypePatternQuestions.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,7 +48,6 @@ public class QuizServiceImpl implements IQuizService{
 	}
 	@Override
 	public void insertNewQuestionAnswer(QuizAnswers quizAnswers, int questionId) {
-		System.out.println("AT: insterNewQuestionAnswer");
 		if (quizQuestionRepo.existsById(questionId)) {
 			QuizQuestion question = quizQuestionRepo.findById(questionId).get();
 			quizAnswers.setQuizQuestion(question);
@@ -91,5 +92,24 @@ public class QuizServiceImpl implements IQuizService{
 		} else {
 		return false;
 		}
+	}
+	@Override
+	public boolean deleteQuizQuestionById(int quizId, int questionId) {
+
+		if (!quizRepo.existsById(quizId)) 
+			return false;
+		if (!quizQuestionRepo.existsById(questionId))
+			return false;
+		
+		Quiz quiz = quizRepo.findById(quizId).get();
+		QuizQuestion quizQuestion = quizQuestionRepo.findById(questionId).get();
+		for (QuizAnswers answer : quizQuestion.getQuizAnswers()) {
+			quizAnswersRepo.delete(answer);			
+		}
+		quizQuestionRepo.delete(quizQuestion);
+		quizRepo.save(quiz);
+		
+		return false;
+		
 	}
 }

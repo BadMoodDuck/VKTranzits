@@ -30,6 +30,9 @@
 						<p text="quiz name"/>
 					</th>
 					<th scope="col">
+						<p text="completion deadline"/>
+					</th>
+					<th scope="col">
 
 					</th>
 				</tr>
@@ -38,7 +41,7 @@
 				<tr th:each="quiz: ${quizes}">
 					<td th:text="${quiz.idQu}">#</td>
 					<td th:text="${quiz.title}">#</td>
-					<td th:text="${quiz.completionDeadLine}">#</td>
+					<td th:text="${#dates.format(quiz.completionDeadLine, 'dd-MM-yyyy')}">#</td>
 			      	<td >
 			      		<a class="btn btn-primary" th:href="@{/quiz/{id} (id=${quiz.idQu})}" role="button" th:text="#{view}">View</a>
 			      	</td>	

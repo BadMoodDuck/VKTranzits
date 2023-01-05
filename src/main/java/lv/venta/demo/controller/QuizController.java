@@ -89,6 +89,14 @@ public class QuizController {
 	}
 	
 	
+	@GetMapping("/quiz/{id}/deleteQuestion/{questionId}")
+	public String getDeleteEmployeeById(Model model, 
+										@PathVariable(name = "id") int quizId,
+										@PathVariable(name = "questionId") int questionId) {
+		model.addAttribute("Question", quizService.deleteQuizQuestionById(quizId, questionId));
+		return "redirect:/quiz/{id}";
+	}
+	
 	@GetMapping("/quiz/{id}/question/{questionId}/addAnswers") 
 	public String getQuizQuestionAddAnswers(Model model,
 											QuizAnswers quizAnswers,
@@ -109,13 +117,11 @@ public class QuizController {
 											 BindingResult result,
 											 @PathVariable(name = "id") int id,
 											 @PathVariable(name = "questionId") int questionId) {
-		System.out.println("POST");
 		if (result.hasErrors()) { 
 			System.out.println(result); 
 			return "quiz-question-add-answers";
 
 		} else {
-			System.out.println("no proble");
 			quizService.insertNewQuestionAnswer(quizAnswers, questionId);
 			return "redirect:/quiz/{id}";
 		}
