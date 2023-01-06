@@ -65,7 +65,7 @@ public class VkTranzitsApplication {
 		return new CommandLineRunner() {
 				
 			public void run(String... args) throws Exception {
-	/*
+	
 	 
 				MyUserAuthority auth1 = new MyUserAuthority("ROLE_ADMIN");
 				MyUserAuthority auth2 = new MyUserAuthority("ROLE_IMPLEMENTER");
@@ -223,7 +223,7 @@ public class VkTranzitsApplication {
 				authorityRepo.save(auth3);
 				authorityRepo.save(auth4);
 				
-*/
+
 
 				
 			}
