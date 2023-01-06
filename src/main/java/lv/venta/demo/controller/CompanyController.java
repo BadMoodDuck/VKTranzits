@@ -1,5 +1,6 @@
 package lv.venta.demo.controller;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,6 +67,37 @@ public class CompanyController {
 			companyService.insertNewCompany(company);
 			return "redirect:/companies";
 		}
+	}
+	
+	@GetMapping("/company/update/{id}")
+	public String getUpdateCompanyById(@PathVariable(name="id") int id, Model model) throws Exception {
+		try {
+			model.addAttribute("company", companyService.readCompanyById(id));
+			return "company-update";
+		} catch (Exception e){
+			throw new Exception("can't find company");
+		}
+		
+	}
+
+	@PostMapping("/company/update/{id}")
+	public String postUpdateCourseById(@PathVariable(name = "id") int id, Company company, BindingResult result) throws Exception {
+		if (!result.hasErrors()) {
+			if (companyService.updateExistingCompanyById(id, company)) {
+				return "redirect:/companies";
+			} else {
+				throw new Exception("can't update");
+			}
+		} else {
+			return "company-update";
+		}
+	}
+	
+	@Transactional
+	@GetMapping("/company/delete/{id}")
+	public String getDeleteCompanyById(@PathVariable(name = "id") int id) {
+		companyService.deleteCompanyById(id);
+		return "redirect:/companies";
 	}
 
 }

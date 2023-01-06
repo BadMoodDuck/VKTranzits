@@ -75,5 +75,8 @@ public class Department {
 		courses.remove(course);
 		}
 	}
+	public void removeCompany(Company company) {
+		this.company = null;
+	}
 	
 }

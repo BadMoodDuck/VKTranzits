@@ -15,4 +15,10 @@ public interface ICompanyService {
 	
 	ArrayList<Company> getAllCompanies();
 
+	boolean updateExistingCompanyById(int companyId, Company company);
+
+	Company readCompanyById(int id) throws Exception;
+
+	boolean deleteCompanyById(int companyId);
+
 }
