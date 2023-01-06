@@ -29,6 +29,10 @@
 				<tr>
 					<td th:text="${company.getIdCo()}">#</td>
 					<td th:text="${company.getName()}">#</td>
+					<td>
+						<a class="btn btn-primary" th:href="@{/company/update/{id} (id=${company.getIdCo()}) }" role="button" th:text="#{edit}">Edit</a>
+						<a class="btn btn-danger" th:href="@{/company/delete/{id} (id=${company.getIdCo()}) }" role="button" th:text="#{delete}">delete</a>
+					</td>
 				</tr>
 			</thbody>
 	

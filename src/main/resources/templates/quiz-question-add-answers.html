@@ -12,7 +12,7 @@
 	<div th:replace="fragments/header :: header"></div>
 	
 	<div class="container">
-  		<h1 th:text="#{quiz.addAnswers}">Add answers</h1>
+  		<h1 th:text="#{answers.add}">Add answers</h1>
 
   		<form action="#" th:action="@{/quiz/{id}/question/{qId}/addAnswers (id=${quizId}, qId=${questionId})}" th:object="${quizAnswers}" method="post">
   		

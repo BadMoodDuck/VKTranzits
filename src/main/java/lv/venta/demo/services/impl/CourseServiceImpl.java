@@ -99,7 +99,6 @@ public class CourseServiceImpl implements ICourseService {
 				department.removeCourse(course);
 				departmentRepo.save(department);
 			}
-			
 
 			courseRepo.deleteById(courseId);
 			return true;

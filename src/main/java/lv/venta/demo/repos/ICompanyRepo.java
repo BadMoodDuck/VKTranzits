@@ -10,4 +10,6 @@ public interface ICompanyRepo extends PagingAndSortingRepository<Company, Intege
 
 	boolean existsByNameIgnoreCase(String name);
 
+	Company findByIdCo(int id);
+
 }

@@ -18,5 +18,7 @@ public interface IDepartmentRepo extends PagingAndSortingRepository<Department,I
 
 	Department findByIdDe(int id);
 
+	Department findByCompanyIdCo(int companyId);
+
  
 }
