@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import lv.venta.demo.models.Course;
 import lv.venta.demo.models.CourseType;
 import lv.venta.demo.models.Department;
+import lv.venta.demo.models.Quiz;
 import lv.venta.demo.repos.ICourseRepo;
 import lv.venta.demo.repos.ICourseTypeRepo;
 import lv.venta.demo.repos.IDepartmentRepo;
@@ -25,6 +26,16 @@ public class CourseServiceImpl implements ICourseService {
 	private IDepartmentRepo departmentRepo;
 	@Autowired 
 	private ICourseTypeRepo coTypeRepo;
+	
+	public CourseServiceImpl(
+			ICourseRepo courseRepo,
+			IDepartmentRepo departmentRepo,
+			ICourseTypeRepo coTypeRepo
+			) {
+		this.courseRepo = courseRepo;
+		this.departmentRepo = departmentRepo;
+		this.coTypeRepo = coTypeRepo;
+	}
 	
 	//TODO pabeigt funkcijas ar visam parbaudem
 	@Override
@@ -164,4 +175,10 @@ public class CourseServiceImpl implements ICourseService {
 		return false;
 	}
 
+
+	@Override
+	public ArrayList<Course> getAllCourses() {
+		// TODO Auto-generated method stub
+		return (ArrayList<Course>) courseRepo.findAll();
+	}
 }

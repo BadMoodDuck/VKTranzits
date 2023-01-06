@@ -15,6 +15,10 @@ public class CourseTypeServiceimpl implements ICourseTypeService{
 	@Autowired
 	private ICourseTypeRepo coTypeRepo;
 	
+	public CourseTypeServiceimpl(ICourseTypeRepo coTypeRepo) {
+		this.coTypeRepo = coTypeRepo;
+	}
+	
 	@Override
 	public ArrayList<CourseType> getAllCourseTypes() {
 		return (ArrayList<CourseType>) coTypeRepo.findAll();
