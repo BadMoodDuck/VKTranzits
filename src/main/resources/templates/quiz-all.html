@@ -45,7 +45,7 @@
 					<td th:text="${quiz.idQu}">#</td>
 					<td th:text="${quiz.title}">#</td>
 					<td th:text="${#dates.format(quiz.completionDeadLine, 'dd-MM-yyyy')}">#</td>
-			      	<td th:text="${quiz.course.title}">#</td>
+			      	<td th:text="${quiz?.course?.title}">#</td>
 			      	<td >
 			      		<a class="btn btn-primary" th:href="@{/quiz/{id} (id=${quiz.idQu})}" role="button" th:text="#{view}">View</a>
 			      		<a class="btn btn-primary" th:href="@{/quiz/{id}/update (id=${quiz.idQu})}" role="button" th:text="#{update}">Update</a>
