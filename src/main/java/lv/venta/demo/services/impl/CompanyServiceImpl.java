@@ -22,7 +22,9 @@ public class CompanyServiceImpl implements ICompanyService {
 	@Autowired
 	private ICompanyRepo compRepo;
 	
-
+	public CompanyServiceImpl(ICompanyRepo compRepo) {
+		this.compRepo = compRepo;
+	}
 	@Override
 	public boolean insertNewCompany(Company company) {
 		if(!compRepo.existsByNameIgnoreCase(company.getName())){

@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import lv.venta.demo.models.Employee;
 import lv.venta.demo.models.EmployeeCourse;
-import lv.venta.demo.repos.IDepartmentRepo;
 import lv.venta.demo.repos.IEmployeeCourseRepo;
 import lv.venta.demo.repos.IEmployeeRepo;
 import lv.venta.demo.services.IEmployeeCRUDservice;
@@ -22,8 +21,7 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 	
 	@Autowired
 	private IEmployeeRepo employeeRepo;
-	@Autowired
-	private IDepartmentRepo departmentRepo;
+
 	@Autowired
 	private IEmployeeCourseRepo eCourseRepo;
 	
@@ -35,12 +33,12 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 	
 	@Override
 	public boolean insertNewEmployee(Employee employee) {
-		//if (!employeeRepo.existsByEmailOrPhone(employee.getEmail(), employee.getPhone())) {  //TODO VALIDATION FIX
+		if (!employeeRepo.existsById(employee.getIdEm())) {  //TODO VALIDATION FIX
 			employeeRepo.save(employee);
-		return true;
-		//}
+			return true;
+		}
 
-		//return false;
+		return false;
 	}
 
 	@Override 
