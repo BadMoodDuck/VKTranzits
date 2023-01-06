@@ -26,6 +26,16 @@ public class CourseServiceImpl implements ICourseService {
 	@Autowired 
 	private ICourseTypeRepo coTypeRepo;
 	
+	public CourseServiceImpl(
+			ICourseRepo courseRepo,
+			IDepartmentRepo departmentRepo,
+			ICourseTypeRepo coTypeRepo
+			) {
+		this.courseRepo = courseRepo;
+		this.departmentRepo = departmentRepo;
+		this.coTypeRepo = coTypeRepo;
+	}
+	
 	//TODO pabeigt funkcijas ar visam parbaudem
 	@Override
 	public Course getCourseById(int courseId) {

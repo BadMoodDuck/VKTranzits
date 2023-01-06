@@ -25,6 +25,15 @@ public class DepartmentCRUDServiceImpl implements IDepartmentCRUDService{
 	@Autowired
 	private ICourseRepo courseRepo;
 	
+	public DepartmentCRUDServiceImpl(
+			IDepartmentRepo departmentRepo,
+			IEmployeeRepo emRepo,
+			ICourseRepo courseRepo
+			) {
+		this.courseRepo = courseRepo;
+		this.departmentRepo = departmentRepo;
+		this.emRepo = emRepo;
+	}
 	
 	@Override
 	public ArrayList<Department> getAllDepartments() {

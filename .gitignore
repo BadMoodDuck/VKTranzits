@@ -2,11 +2,8 @@
 mvnw
 mvnw.cmd
 src/main/resources/application.properties
-<<<<<<< HEAD
-
-=======
 pom.xml
->>>>>>> 03e5bf7a73f7983721924a652ccb19a1a7ce2e99
+
 
 HELP.md
 target/
