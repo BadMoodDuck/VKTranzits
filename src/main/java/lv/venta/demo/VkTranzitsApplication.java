@@ -52,7 +52,7 @@ public class VkTranzitsApplication {
 	@Autowired
 	private BCryptPasswordEncoder encoder;
 
-	@Bean
+	//@Bean
 	public CommandLineRunner runner(IEmployeeRepo employeeRepo, IDepartmentRepo departmentRepo, 
 										ICompanyRepo companyRepo,ICourseTypeRepo courseTypeRepo, 
 										ICourseRepo courseRepo, IEmployeeCourseRepo employeeCourseRepo, 
@@ -65,8 +65,6 @@ public class VkTranzitsApplication {
 		return new CommandLineRunner() {
 				
 			public void run(String... args) throws Exception {
-	
-	 
 				MyUserAuthority auth1 = new MyUserAuthority("ROLE_ADMIN");
 				MyUserAuthority auth2 = new MyUserAuthority("ROLE_IMPLEMENTER");
 				MyUserAuthority auth3 = new MyUserAuthority("ROLE_EMPLOYEE");
@@ -109,7 +107,6 @@ public class VkTranzitsApplication {
 				authorityRepo.save(auth3);
 				authorityRepo.save(auth4);
 				
-
 				
 				Company com = new Company("Jhons");
 				Company com1 = new Company("Does");
@@ -118,7 +115,6 @@ public class VkTranzitsApplication {
 				companyRepo.save(com1);
 				companyRepo.save(com2);
 				
-
 				Position pos = new Position("Plumber","They do plumbin");
 				Position pos1 = new Position("Electrician","They do electricing");
 				Position pos2 = new Position("Pekachus","They do pika pi");
@@ -167,7 +163,6 @@ public class VkTranzitsApplication {
 				departmentRepo.save(dep);
 				departmentRepo.save(dep1);
 				departmentRepo.save(dep2);
-
 				
 				EmployeeCourse emc = new EmployeeCourse(emp7, co1, 4);
 				EmployeeCourse emc1 = new EmployeeCourse(emp2, co, 10);
@@ -208,7 +203,6 @@ public class VkTranzitsApplication {
 				departmentRepo.save(dep);
 				departmentRepo.save(dep1);
 				departmentRepo.save(dep2);
-
 				
 				
 				CourseImplementer cim = new CourseImplementer(imp,  cal2, "Not important");
@@ -216,13 +210,11 @@ public class VkTranzitsApplication {
 				courseImplementerRepo.save(cim);
 				courseImplementerRepo.save(cim1);
 				
-
 				
 				authorityRepo.save(auth1);
 				authorityRepo.save(auth2);
 				authorityRepo.save(auth3);
 				authorityRepo.save(auth4);
-				
 
 
 				
