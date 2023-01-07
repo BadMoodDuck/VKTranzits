@@ -83,20 +83,31 @@ public class CompanyServiceImpl implements ICompanyService {
 	}
 	
 	@Override
-	public boolean deleteCompanyById(int companyId) {
-		if (compRepo.existsById(companyId)) {
-			
-			Company company = compRepo.findByIdCo(companyId);
-			
-			Department depForThisCompany = departmentRepo.findByCompanyIdCo(companyId);
-			depForThisCompany.removeCompany(company);
-
-
+	public void deleteCompanyById(int companyId) {
+		if (!compRepo.existsById(companyId)) {
+			return;
+			}
+		if(departmentRepo.existsByCompanyIdCo(companyId)) {
+		Department depForThisCompany = departmentRepo.findByCompanyIdCo(companyId);
+		depForThisCompany.removeCompany();
 			compRepo.deleteById(companyId);
-			return true;
+			
 		}
-		return false;
 	}
-
+	
+//	@Override
+//	public void deleteQuizById(int id) {
+//		if (!quizRepo.existsById(id))
+//			return;
+//
+//		Quiz quiz = quizRepo.findById(id).get();
+//		for (QuizQuestion question : quiz.getQuizQuestions()) {
+//			for (QuizAnswers answer : question.getQuizAnswers()) {
+//				quizAnswersRepo.delete(answer);
+//			}
+//			quizQuestionRepo.delete(question);
+//		}
+//		quizRepo.deleteById(id);
+//	}
 }
 

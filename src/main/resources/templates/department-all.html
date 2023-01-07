@@ -30,7 +30,7 @@
 		    <tr th:each="department: ${departments}">
 		      <td th:text="${department.idDe}">#</td>
 		      <td th:text="${department.name}">#</td>
-		      <td th:text="${department.company.name}">#</td>
+		      <td th:text="${department.company?.name}">#</td>
 		      <td>
 		      	<a class="btn btn-primary" th:href="@{/department/{id}/employees(id=${department.idDe})}" role="button" th:text="#{employees}">Employees</a>
 		      </td>
