@@ -125,13 +125,13 @@ public class DepartmentController {
 			return "department-update";
 		}
 	}
-	@GetMapping("/export/excel")
-	public void exportExcel( HttpServletResponse response) throws IOException{
+	@GetMapping("/export/excel/{id}")
+	public void exportExcel(@PathVariable(name = "id")int id, HttpServletResponse response) throws IOException{
 		response.setContentType("application/octet-stream");
 		String headerKey = "Content-Disposition";
 		String headervalue = "attachment; filename=EmployeeCourse_info.xlsx";
 		response.setHeader(headerKey, headervalue);
-		ArrayList<EmployeeCourse> allEmplCourse = eService.findAll();
+		ArrayList<EmployeeCourse> allEmplCourse = eService.findByCourseIdCourse(id);
 		ExcelExport excel = new ExcelExport(allEmplCourse);
 		excel.export(response);
 	

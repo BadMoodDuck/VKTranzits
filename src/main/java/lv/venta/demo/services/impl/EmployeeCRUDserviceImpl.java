@@ -98,5 +98,10 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 		return (ArrayList<EmployeeCourse>) eCourseRepo.findAll();
 	}
 
+	@Override
+	public ArrayList<EmployeeCourse> findByCourseIdCourse(int id) {
+		return (ArrayList<EmployeeCourse>) eCourseRepo.findByCourseIdCou(id);
+	}
+
 }
 

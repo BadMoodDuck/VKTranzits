@@ -108,24 +108,24 @@ public class VkTranzitsApplication {
 				authorityRepo.save(auth4);
 				
 				
-				Company com = new Company("Jhons");
-				Company com1 = new Company("Does");
-				Company com2 = new Company("Fixer");
+				Company com = new Company("VKTranzits");
+				Company com1 = new Company("SiaFix");
+				Company com2 = new Company("Dzirnavas");
 				companyRepo.save(com);
 				companyRepo.save(com1);
 				companyRepo.save(com2);
 				
 				Position pos = new Position("Plumber","They do plumbin");
-				Position pos1 = new Position("Electrician","They do electricing");
-				Position pos2 = new Position("Pekachus","They do pika pi");
+				Position pos1 = new Position("Electrician","wires and electricity");
+				Position pos2 = new Position("Devops","They do devops");
 				positionRepo.save(pos);
 				positionRepo.save(pos1);
 				positionRepo.save(pos2);
 				
 				
-				Department dep = new Department(com,"Plumbas");
+				Department dep = new Department(com,"Plumber");
 				Department dep1 = new Department(com1,"Electricans");
-				Department dep2 = new Department(com2,"Piekachus");
+				Department dep2 = new Department(com2,"IT");
 				departmentRepo.save(dep);
 				departmentRepo.save(dep1);
 				departmentRepo.save(dep2);
@@ -146,13 +146,13 @@ public class VkTranzitsApplication {
 				employeeRepo.save(emp7);
 				
 				
-				CourseType cty = new CourseType("Ugunsdrosiba", false, "Viss vajadzigais par ugunsdrosiba");
-				CourseType cty1 = new CourseType("Darba drosiba", true, "Viss vajadzigais par darba drosiba");
+				CourseType cty = new CourseType("Ķīmija", false, "Viss vajadzigais par Ķīmiju");
+				CourseType cty1 = new CourseType("Mental health", true, "Viss vajadzigais par mentla health");
 				courseTypeRepo.save(cty);
 				courseTypeRepo.save(cty1);
 				
-				Course co = new Course(cty,"1.Ugunsdrosibas ievads","Viss galvenais par uguni");
-				Course co1 = new Course(cty1,"1.Darba drosibas ievads","Viss galvenais par darbu");
+				Course co = new Course(cty,"Orgnaiska kimija","Viss galvenais par kimiju");
+				Course co1 = new Course(cty1,"Gulesana","Viss galvenais par gulesanu");
 				courseRepo.save(co);
 				courseRepo.save(co1);
 				
@@ -166,8 +166,12 @@ public class VkTranzitsApplication {
 				
 				EmployeeCourse emc = new EmployeeCourse(emp7, co1, 4);
 				EmployeeCourse emc1 = new EmployeeCourse(emp2, co, 10);
+				EmployeeCourse emc2 = new EmployeeCourse(emp5, co1, 5);
+				EmployeeCourse emc3 = new EmployeeCourse(emp3, co, 10);
 				employeeCourseRepo.save(emc);
 				employeeCourseRepo.save(emc1);
+				employeeCourseRepo.save(emc2);
+				employeeCourseRepo.save(emc3);
 				
 				Implementer imp = new Implementer("Viktors Vikis");
 				Implementer imp1 = new Implementer("Janis Vikis");
