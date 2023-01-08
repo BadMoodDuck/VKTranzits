@@ -52,7 +52,7 @@ public class VkTranzitsApplication {
 	@Autowired
 	private BCryptPasswordEncoder encoder;
 
-	//@Bean
+	@Bean
 	public CommandLineRunner runner(IEmployeeRepo employeeRepo, IDepartmentRepo departmentRepo, 
 										ICompanyRepo companyRepo,ICourseTypeRepo courseTypeRepo, 
 										ICourseRepo courseRepo, IEmployeeCourseRepo employeeCourseRepo, 
