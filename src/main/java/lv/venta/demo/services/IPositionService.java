@@ -14,4 +14,6 @@ public interface IPositionService {
 
 	Page<Position> getPageList(int pageNr);
 
+	void deletePositionById(int positionId);
+
 }

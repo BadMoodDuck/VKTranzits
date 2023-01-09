@@ -9,7 +9,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lv.venta.demo.models.Company;
-import lv.venta.demo.models.Course;
 import lv.venta.demo.models.Department;
 import lv.venta.demo.repos.ICompanyRepo;
 import lv.venta.demo.repos.IDepartmentRepo;
@@ -88,26 +87,13 @@ public class CompanyServiceImpl implements ICompanyService {
 			return;
 			}
 		if(departmentRepo.existsByCompanyIdCo(companyId)) {
-		Department depForThisCompany = departmentRepo.findByCompanyIdCo(companyId);
-		depForThisCompany.removeCompany();
+		ArrayList<Department> depForThisCompany = departmentRepo.findByCompanyIdCo(companyId);
+		for(Department departemnt: depForThisCompany) {
+			departemnt.removeCompany();
 			compRepo.deleteById(companyId);
+		}
 			
 		}
 	}
-	
-//	@Override
-//	public void deleteQuizById(int id) {
-//		if (!quizRepo.existsById(id))
-//			return;
-//
-//		Quiz quiz = quizRepo.findById(id).get();
-//		for (QuizQuestion question : quiz.getQuizQuestions()) {
-//			for (QuizAnswers answer : question.getQuizAnswers()) {
-//				quizAnswersRepo.delete(answer);
-//			}
-//			quizQuestionRepo.delete(question);
-//		}
-//		quizRepo.deleteById(id);
-//	}
 }
 

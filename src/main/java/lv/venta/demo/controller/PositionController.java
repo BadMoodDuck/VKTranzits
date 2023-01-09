@@ -1,5 +1,6 @@
 package lv.venta.demo.controller;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,8 +52,16 @@ public class PositionController {
 				return "error";
 			} else {
 				positionService.insertNewPosition(position);
-				return "position-all";
+				return "redirect:/positions";
 			}
 		}
+		
+		@Transactional
+		@GetMapping("/position/delete/{id}")
+		public String getDeletePositionById(@PathVariable(name = "id") int id) {
+			positionService.deletePositionById(id);
+			return "redirect:/positions";
+		}
+
 
 }
