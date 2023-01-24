@@ -44,17 +44,17 @@ public class PositionServiceImpl implements IPositionService {
 	}
 
 	@Override
-	public void deletePositionById(int positionId) {
-		if (!positionRepo.existsById(positionId)) {
-			return;
-		}
-		
-		if (employeeRepo.existsByPositionIdPos(positionId)) {
+	public boolean deletePositionById(int positionId) {
+		if (positionRepo.existsById(positionId)) {
+
 			ArrayList<Employee> employeeWithThisPosition = employeeRepo.findByPositionIdPos(positionId);
 			for (Employee employee : employeeWithThisPosition) {
 				employee.removePosition();
-				positionRepo.deleteById(positionId);
+				employeeRepo.save(employee);
 			}
+			positionRepo.deleteById(positionId);
+			return true;
 		}
+		return false;
 	}
 }

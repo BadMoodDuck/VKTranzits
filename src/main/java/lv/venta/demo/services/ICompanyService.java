@@ -19,6 +19,6 @@ public interface ICompanyService {
 
 	Company readCompanyById(int id) throws Exception;
 
-	void deleteCompanyById(int companyId);
+	boolean deleteCompanyById(int companyId);
 
 }

@@ -16,25 +16,26 @@ import lv.venta.demo.services.ICompanyService;
 
 @Service
 public class CompanyServiceImpl implements ICompanyService {
-	
+
 	@Autowired
 	private ICompanyRepo compRepo;
-	
+
 	@Autowired
 	private IDepartmentRepo departmentRepo;
-	
+
 	public CompanyServiceImpl(ICompanyRepo compRepo) {
 		this.compRepo = compRepo;
 	}
+
 	@Override
 	public boolean insertNewCompany(Company company) {
-		if(!compRepo.existsByNameIgnoreCase(company.getName())){
+		if (!compRepo.existsByNameIgnoreCase(company.getName())) {
 			compRepo.save(company);
 			return true;
 		}
 		return false;
 	}
-	
+
 	@Override
 	public Page<Company> getPageList(int pageNr) {
 		Pageable pageable = PageRequest.of(pageNr - 1, 10);
@@ -48,15 +49,15 @@ public class CompanyServiceImpl implements ICompanyService {
 		}
 		throw new Exception("Company doesn't exist");
 	}
-	
+
 	@Override
 	public ArrayList<Company> getAllCompanies() {
 		return (ArrayList<Company>) compRepo.findAll();
 	}
-	
+
 	@Override
 	public boolean updateExistingCompanyById(int companyId, Company company) {
-		
+
 		Company result = new Company();
 		if (compRepo.existsById(companyId)) {
 			result = compRepo.findById(companyId).get();
@@ -71,29 +72,27 @@ public class CompanyServiceImpl implements ICompanyService {
 	@Override
 	public Company readCompanyById(int id) throws Exception {
 		// TODO Auto-generated method stub
-		if(compRepo.existsById(id))
-		{
+		if (compRepo.existsById(id)) {
 			Company company = compRepo.findByIdCo(id);
 			return company;
 		}
-		
+
 		throw new Exception("Company doesn't exist");
-	
+
 	}
-	
+
 	@Override
-	public void deleteCompanyById(int companyId) {
-		if (!compRepo.existsById(companyId)) {
-			return;
+	public boolean deleteCompanyById(int companyId) {
+		if (compRepo.existsById(companyId)) {
+
+			ArrayList<Department> depForThisCompany = departmentRepo.findByCompanyIdCo(companyId);
+			for (Department department : depForThisCompany) {
+				department.removeCompany();
+				departmentRepo.save(department);
 			}
-		if(departmentRepo.existsByCompanyIdCo(companyId)) {
-		ArrayList<Department> depForThisCompany = departmentRepo.findByCompanyIdCo(companyId);
-		for(Department departemnt: depForThisCompany) {
-			departemnt.removeCompany();
 			compRepo.deleteById(companyId);
+			return true;
 		}
-			
-		}
+		return false;
 	}
 }
-
