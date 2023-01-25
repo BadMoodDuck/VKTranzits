@@ -47,12 +47,6 @@ public class ImplementerCRUDserviceImpl implements IImplementerCRUDservice {
 	public boolean deleteImplementerById(int implementerId) {
 		if (implementerRepo.existsById(implementerId)) 
 		{
-			try {
-				Implementer implementer = readImplementerById(implementerId);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			ArrayList<CourseImplementer> allImplementers = courseImplRepo.findByImplementerIdImpl(implementerId);
 			for (CourseImplementer coimpl : allImplementers) {
 				coimpl.removeImplementer();

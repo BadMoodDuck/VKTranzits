@@ -28,7 +28,7 @@ public class CourseImplementer {
 	@Setter(value = AccessLevel.NONE)
 	private int idCouImpl;
 
-	@Size(min = 4, max = 300)
+	@Size(min = 1, max = 300)
 	@Pattern(regexp = "[a-zA-Z]+(.|\\s)*")
 	@Column(name = "Notes")
 	private String notes;
@@ -49,8 +49,8 @@ public class CourseImplementer {
 
 	}
 	
-	public void removeImplementer() { //TODO: Check
-		implementer = new Implementer();
+	public void removeImplementer() { 
+		implementer = null;
 	}
 
 }

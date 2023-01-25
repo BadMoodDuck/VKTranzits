@@ -16,4 +16,8 @@ public interface IPositionService {
 
 	boolean deletePositionById(int positionId);
 
+	boolean updatePositionById(int positionId, Position position);
+
+	Position readPositionById(int id) throws Exception;
+
 }
