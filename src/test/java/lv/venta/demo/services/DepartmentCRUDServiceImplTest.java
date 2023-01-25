@@ -28,7 +28,7 @@ import lv.venta.demo.repos.IEmployeeRepo;
 import lv.venta.demo.services.impl.DepartmentCRUDServiceImpl;
 
 @ExtendWith(SpringExtension.class)
-public class DepartmentCRUDServiceImplTest {
+class DepartmentCRUDServiceImplTest {
 	
 	private DepartmentCRUDServiceImpl departmentServiceImpl;
 	
