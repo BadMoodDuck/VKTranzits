@@ -9,7 +9,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import lv.venta.demo.enums.EnumQuestionTypes;
 import lv.venta.demo.models.Company;
 import lv.venta.demo.models.Course;
@@ -49,8 +50,21 @@ public class VkTranzitsApplication {
 		SpringApplication.run(VkTranzitsApplication.class, args);
 	}
 	
+	
+	
 	@Autowired
 	private BCryptPasswordEncoder encoder;
+	
+	@Bean
+    public WebMvcConfigurer webMvcConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addResourceHandlers(ResourceHandlerRegistry registry) {
+                registry.addResourceHandler("/**")
+                        .addResourceLocations("file:src/main/frontend/build/");
+            }
+        };
+    }
 
 	//@Bean
 	public CommandLineRunner runner(IEmployeeRepo employeeRepo, IDepartmentRepo departmentRepo, 
