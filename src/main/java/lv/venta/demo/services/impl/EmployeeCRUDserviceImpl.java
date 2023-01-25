@@ -25,6 +25,14 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 	@Autowired
 	private IEmployeeCourseRepo eCourseRepo;
 	
+	public EmployeeCRUDserviceImpl (
+			IEmployeeRepo employeeRepo,
+			 IEmployeeCourseRepo eCourseRepo
+			) {
+		this.employeeRepo = employeeRepo;
+		this.eCourseRepo = eCourseRepo;
+	}
+	
 	@Override
 	public Page<Employee> getPageList(int pageNr) {
 		Pageable pageable = PageRequest.of(pageNr-1, 10);
@@ -96,6 +104,11 @@ public class EmployeeCRUDserviceImpl implements IEmployeeCRUDservice {
 	@Override
 	public ArrayList<EmployeeCourse> findAll() {
 		return (ArrayList<EmployeeCourse>) eCourseRepo.findAll();
+	}
+
+	@Override
+	public ArrayList<EmployeeCourse> findByCourseIdCourse(int id) {
+		return (ArrayList<EmployeeCourse>) eCourseRepo.findByCourseIdCou(id);
 	}
 
 }

@@ -29,5 +29,7 @@ public interface IEmployeeCRUDservice {
 
 	public ArrayList<EmployeeCourse> findAll();
 
+	ArrayList<EmployeeCourse> findByCourseIdCourse(int id);
+
 }
 
