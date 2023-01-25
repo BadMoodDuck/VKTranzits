@@ -49,8 +49,8 @@ public class CourseImplementer {
 
 	}
 	
-	public void removeImplementer() { //TODO: Check
-		implementer = new Implementer();
+	public void removeImplementer() { 
+		implementer = null;
 	}
 
 }
