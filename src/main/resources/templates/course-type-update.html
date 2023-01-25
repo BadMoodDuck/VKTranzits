@@ -18,12 +18,12 @@
   		
   		<table>
 	  		<tr>
-			    <td><label th:text="#{courseType.title}">Title</label ></td>
+			    <td><label th:text="#{title}">Title</label ></td>
 			    <td><input type="text" th:field="*{title}"></td>
 			    <td th:if="${#fields.hasErrors('title')}" th:errors="*{title}"><td>
 	  		</tr>
 			<tr>  
-			    <td><label th:text="#{courseType.isObligatory}">Course type</label></td>
+			    <td><label th:text="#{isObligatory}">Course type</label></td>
 			    <td>
 				    <select th:field="*{isObligatory}">
 				    	<option th:value="${true}" th:text="${true}" />
@@ -32,8 +32,8 @@
 			    </td>
 			</tr>
 	  		<tr>
-			    <td><label th:text="#{courseType.description}">Descripion</label></td>
-			    <td><input type="text"  th:field="*{description}"></td>
+			    <td><label th:text="#{description}">Descripion</label></td>
+			    <td><textarea name="description" maxlength="256" rows="3" cols="50" th:field="*{description}"></textarea></td>
 			    <td th:if="${#fields.hasErrors('description')}" th:errors="*{description}"><td>
 			</tr>
 	  		<tr>

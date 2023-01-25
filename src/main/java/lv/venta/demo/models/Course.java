@@ -38,12 +38,12 @@ public class Course {
 	private int idCou;
 
 	@Column(name="Title")
-	@Size(min=3,max=100,message="Title must be between 3 and 100 characters")
+	@Size(min=1,max=100,message="Title must be between 1 and 100 characters")
 	@Pattern(regexp="^(.|\\s)*[a-zA-Z]+(.|\\s)*$")
 	private String title;
 	
 	@Column(name="Description")
-	@Size(min=3,max=256,message="Title must be between 3 and 256 characters")
+	@Size(min=1,max=256,message="Title must be between 1 and 256 characters")
 	@Pattern(regexp="^(.|\\s)*[a-zA-Z]+(.|\\s)*$") 
 	private String description;
 	

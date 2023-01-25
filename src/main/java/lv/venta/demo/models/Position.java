@@ -36,12 +36,12 @@ public class Position {
 	@Setter(value = AccessLevel.NONE)
 	private int idPos;
 
-	@Size(min = 4, max = 20)
+	@Size(min = 1, max = 20)
 	@Pattern(regexp = "[A-Z]{1}[a-z]+")
 	@Column(name = "Title")
 	private String title;
 
-	@Size(min = 4, max = 500)
+	@Size(min = 1, max = 500)
 	@Column(name = "Description")
 	private String description;
 	

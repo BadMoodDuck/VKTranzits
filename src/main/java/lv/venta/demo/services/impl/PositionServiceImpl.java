@@ -57,4 +57,27 @@ public class PositionServiceImpl implements IPositionService {
 		}
 		return false;
 	}
+	
+	@Override
+	public boolean updatePositionById(int positionId, Position position) {
+		Position result = new Position();
+		if(positionRepo.existsById(positionId)) {
+			result = positionRepo.findById(positionId).get();
+			result.setTitle(position.getTitle());
+			result.setDescription(position.getDescription());
+			positionRepo.save(result);
+		return true;
+		}
+		return false;
+	}
+
+	@Override
+	public Position readPositionById(int id) throws Exception {
+		if(positionRepo.existsById(id))
+		{
+			Position pos = positionRepo.findByIdPos(id);
+			return pos;
+		}
+		throw new Exception("Position doesn't exist");
+	}
 }

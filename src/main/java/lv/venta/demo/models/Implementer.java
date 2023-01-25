@@ -33,7 +33,7 @@ public class Implementer {
 	@Setter(value = AccessLevel.NONE)
 	private int idImpl;
 
-	@Size(min = 4, max = 20)
+	@Size(min = 1, max = 20)
 	@Column(name = "Name")
 	@Pattern(regexp = "[a-zA-Z]+(.|\\s)*")
 	private String name;
