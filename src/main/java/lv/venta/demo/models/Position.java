@@ -45,10 +45,10 @@ public class Position {
 	@Column(name = "Description")
 	private String description;
 	
-	@OneToMany(mappedBy = "position", cascade = {CascadeType.ALL})
+	@OneToMany(mappedBy = "position")
 	@ToString.Exclude
 	private Collection<Employee> employees;
-	
+	// cascade = {CascadeType.ALL}
 	@ManyToMany
 	@JoinTable(joinColumns = @JoinColumn(name = "IdPos"), inverseJoinColumns = @JoinColumn(name = "IdCal"))
 	private Collection<CourseCalendar> calendars = new ArrayList<>();

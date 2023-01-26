@@ -50,8 +50,8 @@
 		      <td th:text="${employee.surname}">#</td>
 		      <td th:text="${employee.phone}">#</td>
 		      <td th:text="${employee.email}">#</td>
-		      <td th:text="${employee?.department?.name}">#</td>
-		      <td th:text="${employee?.position?.title}">#</td>
+		      <td th:text="${employee.department?.name}">#</td>
+		      <td th:text="${employee.position?.title}">#</td>
 	      	  <td >
 	      		<a class="btn btn-primary" th:href="@{/employee/{id}(id=${employee.idEm})}" role="button" th:text="#{view}">View</a>
 	      	  </td>

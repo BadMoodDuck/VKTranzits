@@ -84,7 +84,6 @@ public class EmployeeController {
 	public String postAddEmployee(@Valid Employee employee, BindingResult result) {
 
 		if (result.hasErrors()) {
-			System.out.println(result);
 			return "employee-add";
 		} else {
 			employeeService.insertNewEmployee(employee);
