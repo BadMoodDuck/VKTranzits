@@ -16,15 +16,15 @@
 
 	<div class="container">
 		<h1 th:text="${quiz.getTitle()}">Quiz Title</h1>
-		<a class="btn btn-primary" th:href="@{{id}/addQuestion (id=${quiz.getIdQu})}" role="button" th:text="#{Add question}">Edit</a>
+		<a class="btn btn-primary" th:href="@{{id}/addQuestion (id=${quiz.getIdQu})}" role="button" th:text="#{question.add}">Edit</a>
 		<table class="table table-striped table-hover">
 
 			<thead>
 				<tr>
-					<th scope="col" th:text="#{Question}">Question</th>
-					<th scope="col" th:text="#{Question Type}">Question Type</th>
-					<th scope="col" th:text="#{Answers}">Answers</th>
-					<th scope="col" th:text="#{Correct Answer}">Correct Answer</th>
+					<th scope="col" th:text="#{question}">Question</th>
+					<th scope="col" th:text="#{question.type}">Question Type</th>
+					<th scope="col" th:text="#{answers}">Answers</th>
+					<th scope="col" th:text="#{correct.answer}">Correct Answer</th>
 				</tr>
 			</thead>
 			<thbody>
@@ -32,21 +32,27 @@
 					<td th:text="${question.getQuestion()}"></td>
 					<td th:text="${question.getQuestionType()}"></td>
 					<td>
-					 	<p th:each="answer: ${question.getQuizAnswers()}"
-					 		  th:text="${answer.getAnswer()}">
-				 			<br/> 
-					 	<p/>
+					 	<div th:each="answer: ${question.getQuizAnswers()}">
+					 	<div style="display:flex;">
+					 		 <p th:text="${answer.getAnswer()}"></p>
+					 		 <a style="margin-left: auto; height: fit-content;" class="btn btn-primary" th:href="@{/quiz/{id}/question/{qId}/updateAnswer/{aId} (id=${quiz.getIdQu}, qId=${question.getIdQuQe}, aId=${answer.getIdQuAn}) }" role="button">E</a>
+					 		 <a style="margin-left: 2px; height: fit-content;" class="btn btn-danger" th:href="@{/quiz/{id}/question/{qId}/deleteAnswer/{aId} (id=${quiz.getIdQu}, qId=${question.getIdQuQe}, aId=${answer.getIdQuAn}) }" role="button">X</a>
+					 	</div>
+				 			
+					 	<div/>
 					</td>
 					<td>
 					 	<p th:each="answer: ${question.getQuizAnswers()}"
 					 		  th:if="${answer.getIsCorrect()}"
 					 		  th:text="${answer.getAnswer()}">
-				 			<br/>
 					 	<p/> 
+
 					</td>
 					<td>
-						<a class="btn btn-primary" th:href="@{/quiz/{id}/question/{qId}/addAnswers (id=${id}, qId=${question.getIdQuQe()})}" role="button" th:text="#{Edit Answers}">Edit Answers</a> <br/>
-						<a class="btn btn-primary" th:href="@{/}" role="button" th:text="#{Edit Question}">Edit Answers</a> <br/>
+
+						<a style="margin: 1px; width: inherit;" class="btn btn-primary" th:href="@{/quiz/{id}/question/{qId}/addAnswers (id=${id}, qId=${question.getIdQuQe()})}" role="button" th:text="#{answers.add}">Edit Answers</a> <br/>
+						<a style="margin: 1px; width: inherit;" class="btn btn-primary" th:href="@{/quiz/{id}/updateQuestion/{qId} (id=${id}, qId=${question.getIdQuQe()})}" role="button" th:text="#{question.edit}">Edit Question</a> <br/>
+						<a style="margin: 1px; width: inherit;" class="btn btn-danger" th:href="@{/quiz/{id}/deleteQuestion/{qId} (id=${id}, qId=${question.getIdQuQe()})}" role="button" th:text="#{question.delete}">Delete Question</a> <br/>
 
 					</td>
 				</tr>

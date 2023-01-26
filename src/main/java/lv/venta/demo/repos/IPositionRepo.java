@@ -12,4 +12,6 @@ public interface IPositionRepo extends CrudRepository<Position, Integer> {
 
 	Page<Position> findAll(Pageable pageable);
 
+	Position findByIdPos(int id);
+
 }

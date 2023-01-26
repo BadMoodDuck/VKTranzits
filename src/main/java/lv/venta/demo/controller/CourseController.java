@@ -48,7 +48,7 @@ public class CourseController {
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("totalElements", page.getTotalElements());
 		model.addAttribute("totalPages", page.getTotalPages());
-		return "course-all";
+		return "course/course-all";
 	}
 	
 	@GetMapping("/courses/{pageNr}/{field}") // Sort All Courses  //TODO README: Sorting works but it sorts all of the elements even the ones not displayed so switching pages will be confusing
@@ -64,20 +64,20 @@ public class CourseController {
 		model.addAttribute("totalElements", page.getTotalElements());
 		model.addAttribute("totalPages", page.getTotalPages());
 		model.addAttribute("field", field);
-		return "course-all";
+		return "course/course-all";
 	}
 
 	@GetMapping("/course/addNew")
 	public String getAddCourses(Model model, Course course) {
 		model.addAttribute("courseTypes", coTypeService.getAllCourseTypes());
-		return "course-add";
+		return "course/course-add";
 	}
 
 	@PostMapping("/course/addNew")
-	public String postAddCourses(@Valid Course course, BindingResult result) {
+	public String postAddCourses(@Valid Course course, BindingResult result) throws Exception {
 		if (result.hasErrors()) {
 			System.out.println(result);
-			return "error";
+			throw new Exception("Error");
 		} else {
 			courseService.insertNewCourse(course);
 			return "redirect:/courses";
@@ -87,7 +87,7 @@ public class CourseController {
 	@GetMapping("/course/{id}")
 	public String getOneCourse(Model model, @PathVariable(name = "id") int id) {
 		model.addAttribute("course", courseService.getCourseById(id));
-		return "course-one";
+		return "course/course-one";
 	}
 
 	// localhost:8080/course/delete/{id}
@@ -104,7 +104,7 @@ public class CourseController {
 		try {
 			model.addAttribute("course", courseService.readCourseById(id));
 			model.addAttribute("courseTypes", coTypeService.getAllCourseTypes());
-			return "course-update";
+			return "course/course-update";
 		} catch (Exception e){
 			throw new Exception("can't find course");
 		}
@@ -121,7 +121,7 @@ public class CourseController {
 				throw new Exception("can't update");
 			}
 		} else {
-			return "course-update";
+			return "course/course-update";
 		}
 	}
 	

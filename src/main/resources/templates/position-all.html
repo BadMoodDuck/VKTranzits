@@ -29,11 +29,17 @@
 		    <td th:text="${position.idPos}">#</td>
 		      <td th:text="${position.title}">#</td>
 		      <td th:text="${position.description}">#</td>
+		      <td >
+			      	<a class="btn btn-primary" th:href="@{/position/update/{id}(id=${position.idPos})}" role="button" th:text="#{edit}">View</a>
+			   </td>
+			   <td >
+			      	<a class="btn btn-danger" th:href="@{/position/delete/{id}(id=${position.idPos})}" role="button" th:text="#{delete}">View</a>
+			   </td>		
 		    </tr>
 	  	 </thbody>
 		</table>
 				<div th:replace="fragments/pageination-navbar.html :: pageination-navbar(
-			 pageName = 'companies',
+			 pageName = 'positions',
 			 currentPage = ${currentPage},
 			 totalPages = ${totalPages},
 			 totalElements = ${totalElements}

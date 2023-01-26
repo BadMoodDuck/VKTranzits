@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html >
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <body>
 	<div th:fragment="header" style="background-color: rgba(0, 0, 0, 0.1); box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);">
@@ -11,29 +11,31 @@
 				<a class="nav-link" th:href="@{/courses}" th:text="#{courses}">All Courses</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" th:href="@{/quizes}" th:text="#{quizes}">All Quizes</a>
+				<a class="nav-link" th:href="@{/quizes}" th:text="#{quizzes}">All Quizzes</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" th:href="@{/course/types}" th:text="#{courseTypes}">All Course Types</a>
+
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" th:href="@{/employees}" th:text="#{employees}">All Employees</a>
+				<a class="nav-link" th:href="@{/employees}" sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_EMPLOYEE', 'ROLE_IMPLEMENTER')" th:text="#{employees}">All Employees</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" th:href="@{/departments}" th:text="#{departments}">All Departments</a>
+				<a class="nav-link" th:href="@{/departments}" sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_EMPLOYEE')" th:text="#{departments}">All Departments</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" th:href="@{/companies}" th:text="#{companies}">All Companies</a>
+				<a class="nav-link" th:href="@{/companies}" sec:authorize="hasAuthority('ROLE_ADMIN')" th:text="#{companies}">All Companies</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" th:href="@{/positions}" th:text="#{positions}">All Positions</a>
+				<a class="nav-link" th:href="@{/positions}" sec:authorize="hasAuthority('ROLE_ADMIN')" th:text="#{positions}">All Positions</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" th:href="@{/implementers}" th:text="#{implementers}">All Implementers</a>
+				<a class="nav-link" th:href="@{/implementers}" sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_IMPLEMENTER')" th:text="#{implementers}">All Implementers</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link disabled" th:text="#{disabled}">Disabled</a>
+			  <a class="nav-link" th:href="@{/calendar}" th:text="#{calendar}">Calendar</a>
 			</li>
+
 			<li class="nav-item">
 				<a class="nav-link" th:href="@{/logout}" th:text="#{logout}">Logout</a>
 			</li>
@@ -62,6 +64,7 @@
 					});
 				});
 			</script>
+
 
 		</ul>
 	</div>

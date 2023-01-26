@@ -12,7 +12,7 @@
 	<div th:replace="fragments/header :: header"></div>
 	
 	<div class="container">
-  		<h1 th:text="#{department.add}">Update department</h1>
+  		<h1 th:text="#{department.update}">Update department</h1>
 
   		<form action="#" th:action="@{/department/update/__${id}__}" th:object="${department}" method="post">
   		
@@ -30,7 +30,7 @@
 				</select>
 		    </td>
 		</tr>
-  		<tr>
+  	
 		  <td><button type="submit" class="btn btn-primary" th:text="#{submit}">Submit</button></td>
   		</tr>
 		  </table>

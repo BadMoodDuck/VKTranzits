@@ -14,4 +14,10 @@ public interface IPositionService {
 
 	Page<Position> getPageList(int pageNr);
 
+	boolean deletePositionById(int positionId);
+
+	boolean updatePositionById(int positionId, Position position);
+
+	Position readPositionById(int id) throws Exception;
+
 }

@@ -25,9 +25,9 @@
 			<thead>
 				<tr>
 					<th scope="col">#</th>
-					<th scope="col" th:text="#{courseTypeTitle}"></th>
-					<th scope="col" th:text="#{courseTypeIsObligatory}"></th>
-					<th scope="col" th:text="#{courseTypeDescription}"></th>
+					<th scope="col" th:text="#{title}"></th>
+					<th scope="col" th:text="#{isObligatory}"></th>
+					<th scope="col" th:text="#{description}"></th>
 					<th style="margin-left: auto;" scope="col"></th>
 				</tr>
 			</thead>
@@ -49,7 +49,7 @@
 		
 		<!-- cool as heck nav bar-->
 		<div th:replace="fragments/pageination-navbar.html :: pageination-navbar(
-			 pageName = 'companies',
+			 pageName = 'courseTypes',
 			 currentPage = ${currentPage},
 			 totalPages = ${totalPages},
 			 totalElements = ${totalElements}

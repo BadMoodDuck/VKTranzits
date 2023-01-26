@@ -23,4 +23,7 @@ public interface IEmployeeRepo extends PagingAndSortingRepository<Employee, Inte
 
 	ArrayList<Employee> findByDepartmentIdDe(int idDe);
 
+	boolean existsByPositionIdPos(int positionId);
+
+	ArrayList<Employee> findByPositionIdPos(int positionId);
 }

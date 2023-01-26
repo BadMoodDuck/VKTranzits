@@ -37,7 +37,7 @@ public class EmployeeController {
 
 	@Autowired
 	private ICompanyService companyService;
-	
+
 	@Autowired
 	private IPositionService positionService;
 
@@ -57,9 +57,9 @@ public class EmployeeController {
 		return "employee-all";
 	}
 
-												// Sort All Employees //TODO README: Sorting works but it sorts all of
-												// the elements even the ones not displayed so switching pages will be
-	@GetMapping("/employees/{pageNr}/{field}") 	// confusing
+	// Sort All Employees //TODO README: Sorting works but it sorts all of
+	// the elements even the ones not displayed so switching pages will be
+	@GetMapping("/employees/{pageNr}/{field}") // confusing
 	public String getAllEmployeesWithSort(Model model, @PathVariable("pageNr") int currentPage,
 			@PathVariable("field") String field, @PathParam("sortDir") String sortDir) {
 
@@ -103,16 +103,19 @@ public class EmployeeController {
 		return "employee-one";
 	}
 
-	// localhost:8080/employee/delete/{id}
 	@GetMapping("/employee/delete/{id}")
 	public String getDeleteEmployeeById(Model model, @PathVariable(name = "id") int id) {
 		// MyMessage message = new MyMessage("Employee deleted successfully");
 		// template.convertAndSend(MQConfig.exchange, MQConfig.routingKey, message);
-		model.addAttribute("Employee", employeeService.deleteEmployeeById(id));
-		return "redirect:/employees";
+		if (employeeService.deleteEmployeeById(id)) {
+			model.addAttribute("Employee", employeeService.selectAllEmployees());
+			return "redirect:/employees";
+		} else {
+			return "error-page";
+		}
+
 	}
 
-	// TODO fix update
 	// localhost:8080/employee/update/{id}
 	@GetMapping("/employee/update/{id}")
 	public String getUpdateEmployeeById(@PathVariable(name = "id") int id, Model model) throws Exception {
@@ -139,8 +142,6 @@ public class EmployeeController {
 		} else {
 			return "employee-update";
 		}
-
 	}
-
 
 }

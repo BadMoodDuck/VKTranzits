@@ -1,5 +1,6 @@
 package lv.venta.demo.controller;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class CompanyController {
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("totalElements", page.getTotalElements());
 		model.addAttribute("totalPages", page.getTotalPages());
-		return "company-all";
+		return "company/company-all";
 	}
 	
 	@GetMapping("/company/{id}")
@@ -49,23 +50,54 @@ public class CompanyController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "company-one";
+		return "company/company-one";
 	}
 	
 	@GetMapping("/company/addNew") 
 	public String getAddCompany(Company company) {
-		return "company-add";
+		return "company/company-add";
 	}
 
 	@PostMapping("/company/addNew") 
-	public String postAddCompany(@Valid Company company, BindingResult result) {
+	public String postAddCompany(@Valid Company company, BindingResult result) throws Exception {
 		if (result.hasErrors()) {
 			System.out.println(result);
-			return "error";
+			throw new Exception("Error");
 		} else {
 			companyService.insertNewCompany(company);
 			return "redirect:/companies";
 		}
+	}
+	
+	@GetMapping("/company/update/{id}")
+	public String getUpdateCompanyById(@PathVariable(name="id") int id, Model model) throws Exception {
+		try {
+			model.addAttribute("company", companyService.readCompanyById(id));
+			return "company/company-update";
+		} catch (Exception e){
+			throw new Exception("can't find company");
+		}
+		
+	}
+
+	@PostMapping("/company/update/{id}")
+	public String postUpdateCourseById(@PathVariable(name = "id") int id, Company company, BindingResult result) throws Exception {
+		if (!result.hasErrors()) {
+			if (companyService.updateExistingCompanyById(id, company)) {
+				return "redirect:/companies";
+			} else {
+				throw new Exception("can't update");
+			}
+		} else {
+			return "company/company-update";
+		}
+	}
+	
+	@Transactional
+	@GetMapping("/company/delete/{id}")
+	public String getDeleteCompanyById(@PathVariable(name = "id") int id) {
+		companyService.deleteCompanyById(id);
+		return "redirect:/companies";
 	}
 
 }

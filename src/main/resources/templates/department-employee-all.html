@@ -13,8 +13,9 @@
 <body class="d-flex flex-column min-vh-100">
 	<div th:replace="fragments/header :: header"></div>
 	<div class="container">
-		<h1 th:text="#{department.employees}">Department employees</h1>
-	
+	<div th:each="temp, iter: ${employee}" th:if ="${iter.index}==0">
+		<h1  th:text="${temp.getDepartment().getName()} + ' '+ 'employees'"></h1>
+	</div>
 		<table class="table table-striped table-hover">
 			<thead>
 			    <tr>

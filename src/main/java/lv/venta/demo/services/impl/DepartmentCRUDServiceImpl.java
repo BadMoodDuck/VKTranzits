@@ -1,8 +1,6 @@
 package lv.venta.demo.services.impl;
 
 import java.util.ArrayList;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -27,21 +25,21 @@ public class DepartmentCRUDServiceImpl implements IDepartmentCRUDService{
 	@Autowired
 	private ICourseRepo courseRepo;
 	
+	public DepartmentCRUDServiceImpl(
+			IDepartmentRepo departmentRepo,
+			IEmployeeRepo emRepo,
+			ICourseRepo courseRepo
+			) {
+		this.courseRepo = courseRepo;
+		this.departmentRepo = departmentRepo;
+		this.emRepo = emRepo;
+	}
 	
 	@Override
 	public ArrayList<Department> getAllDepartments() {
 		return (ArrayList<Department>) departmentRepo.findAll();
 	}
 	
-	@Override
-	public ArrayList<Employee> getAllEmployeesFromDepartment(int idDe){
-		if (departmentRepo.existsById(idDe)) {
-			return emRepo.findByDepartmentIdDe(idDe);
-			
-		}
-		return new ArrayList<Employee>();
-	}
-
 	@Override
 	public ArrayList<Course> getAllCoursesFromDepartment(int idDe) {
 		if (departmentRepo.existsById(idDe)) {
@@ -51,8 +49,42 @@ public class DepartmentCRUDServiceImpl implements IDepartmentCRUDService{
 		return null;
 	}
 
+
+
+
+	@Override
+	public boolean deleteDepartmentById(int id) {
+		if(departmentRepo.existsById(id)) {
+			ArrayList<Employee> empl = emRepo.findByDepartmentIdDe(id);
+			for(Employee temp: empl) {
+				temp.setDepartment(null);
+				emRepo.save(temp);
+			}
+			ArrayList<Course> cours= courseRepo.findByDepartmentsIdDe(id);
+			for(Course temp : cours) {
+				temp.setDepartments(null);
+				courseRepo.save(temp);
+			}
+			departmentRepo.deleteById(id);
+			return true;
+		}
+		return false;
+	}
+	
+
+
+
+	public ArrayList<Employee> getAllEmployeesFromDepartment(int idDe){
+		if (departmentRepo.existsById(idDe)) {
+			return emRepo.findByDepartmentIdDe(idDe);
+			
+		}
+		return new ArrayList<Employee>();
+	}
+
 	@Override
 	public boolean insertNewDepartment(Department department) {
+
 		if(!departmentRepo.existsByName(department.getName())) {
 		departmentRepo.save(department);
 		return true;
@@ -65,6 +97,7 @@ public class DepartmentCRUDServiceImpl implements IDepartmentCRUDService{
 		Pageable pagable = PageRequest.of(currentPage-1, 10);
 		return departmentRepo.findAll(pagable);
 	}
+	
 
 	@Override
 	public Department readDepartmentById(int id) throws Exception {
@@ -88,5 +121,5 @@ public class DepartmentCRUDServiceImpl implements IDepartmentCRUDService{
 		return false;
 	}
 
-
 }
+	

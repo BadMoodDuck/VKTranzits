@@ -1,8 +1,6 @@
 package lv.venta.demo.services.impl;
 
 import java.util.ArrayList;
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,9 +11,11 @@ import org.springframework.stereotype.Service;
 import lv.venta.demo.models.Course;
 import lv.venta.demo.models.CourseType;
 import lv.venta.demo.models.Department;
+import lv.venta.demo.models.Quiz;
 import lv.venta.demo.repos.ICourseRepo;
 import lv.venta.demo.repos.ICourseTypeRepo;
 import lv.venta.demo.repos.IDepartmentRepo;
+import lv.venta.demo.repos.IQuizRepo;
 import lv.venta.demo.services.ICourseService;
 
 @Service
@@ -27,6 +27,20 @@ public class CourseServiceImpl implements ICourseService {
 	private IDepartmentRepo departmentRepo;
 	@Autowired 
 	private ICourseTypeRepo coTypeRepo;
+	@Autowired
+	private IQuizRepo quizRepo;
+	
+	public CourseServiceImpl(
+			ICourseRepo courseRepo,
+			IDepartmentRepo departmentRepo,
+			ICourseTypeRepo coTypeRepo,
+			IQuizRepo quizRepo
+			) {
+		this.courseRepo = courseRepo;
+		this.departmentRepo = departmentRepo;
+		this.coTypeRepo = coTypeRepo;
+		this.quizRepo = quizRepo;
+	}
 	
 	//TODO pabeigt funkcijas ar visam parbaudem
 	@Override
@@ -91,6 +105,11 @@ public class CourseServiceImpl implements ICourseService {
 				departmentRepo.save(department);
 			}
 			
+			ArrayList<Quiz> quizList = quizRepo.findByCourseIdCou(courseId);
+		        for (Quiz quiz : quizList) {
+		            quiz.setCourse(null);
+		            quizRepo.save(quiz);
+		        }
 
 			courseRepo.deleteById(courseId);
 			return true;
@@ -168,6 +187,9 @@ public class CourseServiceImpl implements ICourseService {
 	}
 
 
-	
-	
+	@Override
+	public ArrayList<Course> getAllCourses() {
+		// TODO Auto-generated method stub
+		return (ArrayList<Course>) courseRepo.findAll();
+	}
 }

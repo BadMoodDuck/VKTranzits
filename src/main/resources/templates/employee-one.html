@@ -37,13 +37,16 @@
 			      <td th:text="${employee.getSurname()}">#</td>
 			      <td th:text="${employee.getPhone()}">#</td>
 			      <td th:text="${employee.getEmail()}">#</td>
-			      <td th:text="${employee.getDepartment().getName()}">#</td>
-			      <td th:text="${employee.getPosition().getTitle()}">#</td>
+			      <td th:text="${employee?.getDepartment()?.getName()}">#</td>
+			      <td th:text="${employee?.getPosition()?.getTitle()}">#</td>
 			      <td>
 					<a class="btn btn-primary" th:href="@{/employee/update/{id} (id=${employee.getIdEm()}) }" role="button" th:text="#{edit}">Edit</a>
-					<a class="btn btn-danger" th:href="@{/employee/delete/{id} (id=${employee.getIdEm()}) }" role="button" th:text="#{delete}">delete</a>
-					</td>
+					
+
+			      <td><a class="btn btn-danger" th:href="@{/employee/delete/{id}(id=${employee.getIdEm()})}" role="button">Delete</a>
+			      </td>
 			    </tr>
+			    
 	  	 	</thbody>	
 
 		</table>

@@ -1,5 +1,6 @@
 package lv.venta.demo.controller;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import lv.venta.demo.models.Employee;
 import lv.venta.demo.models.Position;
 import lv.venta.demo.services.IPositionService;
 
@@ -51,8 +53,41 @@ public class PositionController {
 				return "error";
 			} else {
 				positionService.insertNewPosition(position);
-				return "position-all";
+				return "redirect:/positions";
 			}
 		}
+		
+		@Transactional
+		@GetMapping("/position/delete/{id}")
+		public String getDeletePositionById(@PathVariable(name = "id") int id) {
+			positionService.deletePositionById(id);
+			return "redirect:/positions";
+		}
+		
+		@GetMapping("/position/update/{id}")
+		public String getUpdatePositionById(@PathVariable(name = "id") int id, Model model) throws Exception {
+			try {
+				model.addAttribute("position", positionService.readPositionById(id));
+				return "position-update";
+			} catch (Exception e) {
+				throw new Exception("can't find position");
+			}
+		}
+		
+		@PostMapping("/position/update/{id}")
+		public String postUpdatePositionById(@PathVariable(name = "id") int id, Position position, BindingResult result)
+				throws Exception {
+			if (!result.hasErrors()) {
+				if (positionService.updatePositionById(id, position)) {
+					return "redirect:/positions";
+				} else {
+					throw new Exception("can't update");
+				}
+			} else {
+				return "position-update";
+			}
+			
+		}
+
 
 }

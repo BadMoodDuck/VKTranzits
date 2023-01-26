@@ -35,7 +35,7 @@ public class MyUser {
 	private int idU;
 
 	@Column(name = "Username")
-	@Size(min = 6, max = 20)
+	@Size(min = 3, max = 20)
 	@Pattern(regexp = "[a-zA-Z0-9]+")
 	private String username;
 

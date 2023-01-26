@@ -1,8 +1,8 @@
 package lv.venta.demo.models;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -44,11 +44,12 @@ public class Quiz {
 	// (h2) Might not work with other databases 
 	@Column(name = "creationDate")
 	@CreationTimestamp
-	@DateTimeFormat(iso = ISO.DATE_TIME)
-	private java.util.Date creationDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date creationDate;
 	
 	
 	@Column(name = "completionDeadLine")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date completionDeadLine;
 	
 	@ManyToOne
@@ -63,5 +64,10 @@ public class Quiz {
 		//this.creationDate = new Date(new java.util.Date().getTime());
 		this.completionDeadLine = completionDeadLine;
 		this.course = course;
+	}
+	
+	public void RemoveQuizQuestion(QuizQuestion question) {
+		quizQuestions.remove(question);
+		System.out.println(quizQuestions);
 	}
 }

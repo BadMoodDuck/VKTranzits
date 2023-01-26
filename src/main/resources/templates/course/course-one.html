@@ -15,20 +15,33 @@
 	<div th:replace="fragments/header :: header"></div>
 
 	<div class="container">
-		<h1 th:text="#{company}">Company</h1>
+		<h1 th:text="#{course.single}"></h1>
 		
 		<table class="table table-striped table-hover">
 
 			<thead>
 				<tr>
 					<th scope="col">#</th>
-					<th scope="col" th:text="#{title}">Name</th>
+					<th scope="col" th:text="#{obligatory}">Type/isObligatory</th>
+					<th scope="col" th:text="#{title}">Title</th>
+					<th scope="col" th:text="#{description}">Description</th>
+					<th scope="col"></th>
 				</tr>
 			</thead>
 			<thbody>
 				<tr>
-					<td th:text="${company.getIdCo()}">#</td>
-					<td th:text="${company.getName()}">#</td>
+					<td th:text="${course.getIdCou()}">#</td>
+					<td th:text="${course?.getCoType()?.isObligatory}">#</td>
+					<td th:text="${course.getTitle()}">#</td>
+					<td th:text="${course.getDescription()}">#</td>
+					<td>
+
+					<a class="btn btn-primary" th:href="@{/course/update/{id} (id=${course.getIdCou()}) }" role="button" th:text="#{edit}">Edit</a>
+					<a class="btn btn-danger" th:href="@{/course/delete/{id} (id=${course.getIdCou()}) }" role="button" th:text="#{delete}">delete</a>
+					<a class="btn btn-success" th:href="@{/export/excel/{id} (id=${course.getIdCou()})}">Excel</a>
+
+
+					</td>
 				</tr>
 			</thbody>
 	

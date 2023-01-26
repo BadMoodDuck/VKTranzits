@@ -3,7 +3,6 @@ package lv.venta.demo.models;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -74,6 +73,7 @@ public class Employee {
 	private Position position;
 
 	public Employee(String name,String surname,int phone, String email, MyUser user, Department department, Position position) {
+
 		this.name = name;
 		this.surname =surname;
 		this.phone =phone;
@@ -93,6 +93,10 @@ public class Employee {
 		if(emCourses.contains(course)) {
 		emCourses.remove(course);
 		}
+	}
+	
+	public void removePosition() {
+		position= null;
 	}
 
 }
