@@ -35,13 +35,13 @@ public class QuizController {
 	@GetMapping("/quizes") // All Courses
 	public String getAllQuizes(Model model) {
 		model.addAttribute("quizes",quizService.getAllQuizes());
-		return "quiz-all";
+		return "quiz/quiz-all";
 	}
 	
 	@GetMapping("/quiz/addNew") // All Courses
 	public String getQuizAdd(Model model, Quiz quiz) {
 		model.addAttribute("Courses", courseService.getAllCourses());
-		return "quiz-add";
+		return "quiz/quiz-add";
 	}
 	@PostMapping("/quiz/addNew")
 	public String postQuizAdd(Quiz quiz, BindingResult result) {
@@ -59,16 +59,14 @@ public class QuizController {
 		try {
 			model.addAttribute("quiz", quizService.getQuizById(id));
 			model.addAttribute("Courses", courseService.getAllCourses());
-			return "quiz-update";
+			return "quiz/quiz-update";
 		} catch (Exception e){
 			throw new Exception("can't find course");
-		}
-		
+		}	
 	}
 
-	// localhost:8080/course/update/{id}
 	@PostMapping("/quiz/{id}/update")
-	public String postUpdateCourseById(@PathVariable(name = "id") int id, Quiz quiz, BindingResult result) throws Exception {
+	public String postUpdateQuizById(@PathVariable(name = "id") int id, Quiz quiz, BindingResult result) throws Exception {
 		if (!result.hasErrors()) {
 			if (quizService.updateQuizById(id, quiz)) {
 				return "redirect:/quizes";
@@ -76,7 +74,7 @@ public class QuizController {
 				throw new Exception("can't update");
 			}
 		} else {
-			return "course-update";
+			return "quiz/quiz-update";
 		}
 	}
 	
@@ -90,7 +88,7 @@ public class QuizController {
 	@GetMapping("/quiz/{id}") // Single quiz
 	public String getOneQuiz(Model model, @PathVariable(name = "id") int id) {
 		model.addAttribute("quiz", quizService.getQuizById(id));
-		return "quiz-one";
+		return "quiz/quiz-one";
 	}
 	
 	@GetMapping("/quiz/{id}/addQuestion") 
@@ -101,7 +99,7 @@ public class QuizController {
 			List<EnumQuestionTypes> enums = Arrays.asList(EnumQuestionTypes.values());
 			model.addAttribute("questionTypes", enums);
 			model.addAttribute("quizId", id);
-			return "quiz-add-question";
+			return "quiz/quiz-add-question";
 		} catch (Exception e) {
 			throw new Exception("Error at Get /quiz/{id}/addQuestion");
 		}
@@ -112,7 +110,7 @@ public class QuizController {
 								      @PathVariable(name = "id") int id) {
 		if (result.hasErrors()) { 
 			System.out.println(result); 
-			return "quiz-add-question";
+			return "quiz/quiz-add-question";
 
 		} else {
 			System.out.println("no proble");
@@ -130,7 +128,7 @@ public class QuizController {
 			List<EnumQuestionTypes> enums = Arrays.asList(EnumQuestionTypes.values());
 			model.addAttribute("questionTypes", enums);
 			model.addAttribute("quizId", id);
-			return "quiz-update-question";
+			return "quiz/quiz-update-question";
 		} catch (Exception e) {
 			throw new Exception("Error at Get /quiz/{id}/updateQuestion/{questionId}");
 		}
@@ -143,7 +141,7 @@ public class QuizController {
 								      @PathVariable(name = "questionId") int questionId) {
 		if (result.hasErrors()) { 
 			System.out.println(result); 
-			return "quiz-update-question";
+			return "quiz/quiz-update-question";
 
 		} else {
 			System.out.println("no proble");
@@ -170,7 +168,7 @@ public class QuizController {
 			Boolean[] list = {true, false};
 			model.addAttribute("boolList",  list);
 			model.addAttribute("quizId", id);
-			return "quiz-question-add-answers";
+			return "quiz/quiz-question-add-answers";
 		} catch (Exception e) {
 			throw new Exception("Error at Get /quiz/{id}/addQuestion");
 		}
@@ -183,7 +181,7 @@ public class QuizController {
 											 @PathVariable(name = "questionId") int questionId) {
 		if (result.hasErrors()) { 
 			System.out.println(result); 
-			return "quiz-question-add-answers";
+			return "quiz/quiz-question-add-answers";
 
 		} else {
 			quizService.insertNewQuestionAnswer(quizAnswers, questionId);
@@ -210,7 +208,7 @@ public class QuizController {
 			model.addAttribute("boolList",  list);
 			model.addAttribute("quizAnswer", quizService.getQuizAnswerById(answerId));
 			model.addAttribute("quizId", id);
-			return "quiz-answer-update";
+			return "quiz/quiz-answer-update";
 		} catch (Exception e) {
 			System.out.println(e);
 			throw new Exception("can't find quiz answer");
@@ -230,7 +228,7 @@ public class QuizController {
 				throw new Exception("can't update");
 			}
 		} else {
-			return "quiz-answer-update";
+			return "quiz/quiz-answer-update";
 		}
 	}
 }
