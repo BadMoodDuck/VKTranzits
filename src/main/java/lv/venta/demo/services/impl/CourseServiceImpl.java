@@ -15,6 +15,7 @@ import lv.venta.demo.models.Quiz;
 import lv.venta.demo.repos.ICourseRepo;
 import lv.venta.demo.repos.ICourseTypeRepo;
 import lv.venta.demo.repos.IDepartmentRepo;
+import lv.venta.demo.repos.IQuizRepo;
 import lv.venta.demo.services.ICourseService;
 
 @Service
@@ -26,6 +27,8 @@ public class CourseServiceImpl implements ICourseService {
 	private IDepartmentRepo departmentRepo;
 	@Autowired 
 	private ICourseTypeRepo coTypeRepo;
+	@Autowired
+	private IQuizRepo quizRepo;
 	
 	public CourseServiceImpl(
 			ICourseRepo courseRepo,
@@ -99,6 +102,12 @@ public class CourseServiceImpl implements ICourseService {
 				department.removeCourse(course);
 				departmentRepo.save(department);
 			}
+			
+			ArrayList<Quiz> quizList = quizRepo.findByCourseIdCou(courseId);
+		        for (Quiz quiz : quizList) {
+		            quiz.setCourse(null);
+		            quizRepo.save(quiz);
+		        }
 
 			courseRepo.deleteById(courseId);
 			return true;
