@@ -30,9 +30,11 @@ import lv.venta.demo.helpers.DepartmentHelper;
 import lv.venta.demo.models.Course;
 import lv.venta.demo.models.CourseType;
 import lv.venta.demo.models.Department;
+import lv.venta.demo.models.Quiz;
 import lv.venta.demo.repos.ICourseRepo;
 import lv.venta.demo.repos.ICourseTypeRepo;
 import lv.venta.demo.repos.IDepartmentRepo;
+import lv.venta.demo.repos.IQuizRepo;
 import lv.venta.demo.services.impl.CourseServiceImpl;
 
 @ExtendWith(SpringExtension.class)
@@ -46,15 +48,17 @@ public class CourseServiceImplTest {
 	private IDepartmentRepo departmentRepo;
 	@Mock
 	private ICourseTypeRepo coTypeRepo;
+	@Mock
+	private IQuizRepo quizRepo;
 	
 	@BeforeEach
 	void beforeEach() {
-		courseServiceImpl = new CourseServiceImpl(courseRepo, departmentRepo, coTypeRepo);
+		courseServiceImpl = new CourseServiceImpl(courseRepo, departmentRepo, coTypeRepo, quizRepo);
 	}
 	
 	@AfterEach
 	void afterEach() {
-		reset(courseRepo, departmentRepo, coTypeRepo);
+		reset(courseRepo, departmentRepo, coTypeRepo, quizRepo);
 	}
 	
 	@Test
@@ -158,6 +162,13 @@ public class CourseServiceImplTest {
 		ArrayList<Department> departments = new ArrayList<>();
 		departments.add(department);
 		
+		ArrayList<Quiz> quizList = new ArrayList<>();
+		Quiz quiz = createQuiz();
+		quiz.setCourse(course);
+		
+		quizList.add(createQuiz());
+		
+		when(quizRepo.findByCourseIdCou(course.getIdCou())).thenReturn(quizList);
 		when(courseRepo.existsById(anyInt())).thenReturn(true);
 		when(courseRepo.findById(anyInt())).thenReturn(Optional.of(course));
 		when(departmentRepo.findByCoursesIdCou(anyInt())).thenReturn(departments);
@@ -219,5 +230,11 @@ public class CourseServiceImplTest {
 		
 		verify(coTypeRepo, times(1)).deleteById(anyInt());
 	}
-		
+	
+	private Quiz createQuiz() {
+		Quiz quiz = new Quiz();
+		quiz.setTitle("Test");
+		quiz.setCourse(null);
+		return quiz;
+	}
 }

@@ -33,11 +33,13 @@ public class CourseServiceImpl implements ICourseService {
 	public CourseServiceImpl(
 			ICourseRepo courseRepo,
 			IDepartmentRepo departmentRepo,
-			ICourseTypeRepo coTypeRepo
+			ICourseTypeRepo coTypeRepo,
+			IQuizRepo quizRepo
 			) {
 		this.courseRepo = courseRepo;
 		this.departmentRepo = departmentRepo;
 		this.coTypeRepo = coTypeRepo;
+		this.quizRepo = quizRepo;
 	}
 	
 	//TODO pabeigt funkcijas ar visam parbaudem
