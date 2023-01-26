@@ -18,19 +18,19 @@
 
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" th:href="@{/employees}" th:text="#{employees}">All Employees</a>
+				<a class="nav-link" th:href="@{/employees}" sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_EMPLOYEE', 'ROLE_IMPLEMENTER')" th:text="#{employees}">All Employees</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" th:href="@{/departments}" th:text="#{departments}">All Departments</a>
+				<a class="nav-link" th:href="@{/departments}" sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_EMPLOYEE')" th:text="#{departments}">All Departments</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" th:href="@{/companies}" th:text="#{companies}">All Companies</a>
+				<a class="nav-link" th:href="@{/companies}" sec:authorize="hasAuthority('ROLE_ADMIN')" th:text="#{companies}">All Companies</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" th:href="@{/positions}" th:text="#{positions}">All Positions</a>
+				<a class="nav-link" th:href="@{/positions}" sec:authorize="hasAuthority('ROLE_ADMIN')" th:text="#{positions}">All Positions</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" th:href="@{/implementers}" th:text="#{implementers}">All Implementers</a>
+				<a class="nav-link" th:href="@{/implementers}" sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_IMPLEMENTER')" th:text="#{implementers}">All Implementers</a>
 			</li>
 			<li class="nav-item">
 			  <a class="nav-link" th:href="@{/calendar}" th:text="#{calendar}">Calendar</a>
