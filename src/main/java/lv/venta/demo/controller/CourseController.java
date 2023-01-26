@@ -137,12 +137,12 @@ public class CourseController {
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("totalElements", page.getTotalElements());
 		model.addAttribute("totalPages", page.getTotalPages());
-		return "course-type-all";
+		return "courseType/course-type-all";
 	}
 	
 	@GetMapping("/course/type/addNew")
 	public String getAddCourseTypes(CourseType course) {
-		return "course-type-add";
+		return "courseType/course-type-add";
 	}
 
 	@PostMapping("/course/type/addNew")
@@ -159,7 +159,7 @@ public class CourseController {
 	public String getUpdateCourseTypeById(@PathVariable(name="id") int id, Model model) throws Exception {
 		try {
 			model.addAttribute("courseType", courseService.getCourseTypeById(id));
-			return "course-type-update";
+			return "courseType/course-type-update";
 		} catch (Exception e){
 			throw new Exception("can't find course type");
 		}
@@ -176,7 +176,7 @@ public class CourseController {
 				throw new Exception("can't update");
 			}
 		} else {
-			return "course-type-update";
+			return "courseType/course-type-update";
 		}
 	}
 	
