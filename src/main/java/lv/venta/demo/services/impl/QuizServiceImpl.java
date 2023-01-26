@@ -1,15 +1,22 @@
 package lv.venta.demo.services.impl;
 
 import java.util.ArrayList;
-
+import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lv.venta.demo.enums.EnumQuestionTypes;
+import lv.venta.demo.models.Course;
 import lv.venta.demo.models.Quiz;
 import lv.venta.demo.models.QuizAnswers;
+import lv.venta.demo.models.QuizEmployeeAnswer;
 import lv.venta.demo.models.QuizQuestion;
+import lv.venta.demo.repos.IEmployeeCourseRepo;
+import lv.venta.demo.repos.IEmployeeRepo;
 import lv.venta.demo.repos.IQuizAnswers;
+import lv.venta.demo.repos.IQuizEmployeeAnswer;
 import lv.venta.demo.repos.IQuizQuestion;
 import lv.venta.demo.repos.IQuizRepo;
 import lv.venta.demo.services.IQuizService;
@@ -23,7 +30,10 @@ public class QuizServiceImpl implements IQuizService{
 	private IQuizQuestion quizQuestionRepo;
 	@Autowired
 	private IQuizAnswers quizAnswersRepo;
-	
+	@Autowired
+	private IQuizEmployeeAnswer quizEmployeeAnswersRepo;
+	@Autowired
+	private IEmployeeRepo employeeRepo;
 	
 	@Override
 	public Quiz getQuizById(int id) {
@@ -149,5 +159,64 @@ public class QuizServiceImpl implements IQuizService{
 		updatedQuiz.setCourse(quiz.getCourse());
 		quizRepo.save(updatedQuiz);
 		return true;
+	}
+	@Override
+	public ArrayList<Boolean> getAvailableAnswersByQuestionId(int questionId) {
+		if (!quizQuestionRepo.existsById(questionId))
+			return null;
+		ArrayList<Boolean> list = new ArrayList<>();
+		QuizQuestion question = quizQuestionRepo.findById(questionId).get();
+		if (question.getQuestionType() == EnumQuestionTypes.CHECKBOX) {
+			list.add(true);
+			list.add(false);
+		}
+		if (question.getQuestionType() == EnumQuestionTypes.RADIO) {
+			list.add(false);
+			boolean hasCorrect = false;
+			for (QuizAnswers answer : question.getQuizAnswers()) {
+				if (answer.getIsCorrect()) {
+					hasCorrect = true;
+				}
+			}
+			if (!hasCorrect)
+				list.add(true);
+		}
+			
+		
+		return list;
+	}
+	@Override
+	public QuizQuestion getQuizQuestionByQuizIdAndParam(int quizId, int questionNumber) {
+		if (!quizRepo.existsById(quizId))
+			return null;
+		Quiz quiz = quizRepo.findById(quizId).get();
+		ArrayList<QuizQuestion> questionList = new ArrayList<QuizQuestion>(quiz.getQuizQuestions()) ;
+		return questionList.get(questionNumber);
+	}
+	@Override
+	public int getQuestionSizeByQuizId(int quizId) {
+		try {
+			if (!quizRepo.existsById(quizId))
+				return 0;
+			Quiz quiz = quizRepo.findById(quizId).get();
+			ArrayList<QuizQuestion> questionList = new ArrayList<QuizQuestion>(quiz.getQuizQuestions()) ;
+			return questionList.size();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return 0;
+		
+	}
+	@Override
+	public void insertNewQuizEmployeeAnswer(int userId,int quizId,int question,QuizEmployeeAnswer quizEmployeeAnswer) {
+		try {
+			quizEmployeeAnswer.setEmployee(employeeRepo.findById(userId).get());
+			quizEmployeeAnswer.setQuiz(quizRepo.findById(quizId).get());
+			quizEmployeeAnswer.setQuizQuestion(getQuizQuestionByQuizIdAndParam(quizId, question));
+			quizEmployeeAnswersRepo.save(quizEmployeeAnswer);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
 	}
 }

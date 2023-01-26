@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -56,8 +58,7 @@ public class Employee {
 	@Pattern(regexp = "[\\w-]+@[\\w-]+.+[\\w-]{2,4}$")
 	private String email;
 	
-	@OneToOne
-	@JoinColumn(name = "IdU")
+	@OneToOne(mappedBy = "employee")
 	private MyUser user;
 
 	@ManyToOne()
@@ -71,14 +72,17 @@ public class Employee {
 	@ManyToOne
 	@JoinColumn(name = "IdPos")
 	private Position position;
+	
+	@OneToMany(mappedBy = "employee")
+	@ToString.Exclude
+	private Collection<QuizEmployeeAnswer> quizEmployeeAnswer = new ArrayList<>();
 
-	public Employee(String name,String surname,int phone, String email, MyUser user, Department department, Position position) {
+	public Employee(String name,String surname,int phone, String email, Department department, Position position) {
 
 		this.name = name;
 		this.surname =surname;
 		this.phone =phone;
 		this.email =email;
-		this.user = user;
 		this.department = department;
 		this.position = position;
 

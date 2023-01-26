@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -44,15 +45,17 @@ public class MyUser {
 	@Pattern(regexp = "[a-zA-Z0-9\\W]+")
 	private String password;
 	
-	@OneToOne(mappedBy = "user")
+	@OneToOne
+	@JoinColumn(name = "idEm")
 	private Employee employee;
 
 	@ManyToMany(mappedBy = "myUsers", fetch = FetchType.EAGER)
 	private Collection<MyUserAuthority> allAuthorities = new ArrayList<>();
 	
-	public MyUser(String username, String password) {
+	public MyUser(String username, String password, Employee employee) {
 		this.username = username;
 		this.password = password;
+		this.employee = employee;
 	}
 	
 	public MyUser(String username) {
@@ -67,5 +70,8 @@ public class MyUser {
 		if (allAuthorities.contains(authority)) {
 			allAuthorities.remove(authority);
 		}
+	}
+	public int getEmployeeId() {
+		return employee.getIdEm();
 	}
 }

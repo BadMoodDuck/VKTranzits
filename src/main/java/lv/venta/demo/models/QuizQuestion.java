@@ -48,6 +48,10 @@ public class QuizQuestion {
 	@OneToMany(mappedBy = "quizQuestion")
 	private Collection<QuizAnswers> quizAnswers = new ArrayList<QuizAnswers>();
 	
+	@OneToMany(mappedBy = "quizQuestion")
+	@ToString.Exclude
+	private Collection<QuizEmployeeAnswer> quizEmployeeAnswer = new ArrayList<>();
+	
 	public QuizQuestion(String question, EnumQuestionTypes questionType, Quiz quiz) {
 		this.question = question;
 		this.questionType = questionType;

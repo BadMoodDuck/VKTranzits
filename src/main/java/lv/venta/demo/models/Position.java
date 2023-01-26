@@ -45,7 +45,7 @@ public class Position {
 	@Column(name = "Description")
 	private String description;
 	
-	@OneToMany(mappedBy = "position", cascade = {CascadeType.ALL})
+	@OneToMany(mappedBy = "position")
 	@ToString.Exclude
 	private Collection<Employee> employees;
 	

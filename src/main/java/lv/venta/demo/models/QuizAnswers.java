@@ -45,9 +45,10 @@ public class QuizAnswers {
 	@Column(name = "IsCorrect")
 	private Boolean isCorrect;
 	
-//	@ManyToMany(mappedBy = "quizAnswers")
-//	private Collection<EmployeeCourse> employeeCourse = new ArrayList<EmployeeCourse>();
-	
+	@ManyToMany
+	@ToString.Exclude
+	private Collection<QuizEmployeeAnswer> quizEmployeeAnswer = new ArrayList<>();
+
 	public QuizAnswers(QuizQuestion quizQuestion,String answer, boolean isCorrect) {
 		this.quizQuestion = quizQuestion;
 		this.answer = answer;
