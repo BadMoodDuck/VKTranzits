@@ -36,9 +36,6 @@ public class EmployeeController {
 	private IDepartmentCRUDService departmentsService;
 
 	@Autowired
-	private ICompanyService companyService;
-
-	@Autowired
 	private IPositionService positionService;
 
 	@GetMapping("/employees") // All Employees
@@ -54,7 +51,7 @@ public class EmployeeController {
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("totalElements", page.getTotalElements());
 		model.addAttribute("totalPages", page.getTotalPages());
-		return "employee-all";
+		return "employee/employee-all";
 	}
 
 	// Sort All Employees //TODO README: Sorting works but it sorts all of
@@ -70,21 +67,21 @@ public class EmployeeController {
 		model.addAttribute("totalElements", page.getTotalElements());
 		model.addAttribute("totalPages", page.getTotalPages());
 		model.addAttribute("field", field);
-		return "employee-all";
+		return "employee/employee-all";
 	}
 
 	@GetMapping("/employee/addNew") // Add Employee
 	public String getAddEmployee(Model model, Employee employee) {
 		model.addAttribute("departments", departmentsService.getAllDepartments());
 		model.addAttribute("positions", positionService.getAllPositions());
-		return "employee-add";
+		return "employee/employee-add";
 	}
 
 	@PostMapping("/employee/addNew")
 	public String postAddEmployee(@Valid Employee employee, BindingResult result) {
 
 		if (result.hasErrors()) {
-			return "employee-add";
+			return "employee/employee-add";
 		} else {
 			employeeService.insertNewEmployee(employee);
 			return "redirect:/employees";
@@ -99,7 +96,7 @@ public class EmployeeController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "employee-one";
+		return "employee/employee-one";
 	}
 
 	@GetMapping("/employee/delete/{id}")
@@ -122,7 +119,7 @@ public class EmployeeController {
 			model.addAttribute("employee", employeeService.readEmployeeById(id));
 			model.addAttribute("departments", departmentsService.getAllDepartments());
 			model.addAttribute("positions", positionService.getAllPositions());
-			return "employee-update";
+			return "employee/employee-update";
 		} catch (Exception e) {
 			throw new Exception("can't find employee");
 		}
@@ -139,7 +136,7 @@ public class EmployeeController {
 				throw new Exception("can't update");
 			}
 		} else {
-			return "employee-update";
+			return "employee/employee-update";
 		}
 	}
 
