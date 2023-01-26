@@ -1,11 +1,14 @@
 package lv.venta.demo.services;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.validation.Valid;
 
+import lv.venta.demo.models.Course;
 import lv.venta.demo.models.Quiz;
 import lv.venta.demo.models.QuizAnswers;
+import lv.venta.demo.models.QuizEmployeeAnswer;
 import lv.venta.demo.models.QuizQuestion;
 
 public interface IQuizService {
@@ -35,5 +38,13 @@ public interface IQuizService {
 	void deleteQuizById(int id);
 
 	boolean updateQuizById(int id, Quiz quiz);
+
+	ArrayList<Boolean> getAvailableAnswersByQuestionId(int questionId);
+
+	QuizQuestion getQuizQuestionByQuizIdAndParam(int quizId, int questionNumber);
+
+	int getQuestionSizeByQuizId(int quizId);
+
+	void insertNewQuizEmployeeAnswer(int userId, int quizId, int question, QuizEmployeeAnswer quizEmployeeAnswer);
 
 }

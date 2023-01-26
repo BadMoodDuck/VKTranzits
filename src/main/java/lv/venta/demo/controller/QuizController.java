@@ -1,11 +1,14 @@
 package lv.venta.demo.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import javax.validation.Valid;
 import javax.websocket.server.PathParam;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +34,7 @@ public class QuizController {
 	@Autowired
 	private ICourseService courseService;
 	
+	Logger logger = LoggerFactory.getLogger(QuizController.class);
 	
 	@GetMapping("/quizes") // All Courses
 	public String getAllQuizes(Model model) {
@@ -61,6 +65,7 @@ public class QuizController {
 			model.addAttribute("Courses", courseService.getAllCourses());
 			return "quiz-update";
 		} catch (Exception e){
+			logger.error(e.toString());
 			throw new Exception("can't find course");
 		}
 		
@@ -73,6 +78,7 @@ public class QuizController {
 			if (quizService.updateQuizById(id, quiz)) {
 				return "redirect:/quizes";
 			} else {
+				logger.error(null,result.getAllErrors());
 				throw new Exception("can't update");
 			}
 		} else {
@@ -83,7 +89,12 @@ public class QuizController {
 	@GetMapping("/quiz/{id}/delete")
 	public String postQuizDelete(Model model, 
 							   	 @PathVariable(name = "id") int id) {
-		quizService.deleteQuizById(id);
+		try {
+			quizService.deleteQuizById(id);
+		}
+		catch (Exception e) {
+			logger.error(e.toString());
+		}
 		return "redirect:/quizes";
 	}
 	
@@ -103,6 +114,7 @@ public class QuizController {
 			model.addAttribute("quizId", id);
 			return "quiz-add-question";
 		} catch (Exception e) {
+			logger.error(e.toString());
 			throw new Exception("Error at Get /quiz/{id}/addQuestion");
 		}
 	}
@@ -132,6 +144,7 @@ public class QuizController {
 			model.addAttribute("quizId", id);
 			return "quiz-update-question";
 		} catch (Exception e) {
+			logger.error(e.toString());
 			throw new Exception("Error at Get /quiz/{id}/updateQuestion/{questionId}");
 		}
 		
@@ -167,11 +180,12 @@ public class QuizController {
 											@PathVariable(name = "id") int id,
 											@PathVariable(name = "questionId") int questionId) throws Exception {
 		try {
-			Boolean[] list = {true, false};
+			ArrayList<Boolean> list = quizService.getAvailableAnswersByQuestionId(questionId);
 			model.addAttribute("boolList",  list);
 			model.addAttribute("quizId", id);
 			return "quiz-question-add-answers";
 		} catch (Exception e) {
+			logger.error(e.toString());
 			throw new Exception("Error at Get /quiz/{id}/addQuestion");
 		}
 		
@@ -206,13 +220,13 @@ public class QuizController {
 									  @PathVariable(name = "answerId") int answerId,
 									  Model model) throws Exception {
 		try {
-			Boolean[] list = {true, false};
+			ArrayList<Boolean> list = quizService.getAvailableAnswersByQuestionId(questionId);
 			model.addAttribute("boolList",  list);
 			model.addAttribute("quizAnswer", quizService.getQuizAnswerById(answerId));
 			model.addAttribute("quizId", id);
 			return "quiz-answer-update";
 		} catch (Exception e) {
-			System.out.println(e);
+			logger.error(e.toString());
 			throw new Exception("can't find quiz answer");
 		}
 	}
@@ -227,10 +241,12 @@ public class QuizController {
 			if (quizService.updateQuizAnswerById(answerId, quizAnswer)) {
 				return "redirect:/quiz/{id}";
 			} else {
+				logger.debug(null, result.getAllErrors());
 				throw new Exception("can't update");
 			}
 		} else {
 			return "quiz-answer-update";
 		}
 	}
+	
 }

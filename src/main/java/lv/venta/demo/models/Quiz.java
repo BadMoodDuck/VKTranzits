@@ -59,6 +59,10 @@ public class Quiz {
 	@OneToMany(mappedBy = "quiz")
 	private Collection<QuizQuestion> quizQuestions = new ArrayList<QuizQuestion>();
 	
+	@OneToMany(mappedBy = "quiz")
+	@ToString.Exclude
+	private Collection<QuizEmployeeAnswer> quizEmployeeAnswer = new ArrayList<>();
+	
 	public Quiz(String title, Date completionDeadLine, Course course) {
 		this.title = title;
 		//this.creationDate = new Date(new java.util.Date().getTime());

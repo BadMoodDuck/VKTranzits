@@ -17,9 +17,17 @@
   			<div class="col-sm">
 		  		<h2 th:text="${User.getName} +' '+ ${User.getSurname}"/>
 		  		<h3 th:text="${User.getDepartment.getName}"/> 
+				<div>
+					<tr th:each="quiz: ${Quizes}">
+						<a class="link-primary" 
+							   th:href="@{/u/{user}/quiz/{quiz}/0 (user=${User.getIdEm()}, quiz=${quiz.getIdQu()})}"
+							   role="link" th:text="${quiz.getTitle()}">Title</a>
+					</tr>
+					 
+				</div>
 	  		</div>
 	  		<div class="col-sm">
-		  		<h2 text="Course calendar"/>
+		  		<h2>Course calendar here</h2>
 	  		</div>
   		</div>
   		

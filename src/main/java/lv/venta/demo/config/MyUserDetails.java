@@ -13,6 +13,10 @@ import lv.venta.demo.models.MyUserAuthority;
 
 public class MyUserDetails implements UserDetails{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private MyUser user;
 	
 	public MyUserDetails(MyUser user) {
@@ -41,6 +45,13 @@ public class MyUserDetails implements UserDetails{
 	public String getUsername() {
 		// TODO Auto-generated method stub
 		return user.getUsername();
+	}
+	
+	public int getEmployeeId() {
+		return user.getEmployeeId();
+	}
+	public boolean getEmployeeExists() {
+		return user.getEmployee() != null ? true : false;
 	}
 
 	@Override
