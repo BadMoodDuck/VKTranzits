@@ -8349,3 +8349,4 @@ Identify and stop the process that's listening on port 8080 or configure this ap
 2023-27Jan 13:28:46.933 [main] [DEBUG] lv.venta.demo.VkTranzitsApplication [main] Running with Spring Boot v2.7.0, Spring v5.3.20
 2023-27Jan 13:28:46.934 [main] [INFO ] lv.venta.demo.VkTranzitsApplication [main] No active profile set, falling back to 1 default profile: "default"
 2023-27Jan 13:28:51.185 [main] [WARN ] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-27Jan 13:28:52.937 [main] [INFO ] lv.venta.demo.VkTranzitsApplication [main] Started VkTranzitsApplication in 6.491 seconds (JVM running for 7.578)
