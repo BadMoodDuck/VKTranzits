@@ -8,4 +8,6 @@ public interface IMyAuthorityRepo extends CrudRepository<MyUserAuthority, Intege
 
 	boolean existsByTitle(String title);
 
+	MyUserAuthority findByIdA(int id);
+
 }

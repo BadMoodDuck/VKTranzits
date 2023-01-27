@@ -12,4 +12,8 @@ public interface IMyAuthorityCRUDService {
 
 	boolean deleteAuthorityById(int authorityId);
 
+	boolean updateExistingAuthorityById(int authorityId, MyUserAuthority authority);
+
+	MyUserAuthority readAuthorityById(int id) throws Exception;
+
 }
