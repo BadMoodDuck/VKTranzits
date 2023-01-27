@@ -8316,3 +8316,37 @@ Identify and stop the process that's listening on port 8080 or configure this ap
 2023-27Jan 12:26:34.765 [main] [INFO ] lv.venta.demo.VkTranzitsApplicationTests [main] No active profile set, falling back to 1 default profile: "default"
 2023-27Jan 12:26:39.605 [main] [WARN ] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2023-27Jan 12:26:42.407 [main] [INFO ] lv.venta.demo.VkTranzitsApplicationTests [main] Started VkTranzitsApplicationTests in 8.106 seconds (JVM running for 10.707)
+2023-27Jan 13:21:17.614 [main] [INFO ] lv.venta.demo.VkTranzitsApplication [main] Starting VkTranzitsApplication using Java 17.0.1 on LAPTOP-64O2614O with PID 20104 (C:\Users\evapa\Documents\workspace-spring-tool-suite-4-4.13.1.RELEASE\VKTranzits\target\classes started by evapa in C:\Users\evapa\Documents\workspace-spring-tool-suite-4-4.13.1.RELEASE\VKTranzits)
+2023-27Jan 13:21:17.620 [main] [DEBUG] lv.venta.demo.VkTranzitsApplication [main] Running with Spring Boot v2.7.0, Spring v5.3.20
+2023-27Jan 13:21:17.621 [main] [INFO ] lv.venta.demo.VkTranzitsApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-27Jan 13:21:22.913 [main] [WARN ] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-27Jan 13:21:24.763 [main] [WARN ] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext [main] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.PortInUseException: Port 8080 is already in use
+2023-27Jan 13:21:24.826 [main] [ERROR] org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter [main] 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2023-27Jan 13:21:38.602 [main] [INFO ] lv.venta.demo.VkTranzitsApplication [main] Starting VkTranzitsApplication using Java 17.0.1 on LAPTOP-64O2614O with PID 17380 (C:\Users\evapa\Documents\workspace-spring-tool-suite-4-4.13.1.RELEASE\VKTranzits\target\classes started by evapa in C:\Users\evapa\Documents\workspace-spring-tool-suite-4-4.13.1.RELEASE\VKTranzits)
+2023-27Jan 13:21:38.606 [main] [DEBUG] lv.venta.demo.VkTranzitsApplication [main] Running with Spring Boot v2.7.0, Spring v5.3.20
+2023-27Jan 13:21:38.607 [main] [INFO ] lv.venta.demo.VkTranzitsApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-27Jan 13:21:43.016 [main] [WARN ] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-27Jan 13:21:44.790 [main] [INFO ] lv.venta.demo.VkTranzitsApplication [main] Started VkTranzitsApplication in 6.698 seconds (JVM running for 7.811)
+2023-27Jan 13:28:33.485 [main] [INFO ] lv.venta.demo.VkTranzitsApplication [main] Starting VkTranzitsApplication using Java 17.0.1 on LAPTOP-64O2614O with PID 6020 (C:\Users\evapa\Documents\workspace-spring-tool-suite-4-4.13.1.RELEASE\VKTranzits\target\classes started by evapa in C:\Users\evapa\Documents\workspace-spring-tool-suite-4-4.13.1.RELEASE\VKTranzits)
+2023-27Jan 13:28:33.488 [main] [DEBUG] lv.venta.demo.VkTranzitsApplication [main] Running with Spring Boot v2.7.0, Spring v5.3.20
+2023-27Jan 13:28:33.489 [main] [INFO ] lv.venta.demo.VkTranzitsApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-27Jan 13:28:37.830 [main] [WARN ] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-27Jan 13:28:39.609 [main] [INFO ] lv.venta.demo.VkTranzitsApplication [main] Started VkTranzitsApplication in 6.605 seconds (JVM running for 7.601)
+2023-27Jan 13:28:46.930 [main] [INFO ] lv.venta.demo.VkTranzitsApplication [main] Starting VkTranzitsApplication using Java 17.0.1 on LAPTOP-64O2614O with PID 8136 (C:\Users\evapa\Documents\workspace-spring-tool-suite-4-4.13.1.RELEASE\VKTranzits\target\classes started by evapa in C:\Users\evapa\Documents\workspace-spring-tool-suite-4-4.13.1.RELEASE\VKTranzits)
+2023-27Jan 13:28:46.933 [main] [DEBUG] lv.venta.demo.VkTranzitsApplication [main] Running with Spring Boot v2.7.0, Spring v5.3.20
+2023-27Jan 13:28:46.934 [main] [INFO ] lv.venta.demo.VkTranzitsApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-27Jan 13:28:51.185 [main] [WARN ] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-27Jan 13:28:52.937 [main] [INFO ] lv.venta.demo.VkTranzitsApplication [main] Started VkTranzitsApplication in 6.491 seconds (JVM running for 7.578)
