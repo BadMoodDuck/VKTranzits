@@ -43,7 +43,7 @@
 				 			   th:text="${answer.getAnswer()}"
 				 		/>
 			 	</div>
-			<button th:if="${question < QuestionSize }" type="submit" class="btn btn-primary" th:text="#{next question}">Next Question</button>
+			<button th:if="${question < QuestionSize }" type="submit" class="btn btn-primary" th:text="#{next.question}">Next Question</button>
 			<button th:if="${question == QuestionSize }" type="submit" class="btn btn-primary" th:text="#{submit}">Finish</button>
 		</form>
 

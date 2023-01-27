@@ -64,7 +64,7 @@ public class UserController {
 			System.out.println(e);
 			return "redirect:/u/{userId}";
 		}
-		return "quiz-employee-answer-form";
+		return "quiz/quiz-employee-answer-form";
 	}
 	@PostMapping("/u/{userId}/quiz/{quizId}/{question}")
 	public String postQuizForm(@PathVariable(name="userId") int userId,

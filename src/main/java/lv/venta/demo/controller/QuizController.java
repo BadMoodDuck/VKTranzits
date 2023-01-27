@@ -58,7 +58,7 @@ public class QuizController {
 		}
 	}
 	@GetMapping("/quiz/{id}/update")
-	public String getUpdateCourseById(Model model,
+	public String getUpdateQuizById(Model model,
 									  @PathVariable(name="id") int id) throws Exception {
 		try {
 			model.addAttribute("quiz", quizService.getQuizById(id));
@@ -66,7 +66,7 @@ public class QuizController {
 			return "quiz/quiz-update";
 		} catch (Exception e){
 			logger.error(e.toString());
-			throw new Exception("can't find course");
+			throw new Exception("can't find quiz");
 		}	
 	}
 
@@ -165,7 +165,7 @@ public class QuizController {
 	
 	
 	@GetMapping("/quiz/{id}/deleteQuestion/{questionId}")
-	public String getDeleteEmployeeById(Model model, 
+	public String getDeleteQuestionById(Model model, 
 										@PathVariable(name = "id") int quizId,
 										@PathVariable(name = "questionId") int questionId) {
 		model.addAttribute("Question", quizService.deleteQuizQuestionById(quizId, questionId));
