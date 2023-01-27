@@ -53,13 +53,7 @@ public class VkTranzitsApplication {
 		SpringApplication.run(VkTranzitsApplication.class, args);
 	}
 	
-	
-	
-<<<<<<< HEAD
 	@Autowired 
-=======
-	@Autowired
->>>>>>> eva
 	@Lazy
 	private BCryptPasswordEncoder encoder;
 	
