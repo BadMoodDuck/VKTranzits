@@ -81,7 +81,7 @@ public class CompanyController {
 	}
 
 	@PostMapping("/company/update/{id}")
-	public String postUpdateCourseById(@PathVariable(name = "id") int id, Company company, BindingResult result) throws Exception {
+	public String postUpdateCompanyById(@PathVariable(name = "id") int id, Company company, BindingResult result) throws Exception {
 		if (!result.hasErrors()) {
 			if (companyService.updateExistingCompanyById(id, company)) {
 				return "redirect:/companies";

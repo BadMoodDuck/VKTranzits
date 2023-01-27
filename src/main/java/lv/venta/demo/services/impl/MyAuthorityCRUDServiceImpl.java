@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lv.venta.demo.models.Company;
 import lv.venta.demo.models.Employee;
 import lv.venta.demo.models.Implementer;
 import lv.venta.demo.models.MyUser;
@@ -50,6 +51,32 @@ public class MyAuthorityCRUDServiceImpl implements IMyAuthorityCRUDService {
 			return true;
 		}
 		return false;
+	}
+	
+	@Override
+	public boolean updateExistingAuthorityById(int authorityId, MyUserAuthority authority) {
+
+		MyUserAuthority result = new MyUserAuthority();
+		if (authorityRepo.existsById(authorityId)) {
+			result = authorityRepo.findById(authorityId).get();
+			result.setTitle(authority.getTitle());;
+			authorityRepo.save(result);
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	@Override
+	public MyUserAuthority readAuthorityById(int id) throws Exception {
+		// TODO Auto-generated method stub
+		if (authorityRepo.existsById(id)) {
+			MyUserAuthority authority = authorityRepo.findByIdA(id);
+			return authority;
+		}
+
+		throw new Exception("Authority doesn't exist");
+
 	}
 
 }

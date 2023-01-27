@@ -51,5 +51,28 @@ public class MyAuthorityController {
 		return "redirect:/authorities";
 	}
 	
+	@GetMapping("/authority/update/{id}")
+	public String getUpdateAuthorityById(@PathVariable(name="id") int id, Model model) throws Exception {
+		try {
+			model.addAttribute("authority", authorityService.readAuthorityById(id));
+			return "authority/authority-update";
+		} catch (Exception e){
+			throw new Exception("can't find authority");
+		}
+		
+	}
+
+	@PostMapping("/authority/update/{id}")
+	public String postUpdateAuthorityById(@PathVariable(name = "id") int id, MyUserAuthority authority, BindingResult result) throws Exception {
+		if (!result.hasErrors()) {
+			if (authorityService.updateExistingAuthorityById(id, authority)) {
+				return "redirect:/authorities";
+			} else {
+				throw new Exception("can't update");
+			}
+		} else {
+			return "authority/authority-update";
+		}
+	}
 
 }

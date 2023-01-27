@@ -34,6 +34,7 @@
 					<td th:text="${authority.idA}">#</td>
 					<td th:text="${authority.title}">#</td>	
 					<td>
+						<a class="btn btn-primary" th:href="@{/authority/update/{id} (id=${authority.getIdA()}) }" role="button" th:text="#{edit}">Edit</a>
 						<a class="btn btn-danger" th:href="@{/authority/delete/{id} (id=${authority.getIdA()}) }" role="button" th:text="#{delete}">delete</a>
 					</td>
 				</tr>
