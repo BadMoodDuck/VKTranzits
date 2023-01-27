@@ -1,10 +1,16 @@
 package lv.venta.demo.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import lv.venta.demo.models.Company;
+import lv.venta.demo.models.MyUserAuthority;
 import lv.venta.demo.services.IMyAuthorityCRUDService;
 
 @Controller
@@ -17,6 +23,23 @@ public class MyAuthorityController {
 	public String getAllAuthorities(Model model) {
 		model.addAttribute("authority", authorityService.selectAllAuthorities());
 		return "authority/authority-all";
+	}
+	
+	@GetMapping("/authority/addNew") 
+	public String getAddAuthority(Model model) {
+		model.addAttribute("authority", new MyUserAuthority());
+		return "authority/authority-add";
+	}
+
+	@PostMapping("/authority/addNew") 
+	public String postAddAuthority(@Valid MyUserAuthority authority, BindingResult result) throws Exception {
+		if (result.hasErrors()) {
+			System.out.println(result);
+			throw new Exception("Error");
+		} else {
+			authorityService.insertNewAuthority(authority);
+			return "redirect:/authorities";
+		}
 	}
 	
 
