@@ -27,6 +27,7 @@ import lv.venta.demo.models.MyUserAuthority;
 import lv.venta.demo.models.Position;
 import lv.venta.demo.models.Quiz;
 import lv.venta.demo.models.QuizAnswers;
+import lv.venta.demo.models.QuizEmployeeAnswer;
 import lv.venta.demo.models.QuizQuestion;
 import lv.venta.demo.repos.ICompanyRepo;
 import lv.venta.demo.repos.ICourseCalendarRepo;
@@ -41,6 +42,7 @@ import lv.venta.demo.repos.IMyAuthorityRepo;
 import lv.venta.demo.repos.IMyUserRepo;
 import lv.venta.demo.repos.IPositionRepo;
 import lv.venta.demo.repos.IQuizAnswers;
+import lv.venta.demo.repos.IQuizEmployeeAnswer;
 import lv.venta.demo.repos.IQuizQuestion;
 import lv.venta.demo.repos.IQuizRepo;
 
@@ -53,7 +55,11 @@ public class VkTranzitsApplication {
 	
 	
 	
+<<<<<<< HEAD
+	@Autowired 
+=======
 	@Autowired
+>>>>>>> eva
 	@Lazy
 	private BCryptPasswordEncoder encoder;
 	
@@ -68,7 +74,7 @@ public class VkTranzitsApplication {
         };
     }
 
-	//@Bean
+	@Bean
 	public CommandLineRunner runner(IEmployeeRepo employeeRepo, IDepartmentRepo departmentRepo, 
 										ICompanyRepo companyRepo,ICourseTypeRepo courseTypeRepo, 
 										ICourseRepo courseRepo, IEmployeeCourseRepo employeeCourseRepo, 
@@ -76,7 +82,7 @@ public class VkTranzitsApplication {
 										ICourseImplementerRepo courseImplementerRepo, ICourseCalendarRepo courseCalendarRepo,
 										IMyUserRepo userRepo, IMyAuthorityRepo authorityRepo,
 										IQuizRepo quizRepo, IQuizQuestion quizQuestionRepo,
-										IQuizAnswers quizAnswersRepo)
+										IQuizAnswers quizAnswersRepo, IQuizEmployeeAnswer quizEmployeeAnswerRepo)
 	{
 		return new CommandLineRunner() {
 				
@@ -86,13 +92,50 @@ public class VkTranzitsApplication {
 				MyUserAuthority auth3 = new MyUserAuthority("ROLE_EMPLOYEE");
 				MyUserAuthority auth4 = new MyUserAuthority("ROLE_GUEST");
 				
-				MyUser user1 = new MyUser("admins", encoder.encode("admins"));
-				MyUser user2 = new MyUser("jevgenijs", encoder.encode("Fksd123"));
-				MyUser user3 = new MyUser("janis123", encoder.encode("Fkwertyu1"));
-				MyUser user4 = new MyUser("kristaps", encoder.encode("Password"));
-				MyUser user5 = new MyUser("maris1234", encoder.encode("12345"));
-				MyUser user6 = new MyUser("lone123", encoder.encode("111111111"));
-				MyUser user7 = new MyUser("david123", encoder.encode("idontknow"));
+				Position pos = new Position("Plumber","They do plumbin");
+				Position pos1 = new Position("Electrician","They do electricing");
+				Position pos2 = new Position("Pekachus","They do pika pi");
+				positionRepo.save(pos);
+				positionRepo.save(pos1);
+				positionRepo.save(pos2);
+				
+				
+				Company com = new Company("Jhons");
+				Company com1 = new Company("Does");
+				Company com2 = new Company("Fixer");
+				companyRepo.save(com);
+				companyRepo.save(com1);
+				companyRepo.save(com2);
+				
+				Department dep = new Department(com,"Plumbas");
+				Department dep1 = new Department(com1,"Electricans");
+				Department dep2 = new Department(com2,"Piekachus");
+				departmentRepo.save(dep);
+				departmentRepo.save(dep1);
+				departmentRepo.save(dep2);
+				
+				Employee emp = new Employee("Jhon","Silver",22134570,"abce@gmail.com", dep,pos);
+				Employee emp1 = new Employee("Jevgenijs","Saimnieks",22564540,"sert@gmail.com", dep1,pos1);
+				Employee emp2 = new Employee("Janis","Sudrabs",22626561,"asdf@gmail.com", dep1,pos1);
+				Employee emp3 = new Employee("Kristaps","Slieka",22134560,"rtyh@gmail.com", dep2,pos);
+				Employee emp4 = new Employee("Maris","Smiekls",22555660,"zxcv@gmail.com", dep2,pos2);
+				Employee emp5 = new Employee("Lone","Man",22512310,"abece@gmail.com", dep,pos2);
+				Employee emp7 = new Employee("David","Martinez",22525250,"davidmartinez@arosaka.com", dep1,pos);
+				employeeRepo.save(emp);
+				employeeRepo.save(emp1);
+				employeeRepo.save(emp2);
+				employeeRepo.save(emp3);
+				employeeRepo.save(emp4);
+				employeeRepo.save(emp5);
+				employeeRepo.save(emp7);
+				
+				MyUser user1 = new MyUser("admins", encoder.encode("admins"),emp);
+				MyUser user2 = new MyUser("jevgenijs", encoder.encode("Fksd123"),emp1);
+				MyUser user3 = new MyUser("janis123", encoder.encode("Fkwertyu1"),emp2);
+				MyUser user4 = new MyUser("kristaps", encoder.encode("Password"),emp3);
+				MyUser user5 = new MyUser("maris1234", encoder.encode("12345"),emp4);
+				MyUser user6 = new MyUser("lone123", encoder.encode("111111111"),emp5);
+				MyUser user7 = new MyUser("david123", encoder.encode("idontknow"),emp7);
 				
 				user1.addAuthority(auth1);
 				user2.addAuthority(auth2);
@@ -123,43 +166,11 @@ public class VkTranzitsApplication {
 				authorityRepo.save(auth3);
 				authorityRepo.save(auth4);
 				
-				
-				Company com = new Company("VKTranzits");
-				Company com1 = new Company("SiaFix");
-				Company com2 = new Company("Dzirnavas");
-				companyRepo.save(com);
-				companyRepo.save(com1);
-				companyRepo.save(com2);
-				
-				Position pos = new Position("Plumber","They do plumbin");
-				Position pos1 = new Position("Electrician","wires and electricity");
-				Position pos2 = new Position("Devops","They do devops");
-				positionRepo.save(pos);
-				positionRepo.save(pos1);
-				positionRepo.save(pos2);
-				
-				
-				Department dep = new Department(com,"Plumber");
-				Department dep1 = new Department(com1,"Electricans");
-				Department dep2 = new Department(com2,"IT");
-				departmentRepo.save(dep);
-				departmentRepo.save(dep1);
-				departmentRepo.save(dep2);
-				
-				Employee emp = new Employee("Jhon","Silver",22134570,"abce@gmail.com",null, dep,pos);
-				Employee emp1 = new Employee("Jevgenijs","Saimnieks",22564540,"sert@gmail.com",null, dep1,pos1);
-				Employee emp2 = new Employee("Janis","Sudrabs",22626561,"asdf@gmail.com",null, dep1,pos1);
-				Employee emp3 = new Employee("Kristaps","Slieka",22134560,"rtyh@gmail.com",null, dep2,pos);
-				Employee emp4 = new Employee("Maris","Smiekls",22555660,"zxcv@gmail.com",null, dep2,pos2);
-				Employee emp5 = new Employee("Lone","Man",22512310,"abece@gmail.com",null, dep,pos2);
-				Employee emp7 = new Employee("David","Martinez",22525250,"davidmartinez@arosaka.com",null, dep1,pos);
-				employeeRepo.save(emp);
-				employeeRepo.save(emp1);
-				employeeRepo.save(emp2);
-				employeeRepo.save(emp3);
-				employeeRepo.save(emp4);
-				employeeRepo.save(emp5);
-				employeeRepo.save(emp7);
+
+
+
+
+
 				
 				
 				CourseType cty = new CourseType("Ķīmija", false, "Viss vajadzigais par Ķīmiju");
@@ -235,7 +246,18 @@ public class VkTranzitsApplication {
 				authorityRepo.save(auth2);
 				authorityRepo.save(auth3);
 				authorityRepo.save(auth4);
+				
+				QuizEmployeeAnswer emAnser = new QuizEmployeeAnswer(emp,quiz1,qq);
+				emAnser.AddNewQuizAnswer(qa);
+				quizEmployeeAnswerRepo.save(emAnser);
 
+				QuizEmployeeAnswer emAnser1 = new QuizEmployeeAnswer(emp,quiz1,qq);
+				emAnser1.AddNewQuizAnswer(qa2);
+				quizEmployeeAnswerRepo.save(emAnser1);
+				
+				QuizEmployeeAnswer emAnser2 = new QuizEmployeeAnswer(emp2,quiz1,qq);
+				emAnser2.AddNewQuizAnswer(qa);
+				quizEmployeeAnswerRepo.save(emAnser2);
 				
 			}
 		};
