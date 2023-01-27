@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-node_modules
-=======
+
 node_modules/
 *.log
->>>>>>> main
 
 .mvn/
 mvnw
