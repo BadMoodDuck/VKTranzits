@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>DaMPS</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+		crossorigin="anonymous"></script>
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+	<div th:replace="fragments/header :: header"></div>
+
+	<div class="container">
+
+		<h1> <span th:text="#{authorities}"></span>
+		<a style="float: right; margin-top: 8px;" class="btn btn-primary" th:href="@{/authority/addNew}" role="button"><span th:text="#{add}"></span> </a> 
+		</h1>
+
+		<table class="table table-striped table-hover">
+
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col" th:text="#{title}"></th>
+					<th style="margin-left: auto;" scope="col"></th>
+				</tr>
+			</thead>
+			<thbody>
+				<tr th:each="authority: ${authority}">
+					<td th:text="${authority.idA}">#</td>
+					<td th:text="${authority.title}">#</td>	
+					<td>
+						<a class="btn btn-danger" th:href="@{/authority/delete/{id} (id=${authority.getIdA()}) }" role="button" th:text="#{delete}">delete</a>
+					</td>
+				</tr>
+			</thbody>
+		</table>
+	</div>
+
+	<div class="footer" th:replace="fragments/footer :: footer"></div>
+</body>
+
+</html>

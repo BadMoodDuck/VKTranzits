@@ -55,7 +55,11 @@ public class VkTranzitsApplication {
 	
 	
 	
+<<<<<<< HEAD
 	@Autowired 
+=======
+	@Autowired
+>>>>>>> eva
 	@Lazy
 	private BCryptPasswordEncoder encoder;
 	

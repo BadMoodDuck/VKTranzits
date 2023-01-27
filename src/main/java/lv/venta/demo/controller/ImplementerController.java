@@ -35,7 +35,7 @@ public class ImplementerController {
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("totalElements", page.getTotalElements());
 		model.addAttribute("totalPages", page.getTotalPages());
-		return "implementer-all";
+		return "implementer/implementer-all";
 	}
 	
 	@GetMapping("/implementer/{id}")
@@ -46,12 +46,12 @@ public class ImplementerController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "implementer-one";
+		return "implementer/implementer-one";
 	}
 	
 	@GetMapping("/implementer/addNew")
 	public String getAddImplementer(Model model, Implementer implementer) {
-		return "implementer-add";
+		return "implementer/implementer-add";
 	}
 
 	@PostMapping("/implementer/addNew")
@@ -59,7 +59,7 @@ public class ImplementerController {
 
 		if (result.hasErrors()) {
 			System.out.println(result);
-			return "implementer-add";
+			return "implementer/implementer-add";
 		} else {
 			implementerService.insertNewImplementer(implementer);
 			return "redirect:/implementers";
@@ -76,7 +76,7 @@ public class ImplementerController {
 	public String getUpdateImplementerById(@PathVariable(name = "id") int id, Model model) throws Exception {
 		try {
 			model.addAttribute("implementer", implementerService.readImplementerById(id));
-			return "implementer-update";
+			return "implementer/implementer-update";
 		} catch (Exception e) {
 			throw new Exception("can't find");
 		}
@@ -91,7 +91,7 @@ public class ImplementerController {
 				throw new Exception("can't update");
 			}
 		} else {
-			return "implementer-update";
+			return "implementer/implementer-update";
 		}
 	}
 

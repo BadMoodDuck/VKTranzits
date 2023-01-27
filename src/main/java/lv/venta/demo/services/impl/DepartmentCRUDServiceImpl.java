@@ -49,9 +49,6 @@ public class DepartmentCRUDServiceImpl implements IDepartmentCRUDService{
 		return null;
 	}
 
-
-
-
 	@Override
 	public boolean deleteDepartmentById(int id) {
 		if(departmentRepo.existsById(id)) {

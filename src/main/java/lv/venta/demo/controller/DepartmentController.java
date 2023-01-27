@@ -51,33 +51,30 @@ public class DepartmentController {
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("totalElements", page.getTotalElements());
 		model.addAttribute("totalPages", page.getTotalPages());
-		return "department-all";
+		return "department/department-all";
 	}
 	
 	@GetMapping("/department/{id}/employees") // All Employees of department
 	public String getAllEmployeesFromDepartment(@PathVariable int id, Model model) {
 		model.addAttribute("employee", departmentService.getAllEmployeesFromDepartment(id));
-		return "department-employee-all";
+		return "department/department-employee-all";
 	}
 	
 
 	@GetMapping("/department/addNew")
 	public String getAddedDepartment(Model models, Department dep) {
-		List<Company> listCompanies= companyService.getAllCompanies();
-		models.addAttribute("listCompanies", listCompanies);
-		Department depart= new Department();
-		models.addAttribute("department", depart);
-		return "department-add";
+		models.addAttribute("companies", companyService.getAllCompanies());
+		return "department/department-add";
 	}
 	
 	@PostMapping("/department/addNew")
-	public String addDepartment(@Valid Department dep, BindingResult res/*, int id*/) {
+	public String postaddDepartment(@Valid Department dep, BindingResult res/*, int id*/) {
 		if(!res.hasErrors()) {
 			departmentService.insertNewDepartment(dep);
 			
-			return "redirect:/department"; 
+			return "redirect:/departments"; 
 		}else {
-			return "error-add-page";
+			return "department/department-add-page";
 		}
 				
 	}
@@ -96,8 +93,8 @@ public class DepartmentController {
 
 	@GetMapping("/department/{id}/courses") // All Courses of department
 	public String getAllCoursesFromDepartment(@PathVariable int id, Model model) {
-		model.addAttribute("coruses", departmentService.getAllCoursesFromDepartment(id));
-		return "department-course-all";
+		model.addAttribute("courses", departmentService.getAllCoursesFromDepartment(id));
+		return "department/department-course-all";
 	}
 	
 
@@ -107,7 +104,7 @@ public class DepartmentController {
 		try {
 			model.addAttribute("department", departmentService.readDepartmentById(id));
 			model.addAttribute("companies", companyService.getAllCompanies());
-			return "department-update";
+			return "department/department-update";
 		} catch (Exception e) {
 			throw new Exception("can't find department");
 		}
@@ -122,7 +119,7 @@ public class DepartmentController {
 				throw new Exception("can't update");
 			}
 		} else {
-			return "department-update";
+			return "department/department-update";
 		}
 	}
 	@GetMapping("/export/excel/{id}")

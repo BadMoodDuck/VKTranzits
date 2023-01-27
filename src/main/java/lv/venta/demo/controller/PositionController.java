@@ -37,13 +37,13 @@ public class PositionController {
 			model.addAttribute("totalElements", page.getTotalElements());
 			model.addAttribute("totalPages", page.getTotalPages());
 			model.addAttribute("positions", page.getContent());
-			return "position-all";
+			return "position/position-all";
 		}
 
 		
 		@GetMapping("/position/addNew") 
 		public String getAddPosition(Position position) {
-			return "position-add";
+			return "position/position-add";
 		}
 		
 		@PostMapping("/position/addNew") 
@@ -68,7 +68,7 @@ public class PositionController {
 		public String getUpdatePositionById(@PathVariable(name = "id") int id, Model model) throws Exception {
 			try {
 				model.addAttribute("position", positionService.readPositionById(id));
-				return "position-update";
+				return "position/position-update";
 			} catch (Exception e) {
 				throw new Exception("can't find position");
 			}
@@ -84,7 +84,7 @@ public class PositionController {
 					throw new Exception("can't update");
 				}
 			} else {
-				return "position-update";
+				return "position/position-update";
 			}
 			
 		}

@@ -6,4 +6,6 @@ import lv.venta.demo.models.MyUserAuthority;
 
 public interface IMyAuthorityRepo extends CrudRepository<MyUserAuthority, Integer>{
 
+	boolean existsByTitle(String title);
+
 }
