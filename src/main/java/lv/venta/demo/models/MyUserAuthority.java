@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -32,7 +34,8 @@ public class MyUserAuthority {
 		private int idA;
 
 		@Column(name = "Title")
-		//@Pattern(regexp = "[ROLE_][A-Z]+")
+	    @NotNull(message = "Must not be empty")
+	    @Pattern(regexp = "^ROLE_[A-Z0-9_]+$", message = "Roles have to start with 'ROLE_' and can include only uppercase A-Z letters, 0-9 numbers, and '_'")
 		private String title;
 
 		@ManyToMany

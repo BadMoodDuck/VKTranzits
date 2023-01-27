@@ -46,7 +46,7 @@ public class DepartmentCRUDServiceImpl implements IDepartmentCRUDService{
 			Department department = departmentRepo.findById(idDe).get();
 			return courseRepo.findByDepartments(department);
 		}
-		return new ArrayList<Course>();
+		return null;
 	}
 
 	@Override

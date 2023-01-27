@@ -10,4 +10,6 @@ public interface IMyAuthorityCRUDService {
 
 	ArrayList<MyUserAuthority> selectAllAuthorities();
 
+	boolean deleteAuthorityById(int authorityId);
+
 }

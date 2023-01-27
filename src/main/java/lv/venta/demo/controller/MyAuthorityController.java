@@ -1,5 +1,6 @@
 package lv.venta.demo.controller;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import lv.venta.demo.models.Company;
@@ -40,6 +42,13 @@ public class MyAuthorityController {
 			authorityService.insertNewAuthority(authority);
 			return "redirect:/authorities";
 		}
+	}
+	
+	@Transactional
+	@GetMapping("/authority/delete/{id}")
+	public String getDeleteAuthorityById(@PathVariable(name = "id") int id) {
+		authorityService.deleteAuthorityById(id);
+		return "redirect:/authorities";
 	}
 	
 
